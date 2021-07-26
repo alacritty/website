@@ -1,0 +1,59 @@
+#alacritty-example-img {
+  width: 500px;
+  margin: 50px 0 0 0;
+  padding: 10px;
+  background: #282828;
+}
+
+#feature-list {
+  list-style: square;
+}
+
+#feature-list div {
+  display: inline-block;
+}
+
+#feature-list div:first-child {
+  min-width: 105px;
+}
+
+#feature-list div:nth-child(2) {
+  padding: 0 5px;
+}
+
+@media screen and (max-width: 675px) {
+  #feature-list div {
+    display: block;
+  }
+
+  #feature-list div:nth-child(2) {
+    display: none;
+  }
+}
+
+#install-icons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#install-icons i {
+  font-size: 64px;
+  padding: 15px 0;
+  display: block;
+}
+
+.platform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.platform-label {
+  font-size: 1.2em;
+}
+
+.download-links a {
+  display: block;
+}
