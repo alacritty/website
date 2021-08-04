@@ -20,10 +20,12 @@ main {
 #logo {
   display: flex;
   align-items: center;
-  font-size: 1.7em;
+  padding-top: 0.14em; 
+  font-size: 2.3em;
 }
 
 #logo-img {
+  padding-bottom: 0.2em;
   width: 40px;
 }
 
