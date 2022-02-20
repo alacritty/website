@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+  </head>
+  <body>
+    <header>
+      <div id="header-content" class="content-width">
+        <a id="logo" href="index.html">
+          <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo"/>
+          lacritty
+        </a>
+        <nav>
+          <a href="changelog.html">Changelog</a>
+          <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-width">
+      <div class="title">
+        <h1>Alacritty Version 0.10.1 Release</h1>
+        <h4>Feb 20, 2022</h4>
+      </div>
+
+      <div id="github-release">
+        Prebuilt binaries can be found in the
+        <a href="https://github.com/alacritty/alacritty/releases/tag/v0.10.1">
+          GitHub release.
+        </a>
+      </div>
+
+      <div class="changelog-content">
+        <h2><a name="Added" href="#Added">Added</a></h2><ul> <li>Option `font.builtin_box_drawing` to disable the built-in font for drawing box characters</li></ul><h2><a name="Changed" href="#Changed">Changed</a></h2><ul><li>Builtin font thickness is now based on cell width instead of underline thickness</li></ul><h2><a name="Fixed" href="#Fixed">Fixed</a></h2><ul><li>OSC 4 not handling `?`</li><li>`?` in OSC strings reporting default colors instead of modified ones</li><li>OSC 104 not clearing colors when second parameter is empty</li><li>Builtin font lines not contiguous when `font.offset` is used</li><li>`font.glyph_offset` is no longer applied on builtin font</li><li>Buili-in font arcs alignment</li><li>Repeated permission prompts on M1 macs</li><li>Colors being slightly off when using `colors.transparent_background_colors`</li></ul>
+      </div>
+    </main>
+  </body>
+</html>
