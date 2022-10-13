@@ -16,3 +16,7 @@
   margin-top: 5px;
   line-height: 1.5em;
 }
+
+code {
+    background: #262626;
+}

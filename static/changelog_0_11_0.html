@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+</head>
+
+<body>
+    <header>
+        <div id="header-content" class="content-width">
+            <a id="logo" href="index.html">
+                <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+            </a>
+            <nav>
+                <a href="changelog.html">Changelog</a>
+                <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-width">
+        <div class="title">
+            <h1>Alacritty Version 0.11.0 Release</h1>
+            <h4>Oct 13, 2022</h4>
+        </div>
+
+        <div id="github-release">
+            Prebuilt binaries can be found in the
+            <a href="https://github.com/alacritty/alacritty/releases/tag/v0.11.0">
+          GitHub release.
+        </a>
+        </div>
+
+        <div class="changelog-content">
+            <h2><a name="Packaging" href="#Packaging">Packaging</a></h2>
+            <ul>
+                <li>Minimum Rust version has been bumped to 1.57.0</li>
+                <li>Renamed <code>io.alacritty.Alacritty.appdata.xml</code> to <code>org.alacritty.Alacritty.appdata.xml</code></li>
+                <li>Renamed <code>io.alacritty</code> to <code>org.alacritty</code> for <code>Alacritty.app</code></li>
+            </ul>
+            <h2><a name="Added" href="#Added">Added</a></h2>
+            <ul>
+                <li>Track and report surface damage information to Wayland compositors</li>
+                <li>
+                    Escape sequence for undercurl, dotted and dashed underlines (<code>CSI 4 : [3-5] m</code>)
+                    <br><img src="curled_dotted_dashed.png"/>
+                </li>
+                <li><code>ToggleMaximized</code> key binding action to (un-)maximize the active window, not bound by default</li>
+                <li>Support for OpenGL ES 2.0</li>
+                <li>
+                    Escape sequence to set underline color (<code>CSI 58 : 2 : Ps : Ps : Ps m</code>/<code>CSI 58 : 5 : Ps m</code>)
+                    <br><img src="colored_underline.png"/>
+                </li>
+                <li>Escape sequence to reset underline color (<code>CSI 59 m</code>)</li>
+                <li>Vi mode keybinding (z) to center view around vi mode cursor</li>
+                <li>Accept hexadecimal values starting with <code>0x</code> for <code>--embed</code></li>
+                <li>Config option <code>cursor.blink_timeout</code> to timeout cursor blinking after inactivity</li>
+                <li>
+                    Escape sequence to set hyperlinks (<code>OSC 8 ; params ; URI ST</code>)<br>
+                    <br><img src="url_escape_sequence.png"/>
+                </li>
+                <li>Config <code>hints.enabled.hyperlinks</code> for hyperlink escape sequence hint highlight</li>
+                <li><code>window.decorations_theme_variant</code> to control both Wayland CSD and GTK theme variant on X11</li>
+                <li>Support for inline input method</li>
+            </ul>
+            <h2><a name="Changed" href="#Changed">Changed</a></h2>
+            <ul>
+                <li>No longer renders to macos and x11 windows that are fully occluded / not directly visible</li>
+                <li>The <code>--help</code> output was reworked with a new colorful syntax</li>
+                <li>OSC 52 is now disabled on unfocused windows</li>
+                <li><code>SpawnNewInstance</code> no longer inherits initial <code>--command</code></li>
+                <li>Blinking cursor will timeout after <code>5</code> seconds by default</li>
+                <li>Deprecated <code>colors.search.bar</code>, use <code>colors.footer_bar</code> instead</li>
+                <li>On macOS, Alacritty now reads <code>AppleFontSmoothing</code> from user defaults to control font smoothing</li>
+                <li>Warn when either <code>columns</code> or <code>lines</code> is non-zero, but not both</li>
+                <li>Client side decorations should have proper text rendering now on Wayland</li>
+                <li>Config option <code>window.gtk_theme_variant</code>, you should use <code>window.decorations_theme_variant</code> instead</li>
+                <li><code>--class</code> now sets both class part of WM_CLASS property and instance</li>
+                <li><code>--class</code>'s <code>general</code> and <code>instance</code> options were swapped</li>
+                <li>Search bar is now respecting cursor thickness</li>
+                <li>On X11 the IME popup window is stuck at the bottom of the window due to Xlib limitations</li>
+                <li>IME no longer works in Vi mode when moving around</li>
+            </ul>
+            <h2><a name="Fixed" href="#Fixed">Fixed</a></h2>
+            <ul>
+                <li>Creating the IPC socket failing if <code>WAYLAND_DISPLAY</code> contains an absolute path</li>
+                <li>Crash when resetting the terminal while in vi mode</li>
+                <li><code>font.glyph_offset</code> not live reloading</li>
+                <li>Failure when running on 10-bit color system</li>
+                <li>The colors being slightly different when using srgb displays on macOS</li>
+                <li>Vi cursor blinking not reset when navigating in search</li>
+                <li>Scrolling and middle-clicking modifying the primary selection</li>
+                <li>Bottom gap for certain builtin box drawing characters</li>
+                <li>Incorrect built-in glyphs for <code>U+2567</code> and <code>U+2568</code></li>
+                <li>Character mappings in the DEC special graphics character set (line drawing)</li>
+                <li>Window flickering on resize on Wayland</li>
+                <li>Unnecessary config reload when using <code>/dev/null</code> as a config file</li>
+                <li>Windows <code>Open Alacritty Here</code> on root of drive displaying error</li>
+                <li>On macOS, <code>font.use_thin_strokes</code> did not work since Big Sur</li>
+                <li>On macOS, trying to load a disabled font would crash</li>
+                <li>On macOS, Alacritty sessions did not appear in the list of tty sessions for <code>w</code> and <code>who</code></li>
+                <li>Cursor not hiding on GNOME Wayland</li>
+                <li>Font having different scale factor after monitor powering off/on on X11</li>
+                <li>Viewport not updating after opening a new tabbed window on macOS</li>
+                <li>Terminal not exiting sometimes after closing all windows on macOS</li>
+                <li>CPU usage spikes due to mouse movements for unfocused windows on X11/Windows</li>
+                <li>First window on macOS not tabbed with system prefer tabs setting</li>
+                <li>Window being treaten as focused by default on Wayland</li>
+            </ul>
+            <h2><a name="Removed" href="#Removed">Removed</a></h2>
+            <ul>
+                <li><code>font.use_thin_strokes</code> config field; to use thin strokes on macOS, set</li> <code>AppleFontSmoothing</code> to 0 with <code>$ defaults write -g AppleFontSmoothing -int 0</code></ul>
+        </div>
+    </main>
+</body>
+
+</html>
