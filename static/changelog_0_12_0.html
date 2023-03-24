@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+</head>
+
+<body>
+    <header>
+        <div id="header-content" class="content-width">
+            <a id="logo" href="index.html">
+                <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+            </a>
+            <nav>
+                <a href="changelog.html">Changelog</a>
+                <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-width">
+        <div class="title">
+            <h1>Alacritty Version 0.12.0 Release</h1>
+            <h4>Mar 25, 2023</h4>
+        </div>
+
+        <div id="github-release">
+            Prebuilt binaries can be found in the
+            <a href="https://github.com/alacritty/alacritty/releases/tag/v0.12.0">
+          GitHub release.
+        </a>
+        </div>
+
+        <div class="changelog-content">
+            <h2><a name="Added" href="#Added">Added</a></h2>
+            <ul>
+                <li>Uppercase <code>-T</code> short form for <code>--title</code></li>
+                <li>Support for horizontal scrolling in mouse mode and alternative scrolling modes</li>
+                <li>Support for fractional scaling on Wayland with wp-fractional-scale protocol</li>
+                <li>Support for running on GLES context</li>
+                <li>Touchscreen input for click/scroll/select/zoom</li>
+                <li><code>window.resize_increments</code> config option, disabled by default</li>
+            </ul>
+            <h2><a name="Changed" href="#Changed">Changed</a></h2>
+            <ul>
+                <li>Always use sRGB color space on macOS</li>
+                <li>Erase in line after the last column will no longer clear the last column</li>
+                <li>Open new windows by default with macOS <code>Cmd</code>+<code>N</code> binding</li>
+                <li>The hint about window transparency is now properly issued on Wayland and macOS</li>
+                <li><code>window.decorations_theme_variant</code> could now control theme on macOS and Windows</li>
+                <li>The IME purpose is now set to <code>Terminal</code> which could help with OSK</li>
+                <li><code>window.decorations_theme_variant</code> is now using <code>Dark</code>, <code>Light</code>, and <code>None</code> values</li>
+                <li>Resize increments are now set on macOS and X11 to resize by cell sizes</li>
+            </ul>
+            <h2><a name="Fixed" href="#Fixed">Fixed</a></h2>
+            <ul>
+                <li><code>--help</code> output for <code>--class</code> does not match man pages</li>
+                <li>Cursor and underlines always being black on very old hardware</li>
+                <li>Crash when using very low negative <code>font.offset</code></li>
+                <li>Startup failure on macOS with default config when system <code>/bin/sh</code> is <code>dash</code></li>
+                <li>Artifacts in corners for maximized window with CSD on Wayland</li>
+                <li>Dotted underline not shown on macOS</li>
+                <li>Underline on macOS always being at the bottom of the cell</li>
+                <li>Crash with <code>OT-SVG</code> fonts on Linux/BSD</li>
+                <li>Crash during text compose on old GNOME under Wayland</li>
+                <li>Mouse cursor staying hidden after window regains focus on macOS Ventura</li>
+                <li>Blurry fonts when changing padding size at runtime</li>
+                <li>Crash while typing on Wayland</li>
+                <li>Multi-line semantic bracket selection</li>
+                <li>Reduced GPU memory usage</li>
+                <li>Low frame rate when multiple windows render at the same time</li>
+                <li>Redraw hanging until a keypress on X11 in rare cases</li>
+                <li>Window clipping when maximizing a window without decorations on Windows</li>
+                <li>Quadrants not aligned with half blocks with built-in font</li>
+                <li>EOT (<code>\x03</code>) escaping bracketed paste mode</li>
+                <li>Drag & Drop not working for the search bar</li>
+                <li>Simple-fullscreened window not resized when moving between monitors on macOS</li>
+            </ul>
+            <h2><a name="Removed" href="#Removed">Removed</a></h2>
+            <ul>
+                <li><code>window.gtk_theme_variant</code> config field; use <code>window.decorations_theme_variant</code> instead</li>
+                <li><code>alt_send_esc</code> is now always set to <code>true</code></li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>
