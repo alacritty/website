@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+  </head>
+  <body>
+    <header>
+      <div id="header-content" class="content-width">
+        <a id="logo" href="index.html">
+          <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo"/>
+          lacritty
+        </a>
+        <nav>
+          <a href="changelog.html">Changelog</a>
+          <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-width">
+      <h1>NAME</h1>
+      <p>Alacritty - TOML configuration file format</p>
+      <h1>SYNTAX</h1>
+      <p>Alacritty's configuration file uses the TOML format. The
+      format's specification can be found at
+      https://toml.io/en/v1.0.0.</p>
+      <h1>GENERAL</h1>
+      <p>This section documents the root level of the configuration
+      file.</p>
+      <p><strong>import</strong> [&lt;string&gt;,]</p>
+      <blockquote>
+      <p>Import additional configuration files</p>
+      <p>Imports are loaded in order, skipping all missing files, with
+      the importing file being loaded last. If a field is already
+      present in a previous import, it will be replaced.</p>
+      <p>All imports must either be absolute paths starting with
+      <em>/</em>, or paths relative to the user's home directory
+      starting with <em>~/</em>.</p>
+      </blockquote>
+      <p><strong>working_directory</strong> &lt;string&gt; | "None"</p>
+      <blockquote>
+      <p>Directory the shell is started in. When this is unset, or
+      <em>None</em>, the working directory of the parent process will be
+      used.</p>
+      <p>Default: <em>None</em></p>
+      </blockquote>
+      <p><strong>live_config_reload</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Live config reload (changes require restart)</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <p><strong>ipc_socket</strong> &lt;boolean&gt; <em>(unix
+      only)</em></p>
+      <blockquote>
+      <p>Offer IPC using <em>alacritty msg</em></p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <h1>ENV</h1>
+      <p>All key-value pairs in the <strong>env</strong> section will be
+      added as environment variables for any process spawned by
+      Alacritty, including its shell. Some entries may override
+      variables set by alacritty itself.</p>
+      <pre><code>[env]
+TERM = &quot;alacritty&quot;</code></pre>
+      <h1>WINDOW</h1>
+      <p>This section documents the <strong>[window]</strong> table of
+      the configuration file.</p>
+      <p><strong>dimensions</strong> { columns = &lt;integer&gt;, lines
+      = &lt;integer&gt; }</p>
+      <blockquote>
+      <p>Window dimensions (changes require restart)</p>
+      <p>Number of lines/columns (not pixels) in the terminal. Both
+      lines and columns must be non-zero for this to take effect. The
+      number of columns must be at least <em>2</em>, while using a value
+      of <em>0</em> for columns and lines will fall back to the window
+      manager's recommended size</p>
+      <p>Default: <em>{ column = 0, lines = 0 }</em></p>
+      </blockquote>
+      <p><strong>padding</strong> { x = &lt;integer&gt;, y =
+      &lt;integer&gt; }</p>
+      <blockquote>
+      <p>Blank space added around the window in pixels. This padding is
+      scaled by DPI and the specified value is always added at both
+      opposing sides.</p>
+      <p>Default: <em>{ x = 0, y = 0 }</em></p>
+      </blockquote>
+      <p><strong>dynamic_padding</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Spread additional padding evenly around the terminal
+      content.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong>decorations</strong> "Full" | "None" | "Transparent" |
+      "Buttonless"</p>
+      <blockquote>
+      <p>Window decorations</p>
+      <p><strong>Full</strong></p>
+      <blockquote>
+      <p>Borders and title bar</p>
+      </blockquote>
+      <p><strong>None</strong></p>
+      <blockquote>
+      <p>Neither borders nor title bar</p>
+      </blockquote>
+      <p><strong>Transparent</strong> <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Title bar, transparent background and title bar buttons</p>
+      </blockquote>
+      <p><strong>Buttonless</strong> <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Title bar, transparent background and no title bar buttons</p>
+      </blockquote>
+      <p>Default: <em>"Full"</em></p>
+      </blockquote>
+      <p><strong>opacity</strong> &lt;float&gt;</p>
+      <blockquote>
+      <p>Background opacity as a floating point number from <em>0.0</em>
+      to <em>1.0</em>. The value _0.0_ is completely transparent and
+      <em>1.0</em> is opaque.</p>
+      <p>Default: <em>1.0</em></p>
+      </blockquote>
+      <p><strong>startup_mode</strong> "Windowed" | "Maximized" |
+      "Fullscreen" | "SimpleFullscreen"</p>
+      <blockquote>
+      <p>Startup mode (changes require restart)</p>
+      <p>Default: <em>"Windowed"</em></p>
+      </blockquote>
+      <p><strong>title</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Window title</p>
+      <p>Default: <em>"Alacritty"</em></p>
+      </blockquote>
+      <p><strong>dynamic_title</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Allow terminal applications to change Alacritty's window
+      title.</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <p><strong>class</strong> { instance = &lt;string&gt;, general =
+      &lt;string&gt; } <em>(Linux/BSD only)</em></p>
+      <blockquote>
+      <p>Window class</p>
+      <p>On Wayland, <strong>general</strong> is used as <em>app_id</em>
+      and <strong>instance</strong> is ignored.</p>
+      <p>Default: <em>{ instance = "Alacritty", general = "Alacritty"
+      }</em></p>
+      </blockquote>
+      <p><strong>decoration_theme_variant</strong> "Dark" | "Light" |
+      "None"</p>
+      <blockquote>
+      <p>Override the variant of the System theme/GTK theme/Wayland
+      client side decorations. Set this to <em>"None"</em> to use the
+      system's default theme variant.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong>resize_increments</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Prefer resizing window by discrete steps equal to cell
+      dimensions.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong>option_as_alt</strong> "OnlyLeft" | "OnlyRight" |
+      "Both" | "None" <em>(macos only)</em></p>
+      <blockquote>
+      <p>Make <em>Option</em> key behave as <em>Alt</em></p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <h1>Scrolling</h1>
+      <p>This section documents the <strong>[scrolling]</strong> table
+      of the configuration file.</p>
+      <p><strong>history</strong> &lt;integer&gt;</p>
+      <blockquote>
+      <p>Maximum number of lines in the scrollback buffer.<br />
+      Specifying <em>0</em> will disable scrolling.<br />
+      Limited to <em>100000</em>.</p>
+      <p>Default: <em>10000</em></p>
+      </blockquote>
+      <p><strong>multiplier</strong> &lt;integer&gt;</p>
+      <blockquote>
+      <p>Number of line scrolled for every input scroll increment.</p>
+      <p>Default: <em>3</em></p>
+      </blockquote>
+      <h1>Font</h1>
+      <p>This section documents the <strong>[font]</strong> table of the
+      configuration file.</p>
+      <p><strong>normal</strong> { family = &lt;string&gt;, style =
+      &lt;string&gt; }</p>
+      <blockquote>
+      <p>Default:</p>
+      <blockquote>
+      <p>Linux/BSD: <em>{ family = "monospace", style = "Regular"
+      }</em><br />
+      Windows: <em>{ family = "Consolas", style = "Regular" }</em><br />
+      macOS: <em>{ family = "Menlo", style = "Regular" }</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>bold</strong> { family = &lt;string&gt;, style =
+      &lt;string&gt; }</p>
+      <blockquote>
+      <p>If the family is not specified, it will fall back to the value
+      specified for the normal font.</p>
+      <p>Default: <em>{ style = "Bold" }</em></p>
+      </blockquote>
+      <p><strong>italic</strong> { family = &lt;string&gt;, style =
+      &lt;string&gt; }</p>
+      <blockquote>
+      <p>If the family is not specified, it will fall back to the value
+      specified for the normal font.</p>
+      <p>Default: <em>{ style = "Italic" }</em></p>
+      </blockquote>
+      <p><strong>bold_italic</strong> { family = &lt;string&gt;, style =
+      &lt;string&gt; }</p>
+      <blockquote>
+      <p>If the family is not specified, it will fall back to the value
+      specified for the normal font.</p>
+      <p>Default: <em>{ style = "Bold Italic" }</em></p>
+      </blockquote>
+      <p><strong>size</strong> &lt;float&gt;</p>
+      <blockquote>
+      <p>Font size in points.</p>
+      <p>Default: <em>11.0</em></p>
+      </blockquote>
+      <p><strong>offset</strong> { x = &lt;integer&gt;, y =
+      &lt;integer&gt; }</p>
+      <blockquote>
+      <p>Offset is the extra space around each character. <em>y</em> can
+      be thought of as modifying the line spacing, and <em>x</em> as
+      modifying the letter spacing.</p>
+      <p>Default: <em>{ x = 0, y = 0 }</em></p>
+      </blockquote>
+      <p><strong>glyph_offset</strong> { x = &lt;integer&gt;, y =
+      &lt;integer&gt; }</p>
+      <blockquote>
+      <p>Glyph offset determines the locations of the glyphs within
+      their cells with the default being at the bottom. Increasing
+      <em>x</em> moves the glyph to the right, increasing <em>y</em>
+      moves the glyph upward.</p>
+      </blockquote>
+      <p><strong>builtin_box_drawing</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When <em>true</em>, Alacritty will use a custom built-in font
+      for box drawing characters (Unicode points <em>U+2500</em> -
+      <em>U+259f</em>).</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <h1>Colors</h1>
+      <p>This section documents the <strong>[colors]</strong> table of
+      the configuration file.</p>
+      <p>Colors are specified using their hexadecimal values with a
+      <em>#</em> prefix: <em>#RRGGBB</em></p>
+      <p><strong>primary</strong></p>
+      <blockquote>
+      <p><strong>foreground</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#1d1f21"</em></p>
+      </blockquote>
+      <p><strong>background</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#c5c8c6"</em></p>
+      </blockquote>
+      <p><strong>dim_foreground</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>If this is not set, the color is automatically calculated based
+      on the foreground color.</p>
+      <p>Default: <em>"#828482"</em></p>
+      </blockquote>
+      <p><strong>bright_foreground</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>This color is only used when
+      <em>draw_bold_text_with_bright_colors</em> is <em>true</em>.</p>
+      <p>If this is not set, the normal foreground will be used.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>cursor</strong> { text = &lt;string&gt;, cursor =
+      &lt;string&gt; }</p>
+      <blockquote>
+      <p>Colors which should be used to draw the terminal cursor.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: <em>{ text = "CellBackground", cursor:
+      "CellForeground" }</em></p>
+      </blockquote>
+      <p><strong>vi_mode_cursor</strong> { text = &lt;string&gt;, cursor
+      = &lt;string&gt; }</p>
+      <blockquote>
+      <p>Colors for the cursor when the vi mode is active.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: <em>{ text = "CellBackground", cursor:
+      "CellForeground" }</em></p>
+      </blockquote>
+      <p><strong>search</strong></p>
+      <blockquote>
+      <p>Colors used for the search bar and match highlighting.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p><strong>matches</strong> { foreground = &lt;string&gt;,
+      background = &lt;string&gt; }</p>
+      <blockquote>
+      <p>Default: <em>{ foreground = "#000000", background: "#ffffff"
+      }</em></p>
+      </blockquote>
+      <p><strong>focused_match</strong> { foreground = &lt;string&gt;,
+      background = &lt;string&gt; }</p>
+      <blockquote>
+      <p>Default: <em>{ foreground = "#ffffff", background: "#000000"
+      }</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>hints</strong></p>
+      <blockquote>
+      <p><strong>start</strong> { foreground = &lt;string&gt;,
+      background = &lt;string&gt; }</p>
+      <blockquote>
+      <p>First character in the hint label</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: <em>{ foreground = "#1d1f21", background = "#e9ff5e"
+      }</em></p>
+      </blockquote>
+      <p><strong>end</strong> { foreground = &lt;string&gt;, background
+      = &lt;string&gt; }</p>
+      <blockquote>
+      <p>All characters after the first one in the hint label</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: <em>{ foreground = "#e9ff5e", background = "#1d1f21"
+      }</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>line_indicator</strong> { foreground = &lt;string&gt;,
+      background = &lt;string&gt; }</p>
+      <blockquote>
+      <p>Color used for the indicator displaying the position in history
+      during search and vi mode.</p>
+      <p>Setting this to <em>"None"</em> will use the opposing primary
+      color.</p>
+      <p>Default: <em>{ foreground = "None", background = "None"
+      }</em></p>
+      </blockquote>
+      <p><strong>footer_bar</strong> { foreground = &lt;string&gt;,
+      background = &lt;string&gt; }</p>
+      <blockquote>
+      <p>Color used for the footer bar on the bottom, used by search
+      regex input, hyperlink URI preview, etc.</p>
+      <p>Default: <em>{ foreground = "#c5c8c6", background = "#1d1f21"
+      }</em></p>
+      </blockquote>
+      <p><strong>selection</strong> { text = &lt;string&gt;, background
+      = &lt;string&gt; }</p>
+      <blockquote>
+      <p>Colors used for drawing selections.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: <em>{ text = "CellBackground", background =
+      "CellForeground" }</em></p>
+      </blockquote>
+      <p><strong>normal</strong></p>
+      <blockquote>
+      <p><strong>black</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#1d1f21"</em></p>
+      </blockquote>
+      <p><strong>red</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#cc6666"</em></p>
+      </blockquote>
+      <p><strong>green</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#b5bd68"</em></p>
+      </blockquote>
+      <p><strong>yellow</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#f0c674"</em></p>
+      </blockquote>
+      <p><strong>blue</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#81a2be"</em></p>
+      </blockquote>
+      <p><strong>magenta</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#b294bb"</em></p>
+      </blockquote>
+      <p><strong>cyan</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#8abeb7"</em></p>
+      </blockquote>
+      <p><strong>white</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#c5c8c6"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>bright</strong></p>
+      <blockquote>
+      <p><strong>black</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#666666"</em></p>
+      </blockquote>
+      <p><strong>red</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#d54e53"</em></p>
+      </blockquote>
+      <p><strong>green</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#b9ca4a"</em></p>
+      </blockquote>
+      <p><strong>yellow</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#e7c547"</em></p>
+      </blockquote>
+      <p><strong>blue</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#7aa6da"</em></p>
+      </blockquote>
+      <p><strong>magenta</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#c397d8"</em></p>
+      </blockquote>
+      <p><strong>cyan</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#70c0b1"</em></p>
+      </blockquote>
+      <p><strong>white</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#eaeaea"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>dim</strong></p>
+      <blockquote>
+      <p>If the dim colors are not set, they will be calculated
+      automatically based on the <em>normal</em> colors.</p>
+      <p><strong>black</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#131415"</em></p>
+      </blockquote>
+      <p><strong>red</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#864343"</em></p>
+      </blockquote>
+      <p><strong>green</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#777c44"</em></p>
+      </blockquote>
+      <p><strong>yellow</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#9e824c"</em></p>
+      </blockquote>
+      <p><strong>blue</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#556a7d"</em></p>
+      </blockquote>
+      <p><strong>magenta</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#75617b"</em></p>
+      </blockquote>
+      <p><strong>cyan</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#5b7d78"</em></p>
+      </blockquote>
+      <p><strong>white</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Default: <em>"#828482"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>indexed_colors</strong> [{ index = &lt;integer&gt;,
+      color = &lt;string&gt; },]</p>
+      <blockquote>
+      <p>The indexed colors include all colors from 16 to 256. When
+      these are not set, they're filled with sensible defaults.</p>
+      <p>Default: <em>[]</em></p>
+      </blockquote>
+      <p><strong>transparent_background_colors</strong>
+      &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Whether or not <em>window.opacity</em> applies to all cell
+      backgrounds, or only to the default background. When set to
+      <em>true</em> all cells will be transparent regardless of their
+      background color.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong>draw_bold_text_with_bright_colors</strong>
+      &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When <em>true</em>, bold text is drawn using the bright color
+      variants.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1>Bell</h1>
+      <p>This section documents the <strong>[bell]</strong> table of the
+      configuration file.</p>
+      <p><strong>animation</strong> "Ease" | "EaseOut" | "EaseOutSine" |
+      "EaseOutQuad" | "EaseOutCubic" | "EaseOutQuart" | "EaseOutQuint" |
+      "EaseOutExpo" | "EaseOutCirc" | "Linear"</p>
+      <blockquote>
+      <p>Visual bell animation effect for flashing the screen when the
+      visual bell is rung.</p>
+      <p>Default: <em>"EaseOutExpo"</em></p>
+      </blockquote>
+      <p><strong>duration</strong> &lt;integer&gt;</p>
+      <blockquote>
+      <p>Duration of the visual bell flash in milliseconds. A `duration`
+      of `0` will disable the visual bell animation.</p>
+      <p>Default: <em>0</em></p>
+      </blockquote>
+      <p><strong>color</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Visual bell animation color.</p>
+      <p>Default: <em>"#ffffff"</em></p>
+      </blockquote>
+      <p><strong>command</strong> &lt;string&gt; | { program =
+      &lt;string&gt;, args = [&lt;string&gt;,] }</p>
+      <blockquote>
+      <p>This program is executed whenever the bell is rung.</p>
+      <p>When set to <em>"None"</em>, no command will be executed.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <h1>Selection</h1>
+      <p>This section documents the <strong>[selection]</strong> table
+      of the configuration file.</p>
+      <p><strong>semantic_escape_chars</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>This string contains all characters that are used as separators
+      for "semantic words" in Alacritty.</p>
+      <p>Default: <em>",│`|:"' ()[]{}&lt;&gt;t"</em></p>
+      </blockquote>
+      <p><strong>save_to_clipboard</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When set to <em>true</em>, selected text will be copied to the
+      primary clipboard.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1>Cursor</h1>
+      <p>This section documents the <strong>[cursor]</strong> table of
+      the configuration file.</p>
+      <p><strong>style</strong></p>
+      <blockquote>
+      <p><strong>shape</strong> "Block" | "Underline" | "Beam"</p>
+      <blockquote>
+      <p>Default: <em>"Block"</em></p>
+      </blockquote>
+      <p><strong>blinking</strong> "Never" | "Off" | "On" | "Always"</p>
+      <blockquote>
+      <p><strong>Never</strong></p>
+      <blockquote>
+      <p>Prevent the cursor from ever blinking</p>
+      </blockquote>
+      <p><strong>Off</strong></p>
+      <blockquote>
+      <p>Disable blinking by default</p>
+      </blockquote>
+      <p><strong>On</strong></p>
+      <blockquote>
+      <p>Enable blinking by default</p>
+      </blockquote>
+      <p><strong>Always</strong></p>
+      <blockquote>
+      <p>Force the cursor to always blink</p>
+      </blockquote>
+      <p>Default: <em>"Off"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>vi_mode_style</strong></p>
+      <blockquote>
+      <p>If the vi mode cursor style is <em>None</em> or not specified,
+      it will fall back to the active value of the normal cursor.</p>
+      <p>See <em>cursor.style</em> for available options.</p>
+      <p>Default: <em>None</em></p>
+      </blockquote>
+      <p><strong>blink_interval</strong> &lt;integer&gt;</p>
+      <blockquote>
+      <p>Cursor blinking interval in milliseconds.</p>
+      <p>Default: <em>750</em></p>
+      </blockquote>
+      <p><strong>blink_timeout</strong> &lt;integer&gt;</p>
+      <blockquote>
+      <p>Time after which cursor stops blinking, in seconds.</p>
+      <p>Specifying <em>0</em> will disable timeout for blinking.</p>
+      <p>Default: <em>5</em></p>
+      </blockquote>
+      <p><strong>unfocused_hollow</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When this is <em>true</em>, the cursor will be rendered as a
+      hollow box when the window is not focused.</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <p><strong>thickness</strong> &lt;float&gt;</p>
+      <blockquote>
+      <p>Thickness of the cursor relative to the cell width as floating
+      point number from <em>0.0</em> to <em>1.0</em>.</p>
+      <p>Default: <em>0.15</em></p>
+      </blockquote>
+      <p><strong>shell</strong> &lt;string&gt; | { program =
+      &lt;string&gt;, args = [&lt;string&gt;,] }</p>
+      <blockquote>
+      <p>You can set <em>shell.program</em> to the path of your favorite
+      shell, e.g. <em>/bin/zsh</em>. Entries in <em>shell.args</em> are
+      passed as arguments to the shell.</p>
+      <p>Default:</p>
+      <blockquote>
+      <p>Linux/BSD/macOS: <em>$SHELL</em> or the user's login shell, if
+      <em>$SHELL</em> is unset<br />
+      Windows: <em>"powershell"</em></p>
+      </blockquote>
+      </blockquote>
+      <h1>Mouse</h1>
+      <p>This section documents the <strong>[mouse]</strong> table of
+      the configuration file.</p>
+      <p><strong>double_click</strong> { threshold = &lt;integer&gt;
+      }</p>
+      <blockquote>
+      <p>Set maximum time between double-clicks in milliseconds.</p>
+      <p>Default: <em>300</em></p>
+      </blockquote>
+      <p><strong>triple_click</strong> { threshold = &lt;integer&gt;
+      }</p>
+      <blockquote>
+      <p>Set maximum time between triple-clicks in milliseconds.</p>
+      <p>Default: <em>300</em></p>
+      </blockquote>
+      <p><strong>hide_when_typing</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When this is <em>true</em>, the cursor is temporarily hidden
+      when typing.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1>Hints</h1>
+      <p>This section documents the <strong>[hints]</strong> table of
+      the configuration file.</p>
+      <p>Terminal hints can be used to find text or hyperlinks in the
+      visible part of the terminal and pipe it to other
+      applications.</p>
+      <p><strong>alphabet</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Keys used for the hint labels.</p>
+      <p>Default: <em>"jfkdls;ahgurieowpq"</em></p>
+      </blockquote>
+      <p><strong>enabled</strong> [{ &lt;regex&gt;, &lt;hyperlinks&gt;,
+      &lt;post_processing&gt;, &lt;persist&gt;, &lt;action&gt;,
+      &lt;command&gt; &lt;binding&gt;, &lt;mouse&gt; },]</p>
+      <p>Array with all available hints.</p>
+      <p>Each hint must have at least one of <em>regex</em> or
+      <em>hyperlinks</em> and either an <em>action</em> or a
+      <em>command</em>.</p>
+      <blockquote>
+      <p><strong>regex</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Regex each line will be compared against.</p>
+      </blockquote>
+      <p><strong>hyperlinks</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When this is <em>true</em>, all OSC 8 escape sequence
+      hyperlinks will be included in the hints.</p>
+      </blockquote>
+      <p><strong>post_processing</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When this is <em>true</em>, heuristics will be used to shorten
+      the match if there are characters likely not to be part of the
+      hint (e.g. a trailing <em>.</em>). This is most useful for URIs
+      and applies only to <em>regex</em> matches.</p>
+      </blockquote>
+      <p><strong>persist</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>When this is <em>true</em>, hints remain persistent after
+      selection.</p>
+      </blockquote>
+      <p><strong>action</strong> "Copy" | "Paste" | "Select" |
+      "MoveViModeCursor"</p>
+      <blockquote>
+      <p><strong>Copy</strong></p>
+      <blockquote>
+      <p>Copy the hint's text to the clipboard.</p>
+      </blockquote>
+      <p><strong>Paste</strong></p>
+      <blockquote>
+      <p>Paste the hint's text to the terminal or search.</p>
+      </blockquote>
+      <p><strong>Select</strong></p>
+      <blockquote>
+      <p>Select the hint's text.</p>
+      </blockquote>
+      <p><strong>MoveViModeCursor</strong></p>
+      <blockquote>
+      <p>Move the vi mode cursor to the beginning of the hint.</p>
+      </blockquote>
+      </blockquote>
+      <p><strong>command</strong> &lt;string&gt; | { program =
+      &lt;string&gt;, args = [&lt;string&gt;,] }</p>
+      <blockquote>
+      <p>Command which will be executed when the hint is clicked or
+      selected with the <em>binding</em>.</p>
+      <p>The hint's text is always attached as the last argument.</p>
+      </blockquote>
+      <p><strong>binding</strong> { key = &lt;string&gt;, mods =
+      &lt;string&gt;, mode = &lt;string&gt; }</p>
+      <blockquote>
+      <p>See <em>key_bindings</em> for documentation on available
+      values.</p>
+      <p>This controls which key binding is used to start the keyboard
+      hint selection process.</p>
+      </blockquote>
+      <p><strong>mouse</strong> { mods = &lt;string&gt;, enabled =
+      &lt;boolean&gt; }</p>
+      <blockquote>
+      <p>See <em>key_bindings</em> for documentation on available
+      <em>mods</em>.</p>
+      <p>The <em>enabled</em> field controls if the hint should be
+      underlined when hovering over the hint text with all <em>mods</em>
+      pressed.</p>
+      </blockquote>
+      </blockquote>
+      <p>Default: <em>[{</em></p>
+      <blockquote>
+      <p>regex =
+      "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F&lt;&gt;\"\\s{-}\\^⟨⟩`]+",<br />
+      hyperlinks = true,<br />
+      post_processing = true,<br />
+      persist = false,<br />
+      mouse = { enabled = true },<br />
+      binding = { key = "U", mods = "Control | Shift" },</p>
+      </blockquote>
+      <p>}]</p>
+      <h1>Bindings</h1>
+      <p>This section documents the <strong>mouse_bindings</strong> and
+      <strong>key_bindings</strong> at the root level of the
+      configuration file.</p>
+      <p><strong>mouse_bindings</strong> [{ &lt;mouse&gt;, &lt;mods&gt;,
+      &lt;mode&gt;, &lt;action&gt; | chars = &lt;string&gt; },]</p>
+      <blockquote>
+      <p>See <em>key_bindings</em> for full documentation on
+      <em>mods</em>, <em>mode</em>, <em>action</em>, and
+      <em>chars</em>.</p>
+      <p>To trigger mouse bindings when an application running within
+      Alacritty captures the mouse, the `Shift` modifier is
+      automatically added as a requirement.</p>
+      <p><strong>mouse</strong> "Middle" | "Left" | "Right" |
+      &lt;number&gt;</p>
+      <blockquote>
+      <p>Mouse button which needs to be pressed to trigger this
+      binding.</p>
+      </blockquote>
+      <p><strong>action</strong> &lt;key_bindings.action&gt; |
+      "ExpandSelection"</p>
+      <blockquote>
+      <p><strong>ExpandSelection</strong></p>
+      <blockquote>
+      <p>Expand the selection to the current mouse cursor location.</p>
+      </blockquote>
+      </blockquote>
+      </blockquote>
+      <p><strong>key_bindings</strong> [{ &lt;key&gt;, &lt;mods&gt;,
+      &lt;mode&gt;, &lt;action&gt; | chars = &lt;string&gt; },]</p>
+      <blockquote>
+      <p>To unset a default binding, you can use the action
+      <em>"ReceiveChar"</em> to remove it or <em>"None"</em> to inhibit
+      any action.</p>
+      <p>Multiple keybindings can be triggered by a single key press and
+      will be executed in the order they are defined in.</p>
+      <p><strong>key</strong> &lt;string&gt;</p>
+      <blockquote>
+      <p>Identifier of the binding's key, for example: <em>"A"</em>,
+      <em>"F1"</em>, or <em>"Key0"</em>.</p>
+      <p>A full list with available key codes can be found here:<br />
+      https://docs.rs/winit/*/winit/event/enum.VirtualKeyCode.html#variants</p>
+      <p>The <em>key</em> field also supports using scancodes, which are
+      specified as a decimal number.</p>
+      </blockquote>
+      <p><strong>mods</strong> "Command" | "Control" | "Option" |
+      "Super" | "Shift" | "Alt"</p>
+      <blockquote>
+      <p>Multiple modifiers can be combined using <em>|</em>, like this:
+      <em>"Control |</em> Shift".</p>
+      </blockquote>
+      <p><strong>mode</strong> "AppCursor" | "AppKeypad" | "Search" |
+      "Alt" | "Vi"</p>
+      <blockquote>
+      <p>This defines a terminal mode which must be active for this
+      binding to have an effect.</p>
+      <p>Prepending <em>~</em> to a mode will require the mode to
+      <strong>not</strong> be active for the binding to take effect.</p>
+      <p>Multiple modes can be combined using <em>|</em>, like this:
+      <em>"~Vi|Search"</em>.</p>
+      </blockquote>
+      <p><strong>chars</strong></p>
+      <blockquote>
+      <p>Writes the specified string to the terminal.</p>
+      </blockquote>
+      <p><strong>action</strong></p>
+      <blockquote>
+      <p><strong>Up</strong></p>
+      <blockquote>
+      <p>One line up.</p>
+      </blockquote>
+      <p><strong>Down</strong></p>
+      <blockquote>
+      <p>One line down.</p>
+      </blockquote>
+      <p><strong>Left</strong></p>
+      <blockquote>
+      <p>One character left.</p>
+      </blockquote>
+      <p><strong>Right</strong></p>
+      <blockquote>
+      <p>One character right.</p>
+      </blockquote>
+      <p><strong>First</strong></p>
+      <blockquote>
+      <p>First column, or beginning of the line when already at the
+      first column.</p>
+      </blockquote>
+      <p><strong>Last</strong></p>
+      <blockquote>
+      <p>Last column, or beginning of the line when already at the last
+      column.</p>
+      </blockquote>
+      <p><strong>FirstOccupied</strong></p>
+      <blockquote>
+      <p>First non-empty cell in this terminal row, or first non-empty
+      cell of the line when already at the first cell of the row.</p>
+      </blockquote>
+      <p><strong>High</strong></p>
+      <blockquote>
+      <p>Top of the screen.</p>
+      </blockquote>
+      <p><strong>Middle</strong></p>
+      <blockquote>
+      <p>Center of the screen.</p>
+      </blockquote>
+      <p><strong>Low</strong></p>
+      <blockquote>
+      <p>Bottom of the screen.</p>
+      </blockquote>
+      <p><strong>SemanticLeft</strong></p>
+      <blockquote>
+      <p>the previous semantically separated word.</p>
+      </blockquote>
+      <p><strong>SemanticRight</strong></p>
+      <blockquote>
+      <p>he next semantically separated word.</p>
+      </blockquote>
+      <p><strong>SemanticLeftEnd</strong></p>
+      <blockquote>
+      <p>revious semantically separated word.</p>
+      </blockquote>
+      <p><strong>SemanticRightEnd</strong></p>
+      <blockquote>
+      <p>End of the next semantically separated word.</p>
+      </blockquote>
+      <p><strong>WordLeft</strong></p>
+      <blockquote>
+      <p>Start of the previous whitespace separated word.</p>
+      </blockquote>
+      <p><strong>WordRight</strong></p>
+      <blockquote>
+      <p>Start of the next whitespace separated word.</p>
+      </blockquote>
+      <p><strong>WordLeftEnd</strong></p>
+      <blockquote>
+      <p>End of the previous whitespace separated word.</p>
+      </blockquote>
+      <p><strong>WordRightEnd</strong></p>
+      <blockquote>
+      <p>End of the next whitespace separated word.</p>
+      </blockquote>
+      <p><strong>Bracket</strong></p>
+      <blockquote>
+      <p>Character matching the bracket at the cursor's location.</p>
+      </blockquote>
+      <p><strong>SearchNext</strong></p>
+      <blockquote>
+      <p>Beginning of the next match.</p>
+      </blockquote>
+      <p><strong>SearchPrevious</strong></p>
+      <blockquote>
+      <p>Beginning of the previous match.</p>
+      </blockquote>
+      <p><strong>SearchStart</strong></p>
+      <blockquote>
+      <p>Start of the match to the left of the vi mode cursor.</p>
+      </blockquote>
+      <p><strong>SearchEnd</strong></p>
+      <blockquote>
+      <p>End of the match to the right of the vi mode cursor.</p>
+      </blockquote>
+      <p><em>Search mode exclusive:</em></p>
+      <p><strong>SearchFocusNext</strong></p>
+      <blockquote>
+      <p>Move the focus to the next search match.</p>
+      </blockquote>
+      <p><strong>SearchFocusPrevious</strong></p>
+      <blockquote>
+      <p>Move the focus to the previous search match.</p>
+      </blockquote>
+      <p><strong>SearchConfirm</strong> <strong>SearchCancel</strong>
+      <strong>SearchClear</strong></p>
+      <blockquote>
+      <p>Reset the search regex.</p>
+      </blockquote>
+      <p><strong>SearchDeleteWord</strong></p>
+      <blockquote>
+      <p>Delete the last word in the search regex.</p>
+      </blockquote>
+      <p><strong>SearchHistoryPrevious</strong></p>
+      <blockquote>
+      <p>Go to the previous regex in the search history.</p>
+      </blockquote>
+      <p><strong>SearchHistoryNext</strong></p>
+      <blockquote>
+      <p>Go to the next regex in the search history.</p>
+      </blockquote>
+      <p><em>macOS exclusive:</em></p>
+      <p><strong>ToggleSimpleFullscreen</strong></p>
+      <blockquote>
+      <p>Enter fullscreen without occupying another space.</p>
+      </blockquote>
+      <p><em>Linux/BSD exclusive:</em></p>
+      <p><strong>CopySelection</strong></p>
+      <blockquote>
+      <p>Copy from the selection buffer.</p>
+      </blockquote>
+      <p><strong>PasteSelection</strong></p>
+      <blockquote>
+      <p>Paste from the selection buffer.</p>
+      </blockquote>
+      </blockquote>
+      </blockquote>
+      <p>Default: See <strong><a href="./config-alacritty-bindings.html">alacritty-bindings</strong>(5)</a></p>
+      <h1>Debug</h1>
+      <p>This section documents the <strong>[debug]</strong> table of
+      the configuration file.</p>
+      <p>Debug options are meant to help troubleshoot issues with
+      Alacritty. These can change or be removed entirely without
+      warning, so their stability shouldn't be relied upon.</p>
+      <p><strong>render_timer</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Display the time it takes to draw each frame.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong>persistent_logging</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Keep the log file after quitting Alacritty.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong>log_level</strong> "Off" | "Error" | "Warn" | "Info" |
+      "Debug" | "Trace"</p>
+      <blockquote>
+      <p>Default: <em>"Warn"</em></p>
+      </blockquote>
+      <p><strong>renderer</strong> "glsl3" | "gles2" | "gles2_pure" |
+      "None"</p>
+      <blockquote>
+      <p>Force use of a specific renderer, <em>"None"</em> will use the
+      highest available one.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong>print_events</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Log all received window events.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong>highlight_damage</strong> &lt;boolean&gt;</p>
+      <blockquote>
+      <p>Highlight window damage information.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1>SEE ALSO</h1>
+      <p>See the alacritty github repository at
+      https://github.com/alacritty/alacritty for the full
+      documentation.</p>
+      <h1>BUGS</h1>
+      <p>Found a bug? Please report it at
+      https://github.com/alacritty/alacritty/issues.</p>
+      <h1>MAINTAINERS</h1>
+      <blockquote>
+      <p>· Christian Duerr &lt;contact@christianduerr.com&gt;</p>
+      </blockquote>
+      <blockquote>
+      <p>· Kirill Chibisov &lt;contact@kchibisov.com&gt;</p>
+      </blockquote>
+    </main>
+  </body>
+</html>
