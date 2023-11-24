@@ -2,7 +2,6 @@ body {
   background-color: #181818;
   color: #aaaaaa;
   margin: unset;
-  font-size: 1.2em;
   font-family: sans-serif;
 }
 
@@ -70,4 +69,8 @@ h1 {
   font-size: 2em;
   padding-top: 20px;
   margin: 20px 0;
+}
+
+li {
+  list-style: square;
 }
