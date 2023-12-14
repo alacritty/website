@@ -1,0 +1,13 @@
+p,table,h1 {
+  font-family: monospace;
+}
+
+em {
+  font-style: normal;
+  color: #90a959;
+}
+
+strong {
+  font-weight: normal;
+  color: #6a9fb5;
+}

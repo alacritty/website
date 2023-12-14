@@ -31,3 +31,13 @@ like this:
 - Support for `ipfs`/`ipns` URLs
 - Mode field for regex hint bindings
 ```
+
+## Configuration docs generation
+
+The config documentation pages are automatically generated from Alacritty's
+`.scd` files:
+
+```sh
+# Replace `<…>` with the path to your Alacritty directory.
+update_config.sh <…>/alacritty/extra/man
+```
