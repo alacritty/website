@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+</head>
+
+<body>
+    <header>
+        <div id="header-content" class="content-width">
+            <a id="logo" href="index.html">
+                <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+            </a>
+            <nav>
+                <a href="config-alacritty.html">Configuration</a>
+                <a href="changelog.html">Changelog</a>
+                <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-width">
+        <div class="title">
+            <h1>Alacritty Version 0.13.0 Release</h1>
+            <h4>Dec 27, 2023</h4>
+        </div>
+
+        <div id="github-release">
+            Prebuilt binaries can be found in the
+            <a href="https://github.com/alacritty/alacritty/releases/tag/v0.13.0">
+          GitHub release.
+        </a>
+        </div>
+
+        <div class="changelog-content">
+            <h2><a name="Packaging" href="#Packaging">Packaging</a></h2>
+            <ul>
+                <li>Minimum Rust version has been bumped to 1.70.0</li>
+                <li>Manpages are now generated using <code>scdoc</code> (see
+                    <code>INSTALL.md</code>)</li>
+            </ul>
+            <h2><a name="Added" href="#Added">Added</a></h2>
+            <ul>
+                <li>Warnings for unused configuration file options</li>
+                    <img src="unused_warnings.png"/>
+                <li>Config option <code>persist</code> in <code>hints</code> config section</li>
+                <li>Support for dynamically loading conpty.dll on Windows</li>
+                <li>Support for keybindings with dead keys</li>
+                <li><code>Back</code>/<code>Forward</code> mouse buttons support in bindings</li>
+                <li>Copy global IPC options (<code>-w -1</code>) for new windows</li>
+                <li>Bindings to create and navigate tabs on macOS</li>
+                <li>Support startup notify protocol to raise initial window on Wayland/X11</li>
+                <li>Debug option <code>prefer_egl</code> to prioritize EGL over other display APIs</li>
+                <li>Inline vi-mode search using <code>f</code>/<code>F</code>/<code>t</code>/<code>T</code></li>
+                    <video preload="metadata" controls loop>
+                        <source src="inline_search.mp4" type="video/mp4">
+                    </video>
+                <li><code>window.blur</code> config option to request blur for transparent windows</li>
+                    <img src="blur.png"/>
+                <li><code>--option</code> argument for <code>alacritty msg create-window</code></li>
+                <li>Support for <code>DECRQM</code>/<code>DECRPM</code> escape sequences</li>
+                <li>Support for kitty's keyboard protocol</li>
+            </ul>
+            <h2><a name="Changed" href="#Changed">Changed</a></h2>
+            <ul>
+                <li>Mode-specific bindings can now be bound in any mode for easier macros</li>
+                <li><code>--help</code> output is more compact now and uses more neutral palette</li>
+                    <img src="help_output.png"/>
+                <li>Configuration file now uses TOML instead of YAML</li> Run
+                <code>alacritty migrate</code> to automatically convert all configuration files
+                <li>Deprecated config option <code>draw_bold_text_with_bright_colors</code>, use</li>
+                <code>colors.draw_bold_text_with_bright_colors</code>
+                <li>Deprecated config option <code>key_bindings</code>, use <code>keyboard.bindings</code></li>
+                <li>Deprecated config option <code>mouse_bindings</code>, use <code>mouse.bindings</code></li>
+                <li>The default colorscheme is now based on base16 classic dark</li>
+                    <img src="alacritty_example.png"/>
+                <li>IME popup now tries to not obscure the current cursor line</li>
+                <li>The double click threshold was raised to <code>400ms</code></li>
+                <li>OSC 52 paste ability is now <b>disabled by default</b>; use
+                    <code>terminal.osc52</code> to adjust it</li>
+                <li>Apply <code>colors.transparent_background_colors</code> for selections, hints, and search matches</li>
+                    <img src="transparent_selection.png" width="750px"/>
+                <li>Underline full hint during keyboard selection</li>
+                    <img src="underline_hints.png" width="750px"/>
+                <li>Synchronized updates now use <code>CSI 2026</code> instead of legacy <code>DCS</code> variant</li>
+                <li>In mouse mode with <code>Shift</code> pressed, mouse bindings without <code>Shift</code> are only triggered</li> if no exact binding (i.e. one with <code>Shift</code>) is found.
+                <li>Use built-in font for powerline symbols from <code>U+E0B0</code> to <code>U+E0B3</code></li>
+                    <img src="powerline.png" width="750px"/>
+                <li>Default <code>bell.animation</code> is now
+                    <code>Linear</code></li>
+                <li><code>IncreaseFontSize/DecreaseFontSize</code> step is now 1px</li>
+                <li><code>font.size</code> precision was raised to 6 floating point digits</li>
+                <li>Default font size to <code>11.25</code> matching 15px</li>
+                <li><code>Xft.dpi</code> is now reloaded when xsettingd change its value on X11</li>
+            </ul>
+            <h2><a name="Fixed" href="#Fixed">Fixed</a></h2>
+            <ul>
+                <li>Unconditional query of xdg-portal settings on Wayland</li>
+                <li><code>Maximized</code> startup mode not filling the screen properly on GNOME Wayland</li>
+                <li><code>OptionAsAlt</code> with
+                    <code>OnlyLeft</code>/<code>OnlyRight</code> settings not working properly on macOS</li>
+                <li>Default Vi key bindings for
+                    <code>Last</code>/<code>First</code> actions not working on X11/Wayland</li>
+                <li>Cut off wide characters in preedit string</li>
+                <li>Scrolling on touchscreens</li>
+                <li>Double clicking on CSD titlebar not always maximizing a window on Wayland</li>
+                <li>Excessive memory usage when using regexes with a large number of possible states</li>
+                <li><code>window.decorations_theme_variant</code> not live reloading</li>
+                <li>Copy/Paste being truncated to 64KiB on Wayland</li>
+                <li>X11 clipboard lagging behind sometimes</li>
+                <li>High wakeup count on Wayland due to clipboard polling</li>
+                <li>Blocking paste freezing alacritty on Wayland</li>
+                <li><code>Command</code> modifier persisting after <code>Cmd +
+                Tab</code> on macOS</li>
+                <li>Crash on exit when using NVIDIA binary drivers on Wayland</li>
+                <li><code>window.startup_mode</code> applied to window again when creating new tab</li>
+                <li>Crash when leaving search after resize</li>
+                <li>Cursor being hidden after reaching cursor blinking timeout</li>
+                <li>Message bar content getting stuck after closing with multiple messages on Wayland</li>
+                <li>Vi cursor position not redrawn on PageUp/PageDown without scrollback</li>
+                <li>Cursor not updating when blinking and viewport is scrolled</li>
+                <li>Failure to start with recent version of mesa's i915 driver</li>
+                <li>Error when using <code>chars</code> inside the mouse bindings</li>
+            </ul>
+            <h2><a name="Removed" href="#Removed">Removed</a></h2>
+            <ul>
+                <li>Config option <code>background_opacity</code>, use
+                    <code>window.background_opacity</code></li>
+                <li>Config option <code>colors.search.bar</code>, use
+                    <code>colors.footer_bar</code> instead</li>
+                <li>Config option <code>mouse.url</code>, use the
+                    <code>hints</code> config section</li>
+                <li>Config options <code>mouse.double_click</code> and
+                    <code>mouse.triple_click</code></li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>
