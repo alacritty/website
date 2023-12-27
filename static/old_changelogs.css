@@ -52,13 +52,6 @@ div code {
     width: 80%;
 }
 
-video {
-    background-color: #262626;
-    max-height: 50vh;
-    max-width: 80%;
-    padding: 5px;
-}
-
 .center {
     justify-content: space-around;
     display: flex;
