@@ -166,8 +166,8 @@
       <p><strong>opacity</strong> = <em>&lt;float&gt;</em></p>
       <blockquote>
       <p>Background opacity as a floating point number from <em>0.0</em>
-      to <em>1.0</em>. The value _0.0_ is completely transparent and
-      <em>1.0</em> is opaque.</p>
+      to <em>1.0</em>. The value <em>0.0</em> is completely transparent
+      and <em>1.0</em> is opaque.</p>
       <p>Default: <em>1.0</em></p>
       </blockquote>
       <p><strong>blur</strong> = <em>true</em> | <em>false</em> #
@@ -182,6 +182,23 @@
       <em>"SimpleFullscreen"</em></p>
       <blockquote>
       <p>Startup mode (changes require restart)</p>
+      <p><strong>Windowed</strong></p>
+      <blockquote>
+      <p>Regular window.</p>
+      </blockquote>
+      <p><strong>Maximized</strong></p>
+      <blockquote>
+      <p>The window will be maximized on startup.</p>
+      </blockquote>
+      <p><strong>Fullscreen</strong></p>
+      <blockquote>
+      <p>The window will be fullscreened on startup.</p>
+      </blockquote>
+      <p><strong>SimpleFullscreen</strong> <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Same as <em>Fullscreen</em>, but you can stack windows on
+      top.</p>
+      </blockquote>
       <p>Default: <em>"Windowed"</em></p>
       </blockquote>
       <p><strong>title</strong> = <em>"&lt;string&gt;"</em></p>
@@ -628,7 +645,7 @@
       <blockquote>
       <p>This string contains all characters that are used as separators
       for "semantic words" in Alacritty.</p>
-      <p>Default: <em>",│`|:"' ()[]{}&lt;&gt;t"</em></p>
+      <p>Default: <em>",│`|:\"' ()[]{}&lt;&gt;\t"</em></p>
       </blockquote>
       <p><strong>save_to_clipboard</strong> = <em>true</em> |
       <em>false</em></p>
@@ -1367,10 +1384,12 @@
       <p>Found a bug? Please report it at
       <em>https://github.com/alacritty/alacritty/issues</em>.</p>
       <h1>MAINTAINERS</h1>
-      <ul>
-      <li><p>Christian Duerr &lt;contact@christianduerr.com&gt;</p></li>
-      <li><p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p></li>
-      </ul>
+      <blockquote>
+      <p>· Christian Duerr &lt;contact@christianduerr.com&gt;</p>
+      </blockquote>
+      <blockquote>
+      <p>· Kirill Chibisov &lt;contact@kchibisov.com&gt;</p>
+      </blockquote>
     </main>
   </body>
 </html>
