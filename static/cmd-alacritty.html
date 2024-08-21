@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="man.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+  </head>
+  <body>
+    <header>
+      <div id="header-content" class="content-width">
+        <a id="logo" href="index.html">
+          <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo"/>
+          lacritty
+        </a>
+        <nav>
+          <a href="config-alacritty.html">Configuration</a>
+          <a href="changelog.html">Changelog</a>
+          <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-width">
+      <h1 id="name"><a href="#name">NAME</a></h1>
+      <p>Alacritty - A fast, cross-platform, OpenGL terminal
+      emulator.</p>
+      <h1 id="synopsis"><a href="#synopsis">SYNOPSIS</a></h1>
+      <p>Alacritty is a modern terminal emulator that comes with
+      sensible defaults, but allows for extensive configuration. By
+      integrating with other applications, rather than reimplementing
+      their functionality, it manages to provide a flexible set of
+      features with high performance.</p>
+      <h1 id="flags"><a href="#flags">FLAGS</a></h1>
+      <p><strong id="s0"><a href="#s0">-h, --help</a></strong></p>
+      <blockquote>
+      <p>Prints help information.</p>
+      </blockquote>
+      <p><strong id="s1"><a href="#s1">--hold</a></strong></p>
+      <blockquote>
+      <p>Remain open after child process exits.</p>
+      </blockquote>
+      <p><strong id="s2"><a href="#s2">--print-events</a></strong></p>
+      <blockquote>
+      <p>Print all events to STDOUT.</p>
+      </blockquote>
+      <p><strong id="s3"><a href="#s3">-q</a></strong></p>
+      <blockquote>
+      <p>Reduces the level of verbosity (the min level is
+      <strong>-qq</strong>).</p>
+      </blockquote>
+      <p><strong id="s4"><a href="#s4">--ref-test</a></strong></p>
+      <blockquote>
+      <p>Generates ref test</p>
+      </blockquote>
+      <p><strong id="s5"><a href="#s5">-v</a></strong></p>
+      <blockquote>
+      <p>Increases the level of verbosity (the max level is
+      <strong>-vvv</strong>).</p>
+      </blockquote>
+      <p><strong id="s6"><a href="#s6">-V, --version</a></strong></p>
+      <blockquote>
+      <p>Prints version information.</p>
+      </blockquote>
+      <h1 id="options"><a href="#options">OPTIONS</a></h1>
+      <p><strong id="s7"><a href="#s7">--class</a></strong> <em>&lt;GENERAL&gt;</em> |
+      <em>&lt;GENERAL&gt;</em>,<em>&lt;INSTANCE&gt;</em></p>
+      <blockquote>
+      <p>Defines the window class hint on Linux.</p>
+      <p>When only the general class is passed, instance will be set to
+      the same value.</p>
+      <p>On Wayland the general class sets the <em>app_id</em>, while
+      the instance class is ignored.</p>
+      <p>Default: <em>Alacritty,Alacritty</em></p>
+      </blockquote>
+      <p><strong id="s8"><a href="#s8">-e, --command</a></strong> <em>&lt;COMMAND&gt;...</em></p>
+      <blockquote>
+      <p>Command and args to execute (must be last argument).</p>
+      </blockquote>
+      <p><strong id="s9"><a href="#s9">--config-file</a></strong> <em>&lt;CONFIG_FILE&gt;</em></p>
+      <blockquote>
+      <p>Specify alternative configuration file.</p>
+      <p>Alacritty looks for the configuration file at the following
+      paths:</p>
+      <blockquote>
+      <ol type="1">
+      <li><p><em>$XDG_CONFIG_HOME/alacritty/alacritty.toml</em></p></li>
+      <li><p><em>$XDG_CONFIG_HOME/alacritty.toml</em></p></li>
+      <li><p><em>$HOME/.config/alacritty/alacritty.toml</em></p></li>
+      <li><p><em>$HOME/.alacritty.toml</em></p></li>
+      </ol>
+      </blockquote>
+      <p>On Windows, the configuration file is located at
+      <em>%APPDATA%\alacritty\alacritty.toml</em>.</p>
+      </blockquote>
+      <p><strong id="s10"><a href="#s10">--embed</a></strong> <em>&lt;PARENT&gt;</em></p>
+      <blockquote>
+      <p>X11 window ID to embed Alacritty within (decimal or hexadecimal
+      with <em>0x</em> prefix).</p>
+      </blockquote>
+      <p><strong id="s11"><a href="#s11">-o, --option</a></strong> <em>&lt;OPTION&gt;...</em></p>
+      <blockquote>
+      <p>Override configuration file options.</p>
+      <p>Example: <em>alacritty -o 'cursor.style="Beam"'</em></p>
+      </blockquote>
+      <p><strong id="s12"><a href="#s12">--socket</a></strong> <em>&lt;SOCKET&gt;</em></p>
+      <blockquote>
+      <p>Path for IPC socket creation.</p>
+      </blockquote>
+      <p><strong id="s13"><a href="#s13">-T, --title</a></strong> <em>&lt;TITLE&gt;</em></p>
+      <blockquote>
+      <p>Defines the window title.</p>
+      <p>Default: <em>Alacritty</em></p>
+      </blockquote>
+      <p><strong id="s14"><a href="#s14">--working-directory</a></strong>
+      <em>&lt;WORKING_DIRECTORY&gt;</em></p>
+      <blockquote>
+      <p>Start the shell in the specified working directory.</p>
+      </blockquote>
+      <h1 id="subcommands"><a href="#subcommands">SUBCOMMANDS</a></h1>
+      <p><strong id="s15"><a href="#s15">msg</a></strong></p>
+      <blockquote>
+      <p>Send IPC socket messages (see
+      <strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>).</p>
+      </blockquote>
+      <p><strong id="s16"><a href="#s16">migrate</a></strong></p>
+      <blockquote>
+      <p>Migrate the configuration file.</p>
+      <p><strong>-c, --config-file</strong>
+      <em>&lt;CONFIG_FILE&gt;</em></p>
+      <blockquote>
+      <p>Path to the configuration file.</p>
+      </blockquote>
+      <p><strong>-d, --dry-run</strong></p>
+      <blockquote>
+      <p>Only output TOML config to STDOUT.</p>
+      </blockquote>
+      <p><strong>-i, --skip-imports</strong></p>
+      <blockquote>
+      <p>Do not recurse over imports.</p>
+      </blockquote>
+      <p><strong>--skip-renames</strong></p>
+      <blockquote>
+      <p>Do not move renamed fields to their new location.</p>
+      </blockquote>
+      <p><strong>-s, --silent</strong></p>
+      <blockquote>
+      <p>Do not output to STDOUT.</p>
+      </blockquote>
+      <p><strong>-h, --help</strong></p>
+      <blockquote>
+      <p>Print help information.</p>
+      </blockquote>
+      </blockquote>
+      <h1 id="see-also"><a href="#see-also">SEE ALSO</a></h1>
+      <p><strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>,
+      <strong><a href="./config-alacritty.html">alacritty(5)</a></strong>,
+      <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
+      <h1 id="bugs"><a href="#bugs">BUGS</a></h1>
+      <p>Found a bug? Please report it at
+      <em>https://github.com/alacritty/alacritty/issues</em>.</p>
+      <h1 id="maintainers"><a href="#maintainers">MAINTAINERS</a></h1>
+      <ul>
+      <li><p>Christian Duerr &lt;contact@christianduerr.com&gt;</p></li>
+      <li><p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p></li>
+      </ul>
+    </main>
+  </body>
+</html>

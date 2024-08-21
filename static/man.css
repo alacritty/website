@@ -7,7 +7,7 @@ em {
   color: #90a959;
 }
 
-strong {
+strong, strong > a {
   font-weight: normal;
   color: #6a9fb5;
 }

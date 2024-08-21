@@ -9,9 +9,16 @@ fi
 
 manpage_dir=$(realpath "$1")
 
-for manpage in $(ls "$manpage_dir"/*5.scd); do
+for manpage in $(ls "$manpage_dir"/*.scd); do
     # Log operation.
-    outfile="./static/config-$(basename "$manpage" .5.scd).html"
+    case "$manpage" in
+        *.1.scd)
+            outfile="./static/cmd-$(basename "$manpage" .1.scd).html"
+            ;;
+        *.5.scd)
+            outfile="./static/config-$(basename "$manpage" .5.scd).html"
+            ;;
+    esac
     echo "Converting \"$manpage\" to \"$outfile\""
 
     # Convert from scd to roff.
@@ -25,7 +32,8 @@ for manpage in $(ls "$manpage_dir"/*5.scd); do
     sed -zi 's/<p>·<\/p>\n *<p>/<p>· /g' "$outfile"
 
     # Automatically link other config pages.
-    sed -zi 's/<strong>\([^<]*\)<\/strong>(5)/<strong><a href=".\/config-\1.html">\1<\/strong>(5)<\/a>/g' "$outfile"
+    sed -zi 's/<strong>\([^<]*\)<\/strong>(5)/<strong><a href=".\/config-\1.html">\1(5)<\/a><\/strong>/g' "$outfile"
+    sed -zi 's/<strong>\([^<]*\)<\/strong>(1)/<strong><a href=".\/cmd-\1.html">\1(1)<\/a><\/strong>/g' "$outfile"
 
     # Delete roff file.
     rm "$roff_name"
