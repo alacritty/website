@@ -26,33 +26,48 @@
     </header>
 
     <main class="content-width">
-      <h1>NAME</h1>
+      <h1 id="name"><a href="#name">NAME</a></h1>
       <p>Alacritty - TOML configuration file format.</p>
-      <h1>SYNTAX</h1>
+      <h1 id="syntax"><a href="#syntax">SYNTAX</a></h1>
       <p>Alacritty's configuration file uses the TOML format. The
       format's specification can be found at
       <em>https://toml.io/en/v1.0.0</em>.</p>
-      <h1>GENERAL</h1>
+      <h1 id="location"><a href="#location">LOCATION</a></h1>
+      <p>Alacritty doesn't create the config file for you, but it looks
+      for one in the following locations on UNIX systems:</p>
+      <ol type="1">
+      <li><p>`$XDG_CONFIG_HOME/alacritty/alacritty.toml`</p></li>
+      <li><p>`$XDG_CONFIG_HOME/alacritty.toml`</p></li>
+      <li><p>`$HOME/.config/alacritty/alacritty.toml`</p></li>
+      <li><p>`$HOME/.alacritty.toml`</p></li>
+      </ol>
+      <p>On Windows, the config file will be looked for in:</p>
+      <ol type="1">
+      <li><p>`%APPDATA%alacrittyalacritty.toml`</p></li>
+      </ol>
+      <h1 id="general"><a href="#general">GENERAL</a></h1>
       <p>This section documents the root level of the configuration
       file.</p>
-      <p><strong>import</strong> = [<em>"&lt;string&gt;"</em>,]</p>
+      <p><strong id="s0"><a href="#s0">import</a></strong> = [<em>"&lt;string&gt;"</em>,]</p>
       <blockquote>
       <p>Import additional configuration files.</p>
       <p>Imports are loaded in order, skipping all missing files, with
       the importing file being loaded last. If a field is already
       present in a previous import, it will be replaced.</p>
       <p>All imports must either be absolute paths starting with
-      <em>/</em>, or paths relative to the user's home directory
-      starting with <em>~/</em>.</p>
+      <em>/</em>, paths relative to the user's home directory starting
+      with <em>~/</em>, or paths relative from the current config
+      file.</p>
       <p>Example:</p>
       <blockquote>
-      <p>import = [<br />
-      <em>"~/.config/alacritty/base16-dark.toml"</em>,<br />
-      <em>"~/.config/alacritty/keybindings.toml"</em>,<br />
+      <p>import = [<br>
+      <em>"~/.config/alacritty/base16-dark.toml"</em>,<br>
+      <em>"~/.config/alacritty/keybindings.toml"</em>,<br>
+      <em>"alacritty-theme/themes/gruvbox_dark.toml"</em>,<br>
       ]</p>
       </blockquote>
       </blockquote>
-      <p><strong>shell</strong> = <em>"&lt;string&gt;"</em> | { program
+      <p><strong id="s1"><a href="#s1">shell</a></strong> = <em>"&lt;string&gt;"</em> | { program
       = <em>"&lt;string&gt;"</em>, args = [<em>"&lt;string&gt;"</em>,]
       }</p>
       <blockquote>
@@ -62,17 +77,17 @@
       <p>Default:</p>
       <blockquote>
       <p>Linux/BSD/macOS: <em>$SHELL</em> or the user's login shell, if
-      <em>$SHELL</em> is unset<br />
+      <em>$SHELL</em> is unset<br>
       Windows: <em>"powershell"</em></p>
       </blockquote>
       <p>Example:</p>
       <blockquote>
-      <p><strong>[shell]</strong><br />
-      program = <em>"/bin/zsh"</em><br />
+      <p><strong>[shell]</strong><br>
+      program = <em>"/bin/zsh"</em><br>
       args = [<em>"-l"</em>]</p>
       </blockquote>
       </blockquote>
-      <p><strong>working_directory</strong> = <em>"&lt;string&gt;"</em>
+      <p><strong id="s2"><a href="#s2">working_directory</a></strong> = <em>"&lt;string&gt;"</em>
       | <em>"None"</em></p>
       <blockquote>
       <p>Directory the shell is started in. When this is unset, or
@@ -80,32 +95,32 @@
       be used.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <p><strong>live_config_reload</strong> = <em>true</em> |
+      <p><strong id="s3"><a href="#s3">live_config_reload</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Live config reload (changes require restart)</p>
       <p>Default: <em>true</em></p>
       </blockquote>
-      <p><strong>ipc_socket</strong> = <em>true</em> | <em>false</em> #
+      <p><strong id="s4"><a href="#s4">ipc_socket</a></strong> = <em>true</em> | <em>false</em> #
       <em>(unix only)</em></p>
       <blockquote>
       <p>Offer IPC using <em>alacritty msg</em></p>
       <p>Default: <em>true</em></p>
       </blockquote>
-      <h1>ENV</h1>
-      <p>All key-value pairs in the <strong>[env]</strong> section will
+      <h1 id="env"><a href="#env">ENV</a></h1>
+      <p>All key-value pairs in the <strong id="s5"><a href="#s5">[env]</a></strong> section will
       be added as environment variables for any process spawned by
       Alacritty, including its shell. Some entries may override
       variables set by alacritty itself.</p>
       <p>Example:</p>
       <blockquote>
-      <p><strong>[env]</strong><br />
+      <p><strong>[env]</strong><br>
       WINIT_X11_SCALE_FACTOR = <em>"1.0"</em></p>
       </blockquote>
-      <h1>WINDOW</h1>
-      <p>This section documents the <strong>[window]</strong> table of
+      <h1 id="window"><a href="#window">WINDOW</a></h1>
+      <p>This section documents the <strong id="s6"><a href="#s6">[window]</a></strong> table of
       the configuration file.</p>
-      <p><strong>dimensions</strong> = { columns =
+      <p><strong id="s7"><a href="#s7">dimensions</a></strong> = { columns =
       <em>&lt;integer&gt;</em>, lines = <em>&lt;integer&gt;</em> }</p>
       <blockquote>
       <p>Window dimensions (changes require restart).</p>
@@ -116,8 +131,9 @@
       manager's recommended size</p>
       <p>Default: { columns = <em>0</em>, lines = <em>0</em> }</p>
       </blockquote>
-      <p><strong>position</strong> = <em>"None"</em> | { x =
-      <em>&lt;integer&gt;</em>, y = <em>&lt;integer&gt;</em> }</p>
+      <p><strong id="s8"><a href="#s8">position</a></strong> = <em>"None"</em> | { x =
+      <em>&lt;integer&gt;</em>, y = <em>&lt;integer&gt;</em> } #
+      <em>(has no effect on Wayland)</em></p>
       <blockquote>
       <p>Window startup position.</p>
       <p>Specified in number of pixels.</p>
@@ -125,7 +141,7 @@
       handle placement.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <p><strong>padding</strong> = { x = <em>&lt;integer&gt;</em>, y =
+      <p><strong id="s9"><a href="#s9">padding</a></strong> = { x = <em>&lt;integer&gt;</em>, y =
       <em>&lt;integer&gt;</em> }</p>
       <blockquote>
       <p>Blank space added around the window in pixels. This padding is
@@ -133,14 +149,14 @@
       opposing sides.</p>
       <p>Default: { x = <em>0</em>, y = <em>0</em> }</p>
       </blockquote>
-      <p><strong>dynamic_padding</strong> = <em>true</em> |
+      <p><strong id="s10"><a href="#s10">dynamic_padding</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Spread additional padding evenly around the terminal
       content.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>decorations</strong> = <em>"Full"</em> |
+      <p><strong id="s11"><a href="#s11">decorations</a></strong> = <em>"Full"</em> |
       <em>"None"</em> | <em>"Transparent"</em> |
       <em>"Buttonless"</em></p>
       <blockquote>
@@ -163,21 +179,21 @@
       </blockquote>
       <p>Default: <em>"Full"</em></p>
       </blockquote>
-      <p><strong>opacity</strong> = <em>&lt;float&gt;</em></p>
+      <p><strong id="s12"><a href="#s12">opacity</a></strong> = <em>&lt;float&gt;</em></p>
       <blockquote>
       <p>Background opacity as a floating point number from <em>0.0</em>
       to <em>1.0</em>. The value <em>0.0</em> is completely transparent
       and <em>1.0</em> is opaque.</p>
       <p>Default: <em>1.0</em></p>
       </blockquote>
-      <p><strong>blur</strong> = <em>true</em> | <em>false</em> #
+      <p><strong id="s13"><a href="#s13">blur</a></strong> = <em>true</em> | <em>false</em> #
       <em>(works on macOS/KDE Wayland)</em></p>
       <blockquote>
       <p>Request compositor to blur content behind transparent
       windows.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>startup_mode</strong> = <em>"Windowed"</em> |
+      <p><strong id="s14"><a href="#s14">startup_mode</a></strong> = <em>"Windowed"</em> |
       <em>"Maximized"</em> | <em>"Fullscreen"</em> |
       <em>"SimpleFullscreen"</em></p>
       <blockquote>
@@ -201,19 +217,19 @@
       </blockquote>
       <p>Default: <em>"Windowed"</em></p>
       </blockquote>
-      <p><strong>title</strong> = <em>"&lt;string&gt;"</em></p>
+      <p><strong id="s15"><a href="#s15">title</a></strong> = <em>"&lt;string&gt;"</em></p>
       <blockquote>
       <p>Window title.</p>
       <p>Default: <em>"Alacritty"</em></p>
       </blockquote>
-      <p><strong>dynamic_title</strong> = <em>true</em> |
+      <p><strong id="s16"><a href="#s16">dynamic_title</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Allow terminal applications to change Alacritty's window
       title.</p>
       <p>Default: <em>true</em></p>
       </blockquote>
-      <p><strong>class</strong> = { instance =
+      <p><strong id="s17"><a href="#s17">class</a></strong> = { instance =
       <em>"&lt;string&gt;"</em>, general = <em>"&lt;string&gt;"</em> } #
       <em>(Linux/BSD only)</em></p>
       <blockquote>
@@ -223,7 +239,7 @@
       <p>Default: { instance = <em>"Alacritty"</em>, general =
       <em>"Alacritty"</em> }</p>
       </blockquote>
-      <p><strong>decorations_theme_variant</strong> = <em>"Dark"</em> |
+      <p><strong id="s18"><a href="#s18">decorations_theme_variant</a></strong> = <em>"Dark"</em> |
       <em>"Light"</em> | <em>"None"</em></p>
       <blockquote>
       <p>Override the variant of the System theme/GTK theme/Wayland
@@ -231,85 +247,85 @@
       system's default theme variant.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <p><strong>resize_increments</strong> = <em>true</em> |
-      <em>false</em></p>
+      <p><strong id="s19"><a href="#s19">resize_increments</a></strong> = <em>true</em> |
+      <em>false</em> # <em>(works on macOS/X11)</em></p>
       <blockquote>
       <p>Prefer resizing window by discrete steps equal to cell
       dimensions.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>option_as_alt</strong> = <em>"OnlyLeft"</em> |
+      <p><strong id="s20"><a href="#s20">option_as_alt</a></strong> = <em>"OnlyLeft"</em> |
       <em>"OnlyRight"</em> | <em>"Both"</em> | <em>"None"</em> #
-      <em>(macos only)</em></p>
+      <em>(macOS only)</em></p>
       <blockquote>
       <p>Make <em>Option</em> key behave as <em>Alt</em>.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
       <p>Example:</p>
       <blockquote>
-      <p><strong>[window]</strong><br />
-      padding = { x = <em>3</em>, y = <em>3</em> }<br />
-      dynamic_padding = <em>true</em><br />
+      <p><strong>[window]</strong><br>
+      padding = { x = <em>3</em>, y = <em>3</em> }<br>
+      dynamic_padding = <em>true</em><br>
       opacity = <em>0.9</em></p>
       </blockquote>
-      <h1>SCROLLING</h1>
-      <p>This section documents the <strong>[scrolling]</strong> table
+      <h1 id="scrolling"><a href="#scrolling">SCROLLING</a></h1>
+      <p>This section documents the <strong id="s21"><a href="#s21">[scrolling]</a></strong> table
       of the configuration file.</p>
-      <p><strong>history</strong> = <em>&lt;integer&gt;</em></p>
+      <p><strong id="s22"><a href="#s22">history</a></strong> = <em>&lt;integer&gt;</em></p>
       <blockquote>
-      <p>Maximum number of lines in the scrollback buffer.<br />
-      Specifying <em>0</em> will disable scrolling.<br />
+      <p>Maximum number of lines in the scrollback buffer.<br>
+      Specifying <em>0</em> will disable scrolling.<br>
       Limited to <em>100000</em>.</p>
       <p>Default: <em>10000</em></p>
       </blockquote>
-      <p><strong>multiplier</strong> = <em>&lt;integer&gt;</em></p>
+      <p><strong id="s23"><a href="#s23">multiplier</a></strong> = <em>&lt;integer&gt;</em></p>
       <blockquote>
       <p>Number of line scrolled for every input scroll increment.</p>
       <p>Default: <em>3</em></p>
       </blockquote>
-      <h1>FONT</h1>
-      <p>This section documents the <strong>[font]</strong> table of the
+      <h1 id="font"><a href="#font">FONT</a></h1>
+      <p>This section documents the <strong id="s24"><a href="#s24">[font]</a></strong> table of the
       configuration file.</p>
-      <p><strong>normal</strong> = { family = <em>"&lt;string&gt;"</em>,
+      <p><strong id="s25"><a href="#s25">normal</a></strong> = { family = <em>"&lt;string&gt;"</em>,
       style = <em>"&lt;string&gt;"</em> }</p>
       <blockquote>
       <p>Default:</p>
       <blockquote>
       <p>Linux/BSD: { family = <em>"monospace"</em>, style =
-      <em>"Regular"</em> }<br />
+      <em>"Regular"</em> }<br>
       Windows: { family = <em>"Consolas"</em>, style =
-      <em>"Regular"</em> }<br />
+      <em>"Regular"</em> }<br>
       macOS: { family = <em>"Menlo"</em>, style = <em>"Regular"</em>
       }</p>
       </blockquote>
       </blockquote>
-      <p><strong>bold</strong> = { family = <em>"&lt;string&gt;"</em>,
+      <p><strong id="s26"><a href="#s26">bold</a></strong> = { family = <em>"&lt;string&gt;"</em>,
       style = <em>"&lt;string&gt;"</em> }</p>
       <blockquote>
       <p>If the family is not specified, it will fall back to the value
       specified for the normal font.</p>
       <p>Default: { style = <em>"Bold"</em> }</p>
       </blockquote>
-      <p><strong>italic</strong> = { family = <em>"&lt;string&gt;"</em>,
+      <p><strong id="s27"><a href="#s27">italic</a></strong> = { family = <em>"&lt;string&gt;"</em>,
       style = <em>"&lt;string&gt;"</em> }</p>
       <blockquote>
       <p>If the family is not specified, it will fall back to the value
       specified for the normal font.</p>
       <p>Default: { style = <em>"Italic"</em> }</p>
       </blockquote>
-      <p><strong>bold_italic</strong> = { family =
+      <p><strong id="s28"><a href="#s28">bold_italic</a></strong> = { family =
       <em>"&lt;string&gt;"</em>, style = <em>"&lt;string&gt;"</em> }</p>
       <blockquote>
       <p>If the family is not specified, it will fall back to the value
       specified for the normal font.</p>
       <p>Default: { style = <em>"Bold Italic"</em> }</p>
       </blockquote>
-      <p><strong>size</strong> = <em>&lt;float&gt;</em></p>
+      <p><strong id="s29"><a href="#s29">size</a></strong> = <em>&lt;float&gt;</em></p>
       <blockquote>
       <p>Font size in points.</p>
       <p>Default: <em>11.25</em></p>
       </blockquote>
-      <p><strong>offset</strong> = { x = <em>&lt;integer&gt;</em>, y =
+      <p><strong id="s30"><a href="#s30">offset</a></strong> = { x = <em>&lt;integer&gt;</em>, y =
       <em>&lt;integer&gt;</em> }</p>
       <blockquote>
       <p>Offset is the extra space around each character. <em>y</em> can
@@ -317,7 +333,7 @@
       modifying the letter spacing.</p>
       <p>Default: { x = <em>0</em>, y = <em>0</em> }</p>
       </blockquote>
-      <p><strong>glyph_offset</strong> = { x = <em>&lt;integer&gt;</em>,
+      <p><strong id="s31"><a href="#s31">glyph_offset</a></strong> = { x = <em>&lt;integer&gt;</em>,
       y = <em>&lt;integer&gt;</em> }</p>
       <blockquote>
       <p>Glyph offset determines the locations of the glyphs within
@@ -325,21 +341,22 @@
       <em>x</em> moves the glyph to the right, increasing <em>y</em>
       moves the glyph upward.</p>
       </blockquote>
-      <p><strong>builtin_box_drawing</strong> = <em>true</em> |
+      <p><strong id="s32"><a href="#s32">builtin_box_drawing</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>When <em>true</em>, Alacritty will use a custom built-in font
       for box drawing characters (Unicode points <em>U+2500</em> -
-      <em>U+259F</em>) and powerline symbols (Unicode points
-      <em>U+E0B0</em> - <em>U+E0B3</em>).</p>
+      <em>U+259F</em>), legacy computing symbols (<em>U+1FB00</em> -
+      <em>U+1FB3B</em>), and powerline symbols (<em>U+E0B0</em> -
+      <em>U+E0B3</em>).</p>
       <p>Default: <em>true</em></p>
       </blockquote>
-      <h1>COLORS</h1>
-      <p>This section documents the <strong>[colors]</strong> table of
+      <h1 id="colors"><a href="#colors">COLORS</a></h1>
+      <p>This section documents the <strong id="s33"><a href="#s33">[colors]</a></strong> table of
       the configuration file.</p>
       <p>Colors are specified using their hexadecimal values with a
       <em>#</em> prefix: <em>#RRGGBB</em>.</p>
-      <p><strong>primary</strong></p>
+      <p><strong id="s34"><a href="#s34">primary</a></strong></p>
       <blockquote>
       <p>This section documents the <strong>[colors.primary]</strong>
       table of the configuration file.</p>
@@ -366,7 +383,7 @@
       <p>Default: <em>"None"</em></p>
       </blockquote>
       </blockquote>
-      <p><strong>cursor</strong> = { text = <em>"&lt;string&gt;"</em>,
+      <p><strong id="s35"><a href="#s35">cursor</a></strong> = { text = <em>"&lt;string&gt;"</em>,
       cursor = <em>"&lt;string&gt;"</em> }</p>
       <blockquote>
       <p>Colors which should be used to draw the terminal cursor.</p>
@@ -376,7 +393,7 @@
       <p>Default: { text = <em>"CellBackground"</em>, cursor =
       <em>"CellForeground"</em> }</p>
       </blockquote>
-      <p><strong>vi_mode_cursor</strong> = { text =
+      <p><strong id="s36"><a href="#s36">vi_mode_cursor</a></strong> = { text =
       <em>"&lt;string&gt;"</em>, cursor = <em>"&lt;string&gt;"</em>
       }</p>
       <blockquote>
@@ -387,7 +404,7 @@
       <p>Default: { text = <em>"CellBackground"</em>, cursor =
       <em>"CellForeground"</em> }</p>
       </blockquote>
-      <p><strong>search</strong></p>
+      <p><strong id="s37"><a href="#s37">search</a></strong></p>
       <blockquote>
       <p>This section documents the <strong>[colors.search]</strong>
       table of the configuration.</p>
@@ -409,7 +426,7 @@
       <em>"#f4bf75"</em> }</p>
       </blockquote>
       </blockquote>
-      <p><strong>hints</strong></p>
+      <p><strong id="s38"><a href="#s38">hints</a></strong></p>
       <blockquote>
       <p>This section documents the <strong>[colors.hints]</strong>
       table of the configuration.</p>
@@ -436,7 +453,7 @@
       <em>"#ac4242"</em> }</p>
       </blockquote>
       </blockquote>
-      <p><strong>line_indicator</strong> = { foreground =
+      <p><strong id="s39"><a href="#s39">line_indicator</a></strong> = { foreground =
       <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
       }</p>
       <blockquote>
@@ -447,7 +464,7 @@
       <p>Default: { foreground = <em>"None"</em>, background =
       <em>"None"</em> }</p>
       </blockquote>
-      <p><strong>footer_bar</strong> = { foreground =
+      <p><strong id="s40"><a href="#s40">footer_bar</a></strong> = { foreground =
       <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
       }</p>
       <blockquote>
@@ -456,7 +473,7 @@
       <p>Default: { foreground = <em>"#181818"</em>, background =
       <em>"#d8d8d8"</em> }</p>
       </blockquote>
-      <p><strong>selection</strong> = { text =
+      <p><strong id="s41"><a href="#s41">selection</a></strong> = { text =
       <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
       }</p>
       <blockquote>
@@ -467,7 +484,7 @@
       <p>Default: { text = <em>"CellBackground"</em>, background =
       <em>"CellForeground"</em> }</p>
       </blockquote>
-      <p><strong>normal</strong></p>
+      <p><strong id="s42"><a href="#s42">normal</a></strong></p>
       <blockquote>
       <p>This section documents the <strong>[colors.normal]</strong>
       table of the configuration.</p>
@@ -504,7 +521,7 @@
       <p>Default: <em>"#d8d8d8"</em></p>
       </blockquote>
       </blockquote>
-      <p><strong>bright</strong></p>
+      <p><strong id="s43"><a href="#s43">bright</a></strong></p>
       <blockquote>
       <p>This section documents the <strong>[colors.bright]</strong>
       table of the configuration.</p>
@@ -541,7 +558,7 @@
       <p>Default: <em>"#f8f8f8"</em></p>
       </blockquote>
       </blockquote>
-      <p><strong>dim</strong></p>
+      <p><strong id="s44"><a href="#s44">dim</a></strong></p>
       <blockquote>
       <p>This section documents the <strong>[colors.dim]</strong> table
       of the configuration.</p>
@@ -580,7 +597,7 @@
       <p>Default: <em>"#8e8e8e"</em></p>
       </blockquote>
       </blockquote>
-      <p><strong>indexed_colors</strong> = [{ index =
+      <p><strong id="s45"><a href="#s45">indexed_colors</a></strong> = [{ index =
       <em>&lt;integer&gt;</em>, color = <em>"&lt;string&gt;"</em>
       },]</p>
       <blockquote>
@@ -588,7 +605,7 @@
       these are not set, they're filled with sensible defaults.</p>
       <p>Default: <em>[]</em></p>
       </blockquote>
-      <p><strong>transparent_background_colors</strong> = <em>true</em>
+      <p><strong id="s46"><a href="#s46">transparent_background_colors</a></strong> = <em>true</em>
       | <em>false</em></p>
       <blockquote>
       <p>Whether or not <em>window.opacity</em> applies to all cell
@@ -597,17 +614,17 @@
       background color.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>draw_bold_text_with_bright_colors</strong> =
+      <p><strong id="s47"><a href="#s47">draw_bold_text_with_bright_colors</a></strong> =
       <em>true</em> | <em>false</em></p>
       <blockquote>
       <p>When <em>true</em>, bold text is drawn using the bright color
       variants.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <h1>BELL</h1>
-      <p>This section documents the <strong>[bell]</strong> table of the
+      <h1 id="bell"><a href="#bell">BELL</a></h1>
+      <p>This section documents the <strong id="s48"><a href="#s48">[bell]</a></strong> table of the
       configuration file.</p>
-      <p><strong>animation</strong> = <em>"Ease"</em> |
+      <p><strong id="s49"><a href="#s49">animation</a></strong> = <em>"Ease"</em> |
       <em>"EaseOut"</em> | <em>"EaseOutSine"</em> |
       <em>"EaseOutQuad"</em> | <em>"EaseOutCubic"</em> |
       <em>"EaseOutQuart"</em> | <em>"EaseOutQuint"</em> |
@@ -618,18 +635,18 @@
       visual bell is rung.</p>
       <p>Default: <em>"Linear"</em></p>
       </blockquote>
-      <p><strong>duration</strong> = <em>&lt;integer&gt;</em></p>
+      <p><strong id="s50"><a href="#s50">duration</a></strong> = <em>&lt;integer&gt;</em></p>
       <blockquote>
       <p>Duration of the visual bell flash in milliseconds. A `duration`
       of `0` will disable the visual bell animation.</p>
       <p>Default: <em>0</em></p>
       </blockquote>
-      <p><strong>color</strong> = <em>"&lt;string&gt;"</em></p>
+      <p><strong id="s51"><a href="#s51">color</a></strong> = <em>"&lt;string&gt;"</em></p>
       <blockquote>
       <p>Visual bell animation color.</p>
       <p>Default: <em>"#ffffff"</em></p>
       </blockquote>
-      <p><strong>command</strong> = <em>"&lt;string&gt;"</em> | {
+      <p><strong id="s52"><a href="#s52">command</a></strong> = <em>"&lt;string&gt;"</em> | {
       program = <em>"&lt;string&gt;"</em>, args =
       [<em>"&lt;string&gt;"</em>,] }</p>
       <blockquote>
@@ -637,28 +654,28 @@
       <p>When set to <em>"None"</em>, no command will be executed.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <h1>SELECTION</h1>
-      <p>This section documents the <strong>[selection]</strong> table
+      <h1 id="selection"><a href="#selection">SELECTION</a></h1>
+      <p>This section documents the <strong id="s53"><a href="#s53">[selection]</a></strong> table
       of the configuration file.</p>
-      <p><strong>semantic_escape_chars</strong> =
+      <p><strong id="s54"><a href="#s54">semantic_escape_chars</a></strong> =
       <em>"&lt;string&gt;"</em></p>
       <blockquote>
       <p>This string contains all characters that are used as separators
       for "semantic words" in Alacritty.</p>
       <p>Default: <em>",│`|:\"' ()[]{}&lt;&gt;\t"</em></p>
       </blockquote>
-      <p><strong>save_to_clipboard</strong> = <em>true</em> |
+      <p><strong id="s55"><a href="#s55">save_to_clipboard</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>When set to <em>true</em>, selected text will be copied to the
       primary clipboard.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <h1>CURSOR</h1>
-      <p>This section documents the <strong>[cursor]</strong> table of
+      <h1 id="cursor"><a href="#cursor">CURSOR</a></h1>
+      <p>This section documents the <strong id="s56"><a href="#s56">[cursor]</a></strong> table of
       the configuration file.</p>
-      <p><strong>style</strong> = { <strong>&lt;shape&gt;</strong>,
-      <strong>&lt;blinking&gt;</strong> }</p>
+      <p><strong id="s57"><a href="#s57">style</a></strong> = { <strong id="s58"><a href="#s58">&lt;shape&gt;</a></strong>,
+      <strong id="s59"><a href="#s59">&lt;blinking&gt;</a></strong> }</p>
       <blockquote>
       <p><strong>shape</strong> = <em>"Block"</em> |
       <em>"Underline"</em> | <em>"Beam"</em></p>
@@ -687,8 +704,8 @@
       <p>Default: <em>"Off"</em></p>
       </blockquote>
       </blockquote>
-      <p><strong>vi_mode_style</strong> = {
-      <strong>&lt;shape&gt;</strong>, <strong>&lt;blinking&gt;</strong>
+      <p><strong id="s60"><a href="#s60">vi_mode_style</a></strong> = {
+      <strong id="s61"><a href="#s61">&lt;shape&gt;</a></strong>, <strong id="s62"><a href="#s62">&lt;blinking&gt;</a></strong>
       } | <em>"None"</em></p>
       <blockquote>
       <p>If the vi mode cursor style is <em>"None"</em> or not
@@ -696,34 +713,34 @@
       cursor.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <p><strong>blink_interval</strong> = <em>&lt;integer&gt;</em></p>
+      <p><strong id="s63"><a href="#s63">blink_interval</a></strong> = <em>&lt;integer&gt;</em></p>
       <blockquote>
       <p>Cursor blinking interval in milliseconds.</p>
       <p>Default: <em>750</em></p>
       </blockquote>
-      <p><strong>blink_timeout</strong> = <em>&lt;integer&gt;</em></p>
+      <p><strong id="s64"><a href="#s64">blink_timeout</a></strong> = <em>&lt;integer&gt;</em></p>
       <blockquote>
       <p>Time after which cursor stops blinking, in seconds.</p>
       <p>Specifying <em>0</em> will disable timeout for blinking.</p>
       <p>Default: <em>5</em></p>
       </blockquote>
-      <p><strong>unfocused_hollow</strong> = <em>true</em> |
+      <p><strong id="s65"><a href="#s65">unfocused_hollow</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>When this is <em>true</em>, the cursor will be rendered as a
       hollow box when the window is not focused.</p>
       <p>Default: <em>true</em></p>
       </blockquote>
-      <p><strong>thickness</strong> = <em>&lt;float&gt;</em></p>
+      <p><strong id="s66"><a href="#s66">thickness</a></strong> = <em>&lt;float&gt;</em></p>
       <blockquote>
       <p>Thickness of the cursor relative to the cell width as floating
       point number from <em>0.0</em> to <em>1.0</em>.</p>
       <p>Default: <em>0.15</em></p>
       </blockquote>
-      <h1>TERMINAL</h1>
-      <p>This section documents the <strong>[terminal]</strong> table of
+      <h1 id="terminal"><a href="#terminal">TERMINAL</a></h1>
+      <p>This section documents the <strong id="s67"><a href="#s67">[terminal]</a></strong> table of
       the configuration file.</p>
-      <p><strong>osc52</strong> = <em>"Disabled"</em> |
+      <p><strong id="s68"><a href="#s68">osc52</a></strong> = <em>"Disabled"</em> |
       <em>"OnlyCopy"</em> | <em>"OnlyPaste"</em> |
       <em>"CopyPaste"</em></p>
       <blockquote>
@@ -735,24 +752,24 @@
       text.</p>
       <p>Default: <em>"OnlyCopy"</em></p>
       </blockquote>
-      <h1>MOUSE</h1>
-      <p>This section documents the <strong>[mouse]</strong> table of
+      <h1 id="mouse"><a href="#mouse">MOUSE</a></h1>
+      <p>This section documents the <strong id="s69"><a href="#s69">[mouse]</a></strong> table of
       the configuration file.</p>
-      <p><strong>hide_when_typing</strong> = <em>true</em> |
+      <p><strong id="s70"><a href="#s70">hide_when_typing</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>When this is <em>true</em>, the cursor is temporarily hidden
       when typing.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>bindings</strong> = [{ <strong>&lt;mouse&gt;</strong>,
-      <strong>&lt;mods&gt;</strong>, <strong>&lt;mode&gt;</strong>,
-      <strong>&lt;action&gt;</strong> | <strong>&lt;chars&gt;</strong>
-      },]</p>
+      <p><strong id="s71"><a href="#s71">bindings</a></strong> = [{ <strong id="s72"><a href="#s72">&lt;mouse&gt;</a></strong>,
+      <strong id="s73"><a href="#s73">&lt;mods&gt;</a></strong>, <strong id="s74"><a href="#s74">&lt;mode&gt;</a></strong>,
+      <strong id="s75"><a href="#s75">&lt;command&gt;</a></strong> | <strong id="s76"><a href="#s76">&lt;chars&gt;</a></strong>
+      | <strong id="s77"><a href="#s77">&lt;action&gt;</a></strong> },]</p>
       <blockquote>
       <p>See <em>keyboard.bindings</em> for full documentation on
-      <em>mods</em>, <em>mode</em>, <em>action</em>, and
-      <em>chars</em>.</p>
+      <em>mods</em>, <em>mode</em>, <em>command</em>, <em>chars</em>,
+      and <em>action</em>.</p>
       <p>When an application running within Alacritty captures the
       mouse, the `Shift` modifier can be used to suppress mouse
       reporting. If no action is found for the event, actions for the
@@ -775,30 +792,31 @@
       </blockquote>
       <p>Example:</p>
       <blockquote>
-      <p><strong>[mouse]</strong><br />
-      bindings = [<br />
+      <p><strong>[mouse]</strong><br>
+      bindings = [<br>
       { mouse = <em>"Right"</em>, mods = <em>"Control"</em>, action =
-      <em>"Paste"</em> },<br />
+      <em>"Paste"</em> },<br>
       ]</p>
       </blockquote>
       </blockquote>
-      <h1>HINTS</h1>
-      <p>This section documents the <strong>[hints]</strong> table of
+      <h1 id="hints"><a href="#hints">HINTS</a></h1>
+      <p>This section documents the <strong id="s78"><a href="#s78">[hints]</a></strong> table of
       the configuration file.</p>
       <p>Terminal hints can be used to find text or hyperlinks in the
       visible part of the terminal and pipe it to other
       applications.</p>
-      <p><strong>alphabet</strong> = <em>"&lt;string&gt;"</em></p>
+      <p><strong id="s79"><a href="#s79">alphabet</a></strong> = <em>"&lt;string&gt;"</em></p>
       <blockquote>
       <p>Keys used for the hint labels.</p>
       <p>Default: <em>"jfkdls;ahgurieowpq"</em></p>
       </blockquote>
-      <p><strong>enabled</strong> = [{ <strong>&lt;regex&gt;</strong>,
-      <strong>&lt;hyperlinks&gt;</strong>,
-      <strong>&lt;post_processing&gt;</strong>,
-      <strong>&lt;persist&gt;</strong>, <strong>&lt;action&gt;</strong>,
-      <strong>&lt;command&gt;</strong> <strong>&lt;binding&gt;</strong>,
-      <strong>&lt;mouse&gt;</strong> },]</p>
+      <p><strong id="s80"><a href="#s80">enabled</a></strong> = [{ <strong id="s81"><a href="#s81">&lt;regex&gt;</a></strong>,
+      <strong id="s82"><a href="#s82">&lt;hyperlinks&gt;</a></strong>,
+      <strong id="s83"><a href="#s83">&lt;post_processing&gt;</a></strong>,
+      <strong id="s84"><a href="#s84">&lt;persist&gt;</a></strong>, <strong id="s85"><a href="#s85">&lt;action&gt;</a></strong>,
+      <strong id="s86"><a href="#s86">&lt;command&gt;</a></strong>,
+      <strong id="s87"><a href="#s87">&lt;binding&gt;</a></strong>, <strong id="s88"><a href="#s88">&lt;mouse&gt;</a></strong>
+      },]</p>
       <p>Array with all available hints.</p>
       <p>Each hint must have at least one of <em>regex</em> or
       <em>hyperlinks</em> and either an <em>action</em> or a
@@ -875,28 +893,28 @@
       </blockquote>
       <p>Default:</p>
       <blockquote>
-      <p><strong>[[hints.enabled]]</strong><br />
-      command = <em>"xdg-open"</em> # On Linux/BSD<br />
-      # command = <em>"open"</em> # On macOS<br />
+      <p><strong>[[hints.enabled]]</strong><br>
+      command = <em>"xdg-open"</em> # On Linux/BSD<br>
+      # command = <em>"open"</em> # On macOS<br>
       # command = { program = <em>"cmd"</em>, args = [ <em>"/c"</em>,
-      <em>"start"</em>, <em>""</em> ] } # On Windows<br />
-      hyperlinks = <em>true</em><br />
-      post_processing = <em>true</em><br />
-      persist = <em>false</em><br />
-      mouse.enabled = <em>true</em><br />
+      <em>"start"</em>, <em>""</em> ] } # On Windows<br>
+      hyperlinks = <em>true</em><br>
+      post_processing = <em>true</em><br>
+      persist = <em>false</em><br>
+      mouse.enabled = <em>true</em><br>
       binding = { key = <em>"U"</em>, mods = <em>"Control|Shift"</em>
-      }<br />
+      }<br>
       regex =
       <em>"(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F&lt;&gt;\"\\s{-}\\^⟨⟩`]+"</em></p>
       </blockquote>
       </blockquote>
-      <h1>KEYBOARD</h1>
-      <p>This section documents the <strong>[keyboard]</strong> table of
+      <h1 id="keyboard"><a href="#keyboard">KEYBOARD</a></h1>
+      <p>This section documents the <strong id="s89"><a href="#s89">[keyboard]</a></strong> table of
       the configuration file.</p>
-      <p><strong>bindings</strong> = [{ <strong>&lt;key&gt;</strong>,
-      <strong>&lt;mods&gt;</strong>, <strong>&lt;mode&gt;</strong>,
-      <strong>&lt;action&gt;</strong> | <strong>&lt;chars&gt;</strong>
-      },]</p>
+      <p><strong id="s90"><a href="#s90">bindings</a></strong> = [{ <strong id="s91"><a href="#s91">&lt;key&gt;</a></strong>,
+      <strong id="s92"><a href="#s92">&lt;mods&gt;</a></strong>, <strong id="s93"><a href="#s93">&lt;mode&gt;</a></strong>,
+      <strong id="s94"><a href="#s94">&lt;command&gt;</a></strong> | <strong id="s95"><a href="#s95">&lt;chars&gt;</a></strong>
+      | <strong id="s96"><a href="#s96">&lt;action&gt;</a></strong> },]</p>
       <blockquote>
       <p>To unset a default binding, you can use the action
       <em>"ReceiveChar"</em> to remove it or <em>"None"</em> to inhibit
@@ -909,13 +927,14 @@
       <em>"Я"</em> can be mapped directly without any special syntax.
       Full list of named keys like <em>"F1"</em> and the syntax for dead
       keys can be found here:</p>
-      <p><em>https://docs.rs/winit/latest/winit/keyboard/enum.NamedKey.html</em><br />
+      <p><em>https://docs.rs/winit/latest/winit/keyboard/enum.NamedKey.html</em><br>
       <em>https://docs.rs/winit/latest/winit/keyboard/enum.Key.html#variant.Dead</em></p>
       <p>Numpad keys are prefixed by <em>Numpad</em>:
       <em>"NumpadEnter"</em> | <em>"NumpadAdd"</em> |
-      <em>"NumpadComma"</em> | <em>"NumpadDivide"</em> |
-      <em>"NumpadEquals"</em> | <em>"NumpadSubtract"</em> |
-      <em>"NumpadMultiply"</em> | <em>"Numpad[0-9]"</em>.</p>
+      <em>"NumpadComma"</em> | <em>"NumpadDecimal"</em> |
+      <em>"NumpadDivide"</em> | <em>"NumpadEquals"</em> |
+      <em>"NumpadSubtract"</em> | <em>"NumpadMultiply"</em> |
+      <em>"Numpad[0-9]"</em>.</p>
       <p>The <em>key</em> field also supports using scancodes, which are
       specified as a decimal number.</p>
       </blockquote>
@@ -937,6 +956,12 @@
       effect.</p>
       <p>Multiple modes can be combined using <em>|</em>, like this:
       <em>"~Vi|Search"</em>.</p>
+      </blockquote>
+      <p><strong>command</strong> = <em>"&lt;string&gt;"</em> | {
+      program = <em>"&lt;string&gt;"</em>, args =
+      [<em>"&lt;string&gt;"</em>,] }</p>
+      <blockquote>
+      <p>Fork and execute the specified command.</p>
       </blockquote>
       <p><strong>chars</strong> = <em>"&lt;string&gt;"</em></p>
       <blockquote>
@@ -1181,7 +1206,7 @@
       <blockquote>
       <p>Search forward within the current line.</p>
       </blockquote>
-      <p><strong>InlineSearchBcakward</strong></p>
+      <p><strong>InlineSearchBackward</strong></p>
       <blockquote>
       <p>Search backward within the current line.</p>
       </blockquote>
@@ -1308,36 +1333,36 @@
       </blockquote>
       </blockquote>
       </blockquote>
-      <p>Default: See <strong><a href="./config-alacritty-bindings.html">alacritty-bindings</strong>(5)</a></p>
+      <p>Default: See <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
       <p>Example:</p>
       <blockquote>
-      <p><strong>[keyboard]</strong><br />
-      bindings = [<br />
+      <p><strong>[keyboard]</strong><br>
+      bindings = [<br>
       { key = <em>"N"</em>, mods = <em>"Control|Shift"</em>, action =
-      <em>"CreateNewWindow"</em> },<br />
+      <em>"CreateNewWindow"</em> },<br>
       { key = <em>"L"</em>, mods = <em>"Control|Shift"</em>, chars =
-      <em>"l"</em> },<br />
+      <em>"l"</em> },<br>
       ]</p>
       </blockquote>
-      <h1>DEBUG</h1>
-      <p>This section documents the <strong>[debug]</strong> table of
+      <h1 id="debug"><a href="#debug">DEBUG</a></h1>
+      <p>This section documents the <strong id="s97"><a href="#s97">[debug]</a></strong> table of
       the configuration file.</p>
       <p>Debug options are meant to help troubleshoot issues with
       Alacritty. These can change or be removed entirely without
       warning, so their stability shouldn't be relied upon.</p>
-      <p><strong>render_timer</strong> = <em>true</em> |
+      <p><strong id="s98"><a href="#s98">render_timer</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Display the time it takes to draw each frame.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>persistent_logging</strong> = <em>true</em> |
+      <p><strong id="s99"><a href="#s99">persistent_logging</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Keep the log file after quitting Alacritty.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>log_level</strong> = <em>"Off"</em> | <em>"Error"</em>
+      <p><strong id="s100"><a href="#s100">log_level</a></strong> = <em>"Off"</em> | <em>"Error"</em>
       | <em>"Warn"</em> | <em>"Info"</em> | <em>"Debug"</em> |
       <em>"Trace"</em></p>
       <blockquote>
@@ -1350,46 +1375,44 @@
       -vvv</em></p>
       </blockquote>
       </blockquote>
-      <p><strong>renderer</strong> = <em>"glsl3"</em> | <em>"gles2"</em>
-      | <em>"gles2_pure"</em> | <em>"None"</em></p>
+      <p><strong id="s101"><a href="#s101">renderer</a></strong> = <em>"glsl3"</em> | <em>"gles2"</em>
+      | <em>"gles2pure"</em> | <em>"None"</em></p>
       <blockquote>
       <p>Force use of a specific renderer, <em>"None"</em> will use the
       highest available one.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <p><strong>print_events</strong> = <em>true</em> |
+      <p><strong id="s102"><a href="#s102">print_events</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Log all received window events.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>highlight_damage</strong> = <em>true</em> |
+      <p><strong id="s103"><a href="#s103">highlight_damage</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Highlight window damage information.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong>prefer_egl</strong> = <em>true</em> |
+      <p><strong id="s104"><a href="#s104">prefer_egl</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Use EGL as display API if the current platform allows it. Note
       that transparency may not work with EGL on Linux/BSD.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <h1>SEE ALSO</h1>
-      <p><strong>alacritty</strong>(1),
-      <strong>alacritty-msg</strong>(1),
-      <strong><a href="./config-alacritty-bindings.html">alacritty-bindings</strong>(5)</a></p>
-      <h1>BUGS</h1>
+      <h1 id="see-also"><a href="#see-also">SEE ALSO</a></h1>
+      <p><strong><a href="./cmd-alacritty.html">alacritty(1)</a></strong>,
+      <strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>,
+      <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
+      <h1 id="bugs"><a href="#bugs">BUGS</a></h1>
       <p>Found a bug? Please report it at
       <em>https://github.com/alacritty/alacritty/issues</em>.</p>
-      <h1>MAINTAINERS</h1>
-      <blockquote>
-      <p>· Christian Duerr &lt;contact@christianduerr.com&gt;</p>
-      </blockquote>
-      <blockquote>
-      <p>· Kirill Chibisov &lt;contact@kchibisov.com&gt;</p>
-      </blockquote>
+      <h1 id="maintainers"><a href="#maintainers">MAINTAINERS</a></h1>
+      <ul>
+      <li><p>Christian Duerr &lt;contact@christianduerr.com&gt;</p></li>
+      <li><p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p></li>
+      </ul>
     </main>
   </body>
 </html>
