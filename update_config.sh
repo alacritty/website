@@ -2,21 +2,24 @@
 
 # Update the config documentation from its scdoc file.
 
-if [ "$#" -ne 1 ]; then
-    echo "USAGE: update_config.sh <MANPAGE_DIR>"
+if [ "$#" -ne 2 ]; then
+    echo "USAGE: update_config.sh <MANPAGE_DIR> <VERSION>"
     exit 1
 fi
 
 manpage_dir=$(realpath "$1")
+version="v$2"
+
+mkdir -p "./static/releases/$version"
 
 for manpage in $(ls "$manpage_dir"/*.scd); do
     # Log operation.
     case "$manpage" in
         *.1.scd)
-            outfile="./static/cmd-$(basename "$manpage" .1.scd).html"
+            outfile="./static/releases/$version/cmd-$(basename "$manpage" .1.scd).html"
             ;;
         *.5.scd)
-            outfile="./static/config-$(basename "$manpage" .5.scd).html"
+            outfile="./static/releases/$version/config-$(basename "$manpage" .5.scd).html"
             ;;
     esac
     echo "Converting \"$manpage\" to \"$outfile\""

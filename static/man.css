@@ -11,3 +11,16 @@ strong, strong > a {
   font-weight: normal;
   color: #6a9fb5;
 }
+
+.pick-release {
+  display: flex;
+  margin: 10px 0;
+}
+
+.pick-release select {
+  font-size: 14pt;
+  border: 4px solid #262626;
+  font-size: 14pt;
+  color: #aaaaaa;
+  background-color: #181818;
+}

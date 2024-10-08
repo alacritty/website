@@ -35,9 +35,13 @@ like this:
 ## Configuration docs generation
 
 The config documentation pages are automatically generated from Alacritty's
-`.scd` files:
+`.scd` files, the following will generate configuration information
+for 1.2.3 release:
 
 ```sh
 # Replace `<…>` with the path to your Alacritty directory.
-update_config.sh <…>/alacritty/extra/man
+update_config.sh <…>/alacritty/extra/man 1.2.3
 ```
+
+After the generation the new releases needs to be appended to the
+`select_release.js` manually as well as links pointing to the latest release.
