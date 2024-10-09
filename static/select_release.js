@@ -1,13 +1,48 @@
-const version_pattern = 'v[0-9]+\.[0-9]+\.[0-9]+'
-const select = `
-<select id="pick-version" onchange="window.location.pathname = window.location.pathname.replace(new RegExp('${version_pattern}', ''), this.options[this.selectedIndex].value)">\
-        <option value='v0.13.2'>v0.13.2</option>\
-</select>
-`
-const picker = `<div class="pick-release">${select}</div>`
+const versions = [
+  '0.13.2',
+];
 
-// Add picker into the document.
-document.write(picker);
+// Regex for finding the version in the URL.
+let regexp = /[0-9]+\.[0-9]+\.[0-9]+/;
 
-// Select the right version inside our version picker.
-document.getElementById("pick-version").value = window.location.pathname.match(version_pattern)[0];
+function createVersionDropdown() {
+    let main = document.getElementsByTagName('main')[0];
+
+    // Create root version selector element.
+    const container = document.createElement('div');
+    container.id = 'pick-version';
+    main.prepend(container);
+
+    // Create "Version:" label.
+    const label = document.createElement('p');
+    label.textContent = 'Version:';
+    container.append(label);
+
+    // Create dropdown element.
+    const select = document.createElement('select');
+    select.onchange = event => {
+        let version = versions[event.target.selectedIndex];
+        window.location.pathname = window.location.pathname.replace(regexp, version);
+    };
+    container.append(select);
+
+    // Get URL's version from path.
+    const currentVersion = window.location.pathname.match(regexp)[0];
+
+    // Add a dropdown entry for each version.
+    for (let i = 0; i < versions.length; i++) {
+        const version = versions[i];
+
+        const option = document.createElement('option');
+        option.value = version;
+        option.innerHTML = version;
+        select.append(option);
+
+        // Select the URL's version by default.
+        if (version === currentVersion) {
+            select.selectedIndex = i;
+        }
+    }
+}
+
+window.onload = createVersionDropdown;

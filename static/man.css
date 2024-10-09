@@ -1,4 +1,4 @@
-p,table,h1 {
+p, table, h1 {
   font-family: monospace;
 }
 
@@ -12,15 +12,22 @@ strong, strong > a {
   color: #6a9fb5;
 }
 
-.pick-release {
+#pick-version {
   display: flex;
-  margin: 10px 0;
+  align-items: center;
+  float: right;
+  margin: 20px 0;
 }
 
-.pick-release select {
-  font-size: 14pt;
-  border: 4px solid #262626;
-  font-size: 14pt;
+#pick-version p {
+  font-size: 1.3em;
+  margin: 0 15px;
+}
+
+#pick-version select {
+  font-size: 1.2em;
   color: #aaaaaa;
+  padding: 5px 10px;
   background-color: #181818;
+  border: 4px solid #262626;
 }
