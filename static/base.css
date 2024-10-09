@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background-color: #282828;
+  background-color: #262626;
   border-bottom: 3px solid black;
   padding: 0 15px;
   height: 50px;
@@ -69,7 +69,7 @@ h1 {
   font-weight: unset;
   font-size: 2em;
   padding-top: 20px;
-  margin: 0;
+  margin: unset;
 }
 
 li {

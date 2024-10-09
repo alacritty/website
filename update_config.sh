@@ -8,7 +8,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 manpage_dir=$(realpath "$1")
-version="v$2"
+version="$2"
 
 mkdir -p "./static/releases/$version"
 
@@ -41,3 +41,6 @@ for manpage in $(ls "$manpage_dir"/*.scd); do
     # Delete roff file.
     rm "$roff_name"
 done
+
+# Add version to JavaScript dropdown.
+sed -i "s/const versions = \[/\0\n  '$version',/" ./static/select_release.js
