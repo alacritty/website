@@ -45,30 +45,34 @@
       <blockquote>
       <p>Remain open after child process exits.</p>
       </blockquote>
-      <p><strong id="s2"><a href="#s2">--print-events</a></strong></p>
+      <p><strong id="s2"><a href="#s2">--daemon</a></strong></p>
+      <blockquote>
+      <p>Do not spawn an initial window.</p>
+      </blockquote>
+      <p><strong id="s3"><a href="#s3">--print-events</a></strong></p>
       <blockquote>
       <p>Print all events to STDOUT.</p>
       </blockquote>
-      <p><strong id="s3"><a href="#s3">-q</a></strong></p>
+      <p><strong id="s4"><a href="#s4">-q</a></strong></p>
       <blockquote>
       <p>Reduces the level of verbosity (the min level is
       <strong>-qq</strong>).</p>
       </blockquote>
-      <p><strong id="s4"><a href="#s4">--ref-test</a></strong></p>
+      <p><strong id="s5"><a href="#s5">--ref-test</a></strong></p>
       <blockquote>
       <p>Generates ref test</p>
       </blockquote>
-      <p><strong id="s5"><a href="#s5">-v</a></strong></p>
+      <p><strong id="s6"><a href="#s6">-v</a></strong></p>
       <blockquote>
       <p>Increases the level of verbosity (the max level is
       <strong>-vvv</strong>).</p>
       </blockquote>
-      <p><strong id="s6"><a href="#s6">-V, --version</a></strong></p>
+      <p><strong id="s7"><a href="#s7">-V, --version</a></strong></p>
       <blockquote>
       <p>Prints version information.</p>
       </blockquote>
       <h1 id="options"><a href="#options">OPTIONS</a></h1>
-      <p><strong id="s7"><a href="#s7">--class</a></strong> <em>&lt;GENERAL&gt;</em> |
+      <p><strong id="s8"><a href="#s8">--class</a></strong> <em>&lt;GENERAL&gt;</em> |
       <em>&lt;GENERAL&gt;</em>,<em>&lt;INSTANCE&gt;</em></p>
       <blockquote>
       <p>Defines the window class hint on Linux.</p>
@@ -78,15 +82,15 @@
       the instance class is ignored.</p>
       <p>Default: <em>Alacritty,Alacritty</em></p>
       </blockquote>
-      <p><strong id="s8"><a href="#s8">-e, --command</a></strong> <em>&lt;COMMAND&gt;...</em></p>
+      <p><strong id="s9"><a href="#s9">-e, --command</a></strong> <em>&lt;COMMAND&gt;...</em></p>
       <blockquote>
       <p>Command and args to execute (must be last argument).</p>
       </blockquote>
-      <p><strong id="s9"><a href="#s9">--config-file</a></strong> <em>&lt;CONFIG_FILE&gt;</em></p>
+      <p><strong id="s10"><a href="#s10">--config-file</a></strong> <em>&lt;CONFIG_FILE&gt;</em></p>
       <blockquote>
       <p>Specify alternative configuration file.</p>
-      <p>Alacritty looks for the configuration file at the following
-      paths:</p>
+      <p>Alacritty doesn't create the config file for you, but it looks
+      for one in the following locations on UNIX systems:</p>
       <blockquote>
       <ol type="1">
       <li><p><em>$XDG_CONFIG_HOME/alacritty/alacritty.toml</em></p></li>
@@ -95,40 +99,44 @@
       <li><p><em>$HOME/.alacritty.toml</em></p></li>
       </ol>
       </blockquote>
-      <p>On Windows, the configuration file is located at
-      <em>%APPDATA%\alacritty\alacritty.toml</em>.</p>
+      <p>On Windows, the config file will be looked for in:</p>
+      <blockquote>
+      <ol type="1">
+      <li><p><em>%APPDATA%\alacritty\alacritty.toml</em></p></li>
+      </ol>
       </blockquote>
-      <p><strong id="s10"><a href="#s10">--embed</a></strong> <em>&lt;PARENT&gt;</em></p>
+      </blockquote>
+      <p><strong id="s11"><a href="#s11">--embed</a></strong> <em>&lt;PARENT&gt;</em></p>
       <blockquote>
       <p>X11 window ID to embed Alacritty within (decimal or hexadecimal
       with <em>0x</em> prefix).</p>
       </blockquote>
-      <p><strong id="s11"><a href="#s11">-o, --option</a></strong> <em>&lt;OPTION&gt;...</em></p>
+      <p><strong id="s12"><a href="#s12">-o, --option</a></strong> <em>&lt;OPTION&gt;...</em></p>
       <blockquote>
       <p>Override configuration file options.</p>
       <p>Example: <em>alacritty -o 'cursor.style="Beam"'</em></p>
       </blockquote>
-      <p><strong id="s12"><a href="#s12">--socket</a></strong> <em>&lt;SOCKET&gt;</em></p>
+      <p><strong id="s13"><a href="#s13">--socket</a></strong> <em>&lt;SOCKET&gt;</em></p>
       <blockquote>
       <p>Path for IPC socket creation.</p>
       </blockquote>
-      <p><strong id="s13"><a href="#s13">-T, --title</a></strong> <em>&lt;TITLE&gt;</em></p>
+      <p><strong id="s14"><a href="#s14">-T, --title</a></strong> <em>&lt;TITLE&gt;</em></p>
       <blockquote>
       <p>Defines the window title.</p>
       <p>Default: <em>Alacritty</em></p>
       </blockquote>
-      <p><strong id="s14"><a href="#s14">--working-directory</a></strong>
+      <p><strong id="s15"><a href="#s15">--working-directory</a></strong>
       <em>&lt;WORKING_DIRECTORY&gt;</em></p>
       <blockquote>
       <p>Start the shell in the specified working directory.</p>
       </blockquote>
       <h1 id="subcommands"><a href="#subcommands">SUBCOMMANDS</a></h1>
-      <p><strong id="s15"><a href="#s15">msg</a></strong></p>
+      <p><strong id="s16"><a href="#s16">msg</a></strong></p>
       <blockquote>
       <p>Send IPC socket messages (see
       <strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>).</p>
       </blockquote>
-      <p><strong id="s16"><a href="#s16">migrate</a></strong></p>
+      <p><strong id="s17"><a href="#s17">migrate</a></strong></p>
       <blockquote>
       <p>Migrate the configuration file.</p>
       <p><strong>-c, --config-file</strong>

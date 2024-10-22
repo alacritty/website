@@ -37,19 +37,19 @@
       <p>Alacritty doesn't create the config file for you, but it looks
       for one in the following locations on UNIX systems:</p>
       <ol type="1">
-      <li><p>`$XDG_CONFIG_HOME/alacritty/alacritty.toml`</p></li>
-      <li><p>`$XDG_CONFIG_HOME/alacritty.toml`</p></li>
-      <li><p>`$HOME/.config/alacritty/alacritty.toml`</p></li>
-      <li><p>`$HOME/.alacritty.toml`</p></li>
+      <li><p><em>$XDG_CONFIG_HOME/alacritty/alacritty.toml</em></p></li>
+      <li><p><em>$XDG_CONFIG_HOME/alacritty.toml</em></p></li>
+      <li><p><em>$HOME/.config/alacritty/alacritty.toml</em></p></li>
+      <li><p><em>$HOME/.alacritty.toml</em></p></li>
       </ol>
       <p>On Windows, the config file will be looked for in:</p>
       <ol type="1">
-      <li><p>`%APPDATA%\alacritty\alacritty.toml`</p></li>
+      <li><p><em>%APPDATA%\alacritty\alacritty.toml</em></p></li>
       </ol>
       <h1 id="general"><a href="#general">GENERAL</a></h1>
-      <p>This section documents the root level of the configuration
-      file.</p>
-      <p><strong id="s0"><a href="#s0">import</a></strong> = [<em>"&lt;string&gt;"</em>,]</p>
+      <p>This section documents the <strong id="s0"><a href="#s0">[general]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s1"><a href="#s1">import</a></strong> = [<em>"&lt;string&gt;"</em>,]</p>
       <blockquote>
       <p>Import additional configuration files.</p>
       <p>Imports are loaded in order, skipping all missing files, with
@@ -66,26 +66,6 @@
       <em>"~/.config/alacritty/keybindings.toml"</em>,<br>
       <em>"alacritty-theme/themes/gruvbox_dark.toml"</em>,<br>
       ]</p>
-      </blockquote>
-      </blockquote>
-      <p><strong id="s1"><a href="#s1">shell</a></strong> = <em>"&lt;string&gt;"</em> | { program
-      = <em>"&lt;string&gt;"</em>, args = [<em>"&lt;string&gt;"</em>,]
-      }</p>
-      <blockquote>
-      <p>You can set <em>shell.program</em> to the path of your favorite
-      shell, e.g. <em>/bin/zsh</em>. Entries in <em>shell.args</em> are
-      passed as arguments to the shell.</p>
-      <p>Default:</p>
-      <blockquote>
-      <p>Linux/BSD/macOS: <em>$SHELL</em> or the user's login shell, if
-      <em>$SHELL</em> is unset<br>
-      Windows: <em>"powershell"</em></p>
-      </blockquote>
-      <p>Example:</p>
-      <blockquote>
-      <p><strong>[shell]</strong><br>
-      program = <em>"/bin/zsh"</em><br>
-      args = [<em>"-l"</em>]</p>
       </blockquote>
       </blockquote>
       <p><strong id="s2"><a href="#s2">working_directory</a></strong> = <em>"&lt;string&gt;"</em>
@@ -741,7 +721,27 @@
       <h1 id="terminal"><a href="#terminal">TERMINAL</a></h1>
       <p>This section documents the <strong id="s67"><a href="#s67">[terminal]</a></strong> table of
       the configuration file.</p>
-      <p><strong id="s68"><a href="#s68">osc52</a></strong> = <em>"Disabled"</em> |
+      <p><strong id="s68"><a href="#s68">shell</a></strong> = <em>"&lt;string&gt;"</em> | { program
+      = <em>"&lt;string&gt;"</em>, args = [<em>"&lt;string&gt;"</em>,]
+      }</p>
+      <blockquote>
+      <p>You can set <em>shell.program</em> to the path of your favorite
+      shell, e.g. <em>/bin/zsh</em>. Entries in <em>shell.args</em> are
+      passed as arguments to the shell.</p>
+      <p>Default:</p>
+      <blockquote>
+      <p>Linux/BSD/macOS: <em>$SHELL</em> or the user's login shell, if
+      <em>$SHELL</em> is unset<br>
+      Windows: <em>"powershell"</em></p>
+      </blockquote>
+      <p>Example:</p>
+      <blockquote>
+      <p><strong>[shell]</strong><br>
+      program = <em>"/bin/zsh"</em><br>
+      args = [<em>"-l"</em>]</p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s69"><a href="#s69">osc52</a></strong> = <em>"Disabled"</em> |
       <em>"OnlyCopy"</em> | <em>"OnlyPaste"</em> |
       <em>"CopyPaste"</em></p>
       <blockquote>
@@ -754,19 +754,19 @@
       <p>Default: <em>"OnlyCopy"</em></p>
       </blockquote>
       <h1 id="mouse"><a href="#mouse">MOUSE</a></h1>
-      <p>This section documents the <strong id="s69"><a href="#s69">[mouse]</a></strong> table of
+      <p>This section documents the <strong id="s70"><a href="#s70">[mouse]</a></strong> table of
       the configuration file.</p>
-      <p><strong id="s70"><a href="#s70">hide_when_typing</a></strong> = <em>true</em> |
+      <p><strong id="s71"><a href="#s71">hide_when_typing</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>When this is <em>true</em>, the cursor is temporarily hidden
       when typing.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong id="s71"><a href="#s71">bindings</a></strong> = [{ <strong id="s72"><a href="#s72">&lt;mouse&gt;</a></strong>,
-      <strong id="s73"><a href="#s73">&lt;mods&gt;</a></strong>, <strong id="s74"><a href="#s74">&lt;mode&gt;</a></strong>,
-      <strong id="s75"><a href="#s75">&lt;command&gt;</a></strong> | <strong id="s76"><a href="#s76">&lt;chars&gt;</a></strong>
-      | <strong id="s77"><a href="#s77">&lt;action&gt;</a></strong> },]</p>
+      <p><strong id="s72"><a href="#s72">bindings</a></strong> = [{ <strong id="s73"><a href="#s73">&lt;mouse&gt;</a></strong>,
+      <strong id="s74"><a href="#s74">&lt;mods&gt;</a></strong>, <strong id="s75"><a href="#s75">&lt;mode&gt;</a></strong>,
+      <strong id="s76"><a href="#s76">&lt;command&gt;</a></strong> | <strong id="s77"><a href="#s77">&lt;chars&gt;</a></strong>
+      | <strong id="s78"><a href="#s78">&lt;action&gt;</a></strong> },]</p>
       <blockquote>
       <p>See <em>keyboard.bindings</em> for full documentation on
       <em>mods</em>, <em>mode</em>, <em>command</em>, <em>chars</em>,
@@ -801,22 +801,22 @@
       </blockquote>
       </blockquote>
       <h1 id="hints"><a href="#hints">HINTS</a></h1>
-      <p>This section documents the <strong id="s78"><a href="#s78">[hints]</a></strong> table of
+      <p>This section documents the <strong id="s79"><a href="#s79">[hints]</a></strong> table of
       the configuration file.</p>
       <p>Terminal hints can be used to find text or hyperlinks in the
       visible part of the terminal and pipe it to other
       applications.</p>
-      <p><strong id="s79"><a href="#s79">alphabet</a></strong> = <em>"&lt;string&gt;"</em></p>
+      <p><strong id="s80"><a href="#s80">alphabet</a></strong> = <em>"&lt;string&gt;"</em></p>
       <blockquote>
       <p>Keys used for the hint labels.</p>
       <p>Default: <em>"jfkdls;ahgurieowpq"</em></p>
       </blockquote>
-      <p><strong id="s80"><a href="#s80">enabled</a></strong> = [{ <strong id="s81"><a href="#s81">&lt;regex&gt;</a></strong>,
-      <strong id="s82"><a href="#s82">&lt;hyperlinks&gt;</a></strong>,
-      <strong id="s83"><a href="#s83">&lt;post_processing&gt;</a></strong>,
-      <strong id="s84"><a href="#s84">&lt;persist&gt;</a></strong>, <strong id="s85"><a href="#s85">&lt;action&gt;</a></strong>,
-      <strong id="s86"><a href="#s86">&lt;command&gt;</a></strong>,
-      <strong id="s87"><a href="#s87">&lt;binding&gt;</a></strong>, <strong id="s88"><a href="#s88">&lt;mouse&gt;</a></strong>
+      <p><strong id="s81"><a href="#s81">enabled</a></strong> = [{ <strong id="s82"><a href="#s82">&lt;regex&gt;</a></strong>,
+      <strong id="s83"><a href="#s83">&lt;hyperlinks&gt;</a></strong>,
+      <strong id="s84"><a href="#s84">&lt;post_processing&gt;</a></strong>,
+      <strong id="s85"><a href="#s85">&lt;persist&gt;</a></strong>, <strong id="s86"><a href="#s86">&lt;action&gt;</a></strong>,
+      <strong id="s87"><a href="#s87">&lt;command&gt;</a></strong>,
+      <strong id="s88"><a href="#s88">&lt;binding&gt;</a></strong>, <strong id="s89"><a href="#s89">&lt;mouse&gt;</a></strong>
       },]</p>
       <p>Array with all available hints.</p>
       <p>Each hint must have at least one of <em>regex</em> or
@@ -903,19 +903,19 @@
       post_processing = <em>true</em><br>
       persist = <em>false</em><br>
       mouse.enabled = <em>true</em><br>
-      binding = { key = <em>"U"</em>, mods = <em>"Control|Shift"</em>
+      binding = { key = <em>"O"</em>, mods = <em>"Control|Shift"</em>
       }<br>
       regex =
       <em>"(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F&lt;&gt;\"\\s{-}\\^⟨⟩`]+"</em></p>
       </blockquote>
       </blockquote>
       <h1 id="keyboard"><a href="#keyboard">KEYBOARD</a></h1>
-      <p>This section documents the <strong id="s89"><a href="#s89">[keyboard]</a></strong> table of
+      <p>This section documents the <strong id="s90"><a href="#s90">[keyboard]</a></strong> table of
       the configuration file.</p>
-      <p><strong id="s90"><a href="#s90">bindings</a></strong> = [{ <strong id="s91"><a href="#s91">&lt;key&gt;</a></strong>,
-      <strong id="s92"><a href="#s92">&lt;mods&gt;</a></strong>, <strong id="s93"><a href="#s93">&lt;mode&gt;</a></strong>,
-      <strong id="s94"><a href="#s94">&lt;command&gt;</a></strong> | <strong id="s95"><a href="#s95">&lt;chars&gt;</a></strong>
-      | <strong id="s96"><a href="#s96">&lt;action&gt;</a></strong> },]</p>
+      <p><strong id="s91"><a href="#s91">bindings</a></strong> = [{ <strong id="s92"><a href="#s92">&lt;key&gt;</a></strong>,
+      <strong id="s93"><a href="#s93">&lt;mods&gt;</a></strong>, <strong id="s94"><a href="#s94">&lt;mode&gt;</a></strong>,
+      <strong id="s95"><a href="#s95">&lt;command&gt;</a></strong> | <strong id="s96"><a href="#s96">&lt;chars&gt;</a></strong>
+      | <strong id="s97"><a href="#s97">&lt;action&gt;</a></strong> },]</p>
       <blockquote>
       <p>To unset a default binding, you can use the action
       <em>"ReceiveChar"</em> to remove it or <em>"None"</em> to inhibit
@@ -1346,24 +1346,24 @@
       ]</p>
       </blockquote>
       <h1 id="debug"><a href="#debug">DEBUG</a></h1>
-      <p>This section documents the <strong id="s97"><a href="#s97">[debug]</a></strong> table of
+      <p>This section documents the <strong id="s98"><a href="#s98">[debug]</a></strong> table of
       the configuration file.</p>
       <p>Debug options are meant to help troubleshoot issues with
       Alacritty. These can change or be removed entirely without
       warning, so their stability shouldn't be relied upon.</p>
-      <p><strong id="s98"><a href="#s98">render_timer</a></strong> = <em>true</em> |
+      <p><strong id="s99"><a href="#s99">render_timer</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Display the time it takes to draw each frame.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong id="s99"><a href="#s99">persistent_logging</a></strong> = <em>true</em> |
+      <p><strong id="s100"><a href="#s100">persistent_logging</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Keep the log file after quitting Alacritty.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong id="s100"><a href="#s100">log_level</a></strong> = <em>"Off"</em> | <em>"Error"</em>
+      <p><strong id="s101"><a href="#s101">log_level</a></strong> = <em>"Off"</em> | <em>"Error"</em>
       | <em>"Warn"</em> | <em>"Info"</em> | <em>"Debug"</em> |
       <em>"Trace"</em></p>
       <blockquote>
@@ -1376,26 +1376,26 @@
       -vvv</em></p>
       </blockquote>
       </blockquote>
-      <p><strong id="s101"><a href="#s101">renderer</a></strong> = <em>"glsl3"</em> | <em>"gles2"</em>
+      <p><strong id="s102"><a href="#s102">renderer</a></strong> = <em>"glsl3"</em> | <em>"gles2"</em>
       | <em>"gles2pure"</em> | <em>"None"</em></p>
       <blockquote>
       <p>Force use of a specific renderer, <em>"None"</em> will use the
       highest available one.</p>
       <p>Default: <em>"None"</em></p>
       </blockquote>
-      <p><strong id="s102"><a href="#s102">print_events</a></strong> = <em>true</em> |
+      <p><strong id="s103"><a href="#s103">print_events</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Log all received window events.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong id="s103"><a href="#s103">highlight_damage</a></strong> = <em>true</em> |
+      <p><strong id="s104"><a href="#s104">highlight_damage</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Highlight window damage information.</p>
       <p>Default: <em>false</em></p>
       </blockquote>
-      <p><strong id="s104"><a href="#s104">prefer_egl</a></strong> = <em>true</em> |
+      <p><strong id="s105"><a href="#s105">prefer_egl</a></strong> = <em>true</em> |
       <em>false</em></p>
       <blockquote>
       <p>Use EGL as display API if the current platform allows it. Note
