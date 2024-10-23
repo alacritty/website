@@ -23,7 +23,8 @@ function createVersionDropdown() {
     const select = document.createElement('select');
     select.onchange = event => {
         let version = versions[event.target.selectedIndex];
-        window.location.pathname = window.location.pathname.replace(regexp, version);
+        let newPath = '/releases/' + version + '/';
+        window.location.pathname = window.location.pathname.replace(/.*\//, newPath);
     };
     container.append(select);
 
