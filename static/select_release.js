@@ -1,4 +1,5 @@
 const versions = [
+  '0.14.0',
   '0.13.2',
 ];
 
@@ -22,12 +23,13 @@ function createVersionDropdown() {
     const select = document.createElement('select');
     select.onchange = event => {
         let version = versions[event.target.selectedIndex];
-        window.location.pathname = window.location.pathname.replace(regexp, version);
+        let newPath = '/releases/' + version + '/';
+        window.location.pathname = window.location.pathname.replace(/.*\//, newPath);
     };
     container.append(select);
 
     // Get URL's version from path.
-    const currentVersion = window.location.pathname.match(regexp)[0];
+    const currentVersion = window.location.pathname.match(regexp)?.[0];
 
     // Add a dropdown entry for each version.
     for (let i = 0; i < versions.length; i++) {

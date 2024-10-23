@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+</head>
+
+<body>
+    <header>
+        <div id="header-content" class="content-width">
+            <a id="logo" href="index.html">
+                <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+            </a>
+            <nav>
+                <a href="config-alacritty.html">Configuration</a>
+                <a href="changelog.html">Changelog</a>
+                <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-width">
+        <div class="title">
+            <h1>Alacritty Version 0.14.0 Release</h1>
+            <h4>Oct 23, 2024</h4>
+        </div>
+
+        <div id="github-release">
+            Prebuilt binaries can be found in the
+            <a href="https://github.com/alacritty/alacritty/releases/tag/v0.14.0">
+          GitHub release.
+        </a>
+        </div>
+
+        <div class="changelog-content">
+            <h2><a name="Packaging" href="#Packaging">Packaging</a></h2>
+            <ul>
+                <li>Minimum Rust version has been bumped to 1.74.0</li>
+            </ul>
+            <h2><a name="Added" href="#Added">Added</a></h2>
+            <ul>
+                <li>Support relative path imports from config files</li>
+                <li><code>alacritty migrate</code> support for TOML configuration changes</li>
+                <li>Headless mode using <code>alacritty --daemon</code></li>
+            </ul>
+            <h2><a name="Changed" href="#Changed">Changed</a></h2>
+            <ul>
+                <li>Pressing <kbd>Alt</kbd> with unicode input will now add <kbd>ESC</kbd> like for ASCII input</li>
+                <li>Decorations use opaque style and system window background on macOS</li>
+                <li>No longer source <code>~/.zshenv</code> on macOS</li>
+                <li>Moved config options <code>import</code>, <code>working_directory</code>, <code>live_config_reload</code>, and <code>ipc_socket</code></li> to the new <code>general</code> section
+                <li>Moved config option <code>shell</code> to <code>terminal.shell</code></li>
+                <li><kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>u</kbd> binding to open links to <kbd>ctrl</kbd> + <kbd>shift</kbd> +
+                    <kbd>o</kbd> to avoid collisions with IMEs</li>
+                <li>Use <code>Beam</code> cursor for single char cursor inside the IME preview</li>
+            </ul>
+            <h2><a name="Fixed" href="#Fixed">Fixed</a></h2>
+            <ul>
+                <li>Crash when trying to create a new tab without decorations enabled</li>
+                <li>New window being treated as focused when it's not on Wayland</li>
+                <li>IME preview blending into text below it</li>
+                <li>Dynamic title disabled for new windows when initial one has title as CLI option</li>
+                <li>While terminal in mouse mode, mouse bindings that used the shift modifier and</li> had multiple actions only performed the first action
+                <li>Leaking FDs when closing windows on Unix systems</li>
+                <li>Config emitting errors for nonexistent import paths</li>
+                <li>Kitty keyboard protocol reporting shifted key codes</li>
+                <li>Broken search with words broken across line boundary on the first character</li>
+                <li>Config import changes not being live reloaded</li>
+                <li>Cursor color requests with default cursor colors</li>
+                <li>Fullwidth semantic escape characters</li>
+                <li>Windows app icon now displays properly in old alt+tab on Windows</li>
+                <li>Alacritty not being properly activated with startup notify</li>
+                <li>Invalid URL highlights after terminal scrolling</li>
+                <li>Hollow block cursor not spanning multiple chars being edited inside the IME preview</li>
+                <li>Vi inline search only working for direct key input without modifiers</li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>
