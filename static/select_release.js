@@ -28,7 +28,7 @@ function createVersionDropdown() {
     container.append(select);
 
     // Get URL's version from path.
-    const currentVersion = window.location.pathname.match(regexp)[0];
+    const currentVersion = window.location.pathname.match(regexp)?.[0];
 
     // Add a dropdown entry for each version.
     for (let i = 0; i < versions.length; i++) {
