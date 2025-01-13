@@ -55,8 +55,9 @@ To ensure all other pages point to the latest version correctly, you also need
 to update the symlinks in the `static` directory:
 
 ```sh
-ln -sf releases/1.2.3/cmd-alacritty.html static/
-ln -sf releases/1.2.3/cmd-alacritty-msg.html static/
-ln -sf releases/1.2.3/config-alacritty.html static/
-ln -sf releases/1.2.3/config-alacritty-bindings.html static/
+cd static
+ln -sf $(ls -t releases/*/cmd-alacritty.html | head -n 1) ./
+ln -sf $(ls -t releases/*/cmd-alacritty-msg.html | head -n 1) ./
+ln -sf $(ls -t releases/*/config-alacritty.html | head -n 1) ./
+ln -sf $(ls -t releases/*/config-alacritty-bindings.html | head -n 1) ./
 ```
