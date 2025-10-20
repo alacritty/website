@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="../../base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../man.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../alacritty-simple.svg">
+    <script src="../../select_release.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="header-content" class="content-width">
+        <a id="logo" href="../../index.html">
+          <img id="logo-img" src="../../alacritty-simple.svg" alt="Alacritty Logo"/>
+          lacritty
+        </a>
+        <nav>
+          <a href="config-alacritty.html">Configuration</a>
+          <a href="../../changelog.html">Changelog</a>
+          <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-width">
+      <h1 id="name"><a href="#name">NAME</a></h1>
+      <p>alacritty-msg - Send messages to Alacritty.</p>
+      <h1 id="synopsis"><a href="#synopsis">SYNOPSIS</a></h1>
+      <p>This command communicates with running Alacritty instances
+      through a socket, making it possible to control Alacritty without
+      directly accessing it.</p>
+      <h1 id="options"><a href="#options">OPTIONS</a></h1>
+      <p><strong id="s0"><a href="#s0">-s, --socket</a></strong> <em>&lt;SOCKET&gt;</em></p>
+      <blockquote>
+      <p>Path for IPC socket communication.</p>
+      </blockquote>
+      <h1 id="messages"><a href="#messages">MESSAGES</a></h1>
+      <p><strong id="s1"><a href="#s1">create-window</a></strong></p>
+      <blockquote>
+      <p>Create a new window in the same Alacritty process.</p>
+      <p><strong>FLAGS</strong></p>
+      <blockquote>
+      <p><strong>--hold</strong></p>
+      <blockquote>
+      <p>Remain open after child process exits.</p>
+      </blockquote>
+      </blockquote>
+      <p><strong>OPTIONS</strong></p>
+      <blockquote>
+      <p><strong>--working-directory</strong>
+      <em>&lt;WORKING_DIRECTORY&gt;</em></p>
+      <blockquote>
+      <p>Start the shell in the specified working directory.</p>
+      </blockquote>
+      <p><strong>-T, --title</strong> <em>&lt;TITLE&gt;</em></p>
+      <blockquote>
+      <p>Defines the window title.</p>
+      <p>Default: <em>Alacritty</em></p>
+      </blockquote>
+      <p><strong>--class</strong> <em>&lt;GENERAL&gt;</em> |
+      <em>&lt;GENERAL&gt;</em>,<em>&lt;INSTANCE&gt;</em></p>
+      <blockquote>
+      <p>Defines window class/app_id on X11/Wayland.</p>
+      <p>Default: <em>Alacritty,Alacritty</em></p>
+      </blockquote>
+      <p><strong>-o, --option</strong> <em>&lt;OPTION&gt;...</em></p>
+      <blockquote>
+      <p>Override configuration file options.</p>
+      <p>Example: <em>alacritty msg create-window -o
+      'cursor.style="Beam"'</em></p>
+      </blockquote>
+      <p><strong>-e, --command</strong> <em>&lt;COMMAND&gt;...</em></p>
+      <blockquote>
+      <p>Command and args to execute (must be last argument).</p>
+      </blockquote>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s2"><a href="#s2">config</a></strong></p>
+      <blockquote>
+      <p>Update the Alacritty configuration.</p>
+      <p><strong>ARGS</strong></p>
+      <blockquote>
+      <p><strong>&lt;CONFIG_OPTIONS&gt;...</strong></p>
+      <blockquote>
+      <p>Configuration file options.</p>
+      <p>Example: <em>alacritty msg config
+      'cursor.style="Beam"'</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong>FLAGS</strong></p>
+      <blockquote>
+      <p><strong>-r, --reset</strong></p>
+      <blockquote>
+      <p>Clear all runtime configuration changes.</p>
+      </blockquote>
+      </blockquote>
+      <p><strong>OPTIONS</strong></p>
+      <blockquote>
+      <p><strong>-w, --window-id</strong> <em>&lt;WINDOW_ID&gt;</em></p>
+      <blockquote>
+      <p>Window ID for the new config.</p>
+      <p>Use <em>-1</em> to apply this change to all windows.</p>
+      <p>Default: <em>$ALACRITTY_WINDOW_ID</em></p>
+      </blockquote>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s3"><a href="#s3">get-config</a></strong></p>
+      <blockquote>
+      <p>Read runtime Alacritty configuration.</p>
+      <p><strong>OPTIONS</strong></p>
+      <blockquote>
+      <p><strong>-w, --window-id</strong> <em>&lt;WINDOW_ID&gt;</em></p>
+      <blockquote>
+      <p>Window ID for the config request.</p>
+      <p>Use <em>-1</em> to get the global config.</p>
+      <p>Default: <em>$ALACRITTY_WINDOW_ID</em></p>
+      </blockquote>
+      </blockquote>
+      </blockquote>
+      <h1 id="see-also"><a href="#see-also">SEE ALSO</a></h1>
+      <p><strong><a href="./cmd-alacritty.html">alacritty(1)</a></strong>, <strong><a href="./config-alacritty.html">alacritty(5)</a></strong>,
+      <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
+      <h1 id="bugs"><a href="#bugs">BUGS</a></h1>
+      <p>Found a bug? Please report it at
+      <em>https://github.com/alacritty/alacritty/issues</em>.</p>
+      <h1 id="maintainers"><a href="#maintainers">MAINTAINERS</a></h1>
+      <ul>
+      <li><p>Christian Duerr &lt;contact@christianduerr.com&gt;</p></li>
+      <li><p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p></li>
+      </ul>
+    </main>
+  </body>
+</html>
