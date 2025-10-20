@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="../../base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../man.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../alacritty-simple.svg">
+    <script src="../../select_release.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="header-content" class="content-width">
+        <a id="logo" href="../../index.html">
+          <img id="logo-img" src="../../alacritty-simple.svg" alt="Alacritty Logo"/>
+          lacritty
+        </a>
+        <nav>
+          <a href="config-alacritty.html">Configuration</a>
+          <a href="../../changelog.html">Changelog</a>
+          <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-width">
+      <h1 id="name"><a href="#name">NAME</a></h1>
+      <p>Alacritty - TOML configuration file format.</p>
+      <h1 id="syntax"><a href="#syntax">SYNTAX</a></h1>
+      <p>Alacritty's configuration file uses the TOML format. The
+      format's specification can be found at
+      <em>https://toml.io/en/v1.0.0</em>.</p>
+      <h1 id="location"><a href="#location">LOCATION</a></h1>
+      <p>Alacritty doesn't create the config file for you, but it looks
+      for one in the following locations on UNIX systems:</p>
+      <ol type="1">
+      <li><p><em>$XDG_CONFIG_HOME/alacritty/alacritty.toml</em></p></li>
+      <li><p><em>$XDG_CONFIG_HOME/alacritty.toml</em></p></li>
+      <li><p><em>$HOME/.config/alacritty/alacritty.toml</em></p></li>
+      <li><p><em>$HOME/.alacritty.toml</em></p></li>
+      <li><p><em>/etc/alacritty/alacritty.toml</em></p></li>
+      </ol>
+      <p>On Windows, the config file will be looked for in:</p>
+      <ol type="1">
+      <li><p><em>%APPDATA%\alacritty\alacritty.toml</em></p></li>
+      </ol>
+      <h1 id="general"><a href="#general">GENERAL</a></h1>
+      <p>This section documents the <strong id="s0"><a href="#s0">[general]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s1"><a href="#s1">import</a></strong> = [<em>"&lt;string&gt;"</em>,]</p>
+      <blockquote>
+      <p>Import additional configuration files.</p>
+      <p>Imports are loaded in order, skipping all missing files, with
+      the importing file being loaded last. If a field is already
+      present in a previous import, it will be replaced.</p>
+      <p>All imports must either be absolute paths starting with
+      <em>/</em>, paths relative to the user's home directory starting
+      with <em>~/</em>, or paths relative from the current config
+      file.</p>
+      <p>Example:</p>
+      <blockquote>
+      <p>import = [<br>
+      <em>"~/.config/alacritty/base16-dark.toml"</em>,<br>
+      <em>"~/.config/alacritty/keybindings.toml"</em>,<br>
+      <em>"alacritty-theme/themes/gruvbox_dark.toml"</em>,<br>
+      ]</p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s2"><a href="#s2">working_directory</a></strong> = <em>"&lt;string&gt;"</em>
+      | <em>"None"</em></p>
+      <blockquote>
+      <p>Directory the shell is started in. When this is unset, or
+      <em>"None"</em>, the working directory of the parent process will
+      be used.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong id="s3"><a href="#s3">live_config_reload</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Live config reload (changes require restart)</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <p><strong id="s4"><a href="#s4">ipc_socket</a></strong> = <em>true</em> | <em>false</em> #
+      <em>(unix only)</em></p>
+      <blockquote>
+      <p>Offer IPC using <em>alacritty msg</em></p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <h1 id="env"><a href="#env">ENV</a></h1>
+      <p>All key-value pairs in the <strong id="s5"><a href="#s5">[env]</a></strong> section will
+      be added as environment variables for any process spawned by
+      Alacritty, including its shell. Some entries may override
+      variables set by alacritty itself.</p>
+      <p>Example:</p>
+      <blockquote>
+      <p><strong>[env]</strong><br>
+      WINIT_X11_SCALE_FACTOR = <em>"1.0"</em></p>
+      </blockquote>
+      <h1 id="window"><a href="#window">WINDOW</a></h1>
+      <p>This section documents the <strong id="s6"><a href="#s6">[window]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s7"><a href="#s7">dimensions</a></strong> = { columns =
+      <em>&lt;integer&gt;</em>, lines = <em>&lt;integer&gt;</em> }</p>
+      <blockquote>
+      <p>Window dimensions (changes require restart).</p>
+      <p>Number of lines/columns (not pixels) in the terminal. Both
+      lines and columns must be non-zero for this to take effect. The
+      number of columns must be at least <em>2</em>, while using a value
+      of <em>0</em> for columns and lines will fall back to the window
+      manager's recommended size</p>
+      <p>Default: { columns = <em>0</em>, lines = <em>0</em> }</p>
+      </blockquote>
+      <p><strong id="s8"><a href="#s8">position</a></strong> = <em>"None"</em> | { x =
+      <em>&lt;integer&gt;</em>, y = <em>&lt;integer&gt;</em> } #
+      <em>(has no effect on Wayland)</em></p>
+      <blockquote>
+      <p>Window startup position.</p>
+      <p>Specified in number of pixels.</p>
+      <p>If the position is <em>"None"</em>, the window manager will
+      handle placement.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong id="s9"><a href="#s9">padding</a></strong> = { x = <em>&lt;integer&gt;</em>, y =
+      <em>&lt;integer&gt;</em> }</p>
+      <blockquote>
+      <p>Blank space added around the window in pixels. This padding is
+      scaled by DPI and the specified value is always added at both
+      opposing sides.</p>
+      <p>Default: { x = <em>0</em>, y = <em>0</em> }</p>
+      </blockquote>
+      <p><strong id="s10"><a href="#s10">dynamic_padding</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Spread additional padding evenly around the terminal
+      content.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s11"><a href="#s11">decorations</a></strong> = <em>"Full"</em> |
+      <em>"None"</em> | <em>"Transparent"</em> |
+      <em>"Buttonless"</em></p>
+      <blockquote>
+      <p>Window decorations.</p>
+      <p><strong>Full</strong></p>
+      <blockquote>
+      <p>Borders and title bar.</p>
+      </blockquote>
+      <p><strong>None</strong></p>
+      <blockquote>
+      <p>Neither borders nor title bar.</p>
+      </blockquote>
+      <p><strong>Transparent</strong> <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Title bar, transparent background and title bar buttons.</p>
+      </blockquote>
+      <p><strong>Buttonless</strong> <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Title bar, transparent background and no title bar buttons.</p>
+      </blockquote>
+      <p>Default: <em>"Full"</em></p>
+      </blockquote>
+      <p><strong id="s12"><a href="#s12">opacity</a></strong> = <em>&lt;float&gt;</em></p>
+      <blockquote>
+      <p>Background opacity as a floating point number from <em>0.0</em>
+      to <em>1.0</em>. The value <em>0.0</em> is completely transparent
+      and <em>1.0</em> is opaque.</p>
+      <p>Default: <em>1.0</em></p>
+      </blockquote>
+      <p><strong id="s13"><a href="#s13">blur</a></strong> = <em>true</em> | <em>false</em> #
+      <em>(works on macOS/KDE Wayland)</em></p>
+      <blockquote>
+      <p>Request compositor to blur content behind transparent
+      windows.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s14"><a href="#s14">startup_mode</a></strong> = <em>"Windowed"</em> |
+      <em>"Maximized"</em> | <em>"Fullscreen"</em> |
+      <em>"SimpleFullscreen"</em></p>
+      <blockquote>
+      <p>Startup mode (changes require restart)</p>
+      <p><strong>Windowed</strong></p>
+      <blockquote>
+      <p>Regular window.</p>
+      </blockquote>
+      <p><strong>Maximized</strong></p>
+      <blockquote>
+      <p>The window will be maximized on startup.</p>
+      </blockquote>
+      <p><strong>Fullscreen</strong></p>
+      <blockquote>
+      <p>The window will be fullscreened on startup.</p>
+      </blockquote>
+      <p><strong>SimpleFullscreen</strong> <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Same as <em>Fullscreen</em>, but you can stack windows on
+      top.</p>
+      </blockquote>
+      <p>Default: <em>"Windowed"</em></p>
+      </blockquote>
+      <p><strong id="s15"><a href="#s15">title</a></strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Window title.</p>
+      <p>Default: <em>"Alacritty"</em></p>
+      </blockquote>
+      <p><strong id="s16"><a href="#s16">dynamic_title</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Allow terminal applications to change Alacritty's window
+      title.</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <p><strong id="s17"><a href="#s17">class</a></strong> = { instance =
+      <em>"&lt;string&gt;"</em>, general = <em>"&lt;string&gt;"</em> } #
+      <em>(Linux/BSD only)</em></p>
+      <blockquote>
+      <p>Window class.</p>
+      <p>On Wayland, <strong>general</strong> is used as <em>app_id</em>
+      and <strong>instance</strong> is ignored.</p>
+      <p>Default: { instance = <em>"Alacritty"</em>, general =
+      <em>"Alacritty"</em> }</p>
+      </blockquote>
+      <p><strong id="s18"><a href="#s18">decorations_theme_variant</a></strong> = <em>"Dark"</em> |
+      <em>"Light"</em> | <em>"None"</em></p>
+      <blockquote>
+      <p>Override the variant of the System theme/GTK theme/Wayland
+      client side decorations. Set this to <em>"None"</em> to use the
+      system's default theme variant.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong id="s19"><a href="#s19">resize_increments</a></strong> = <em>true</em> |
+      <em>false</em> # <em>(works on macOS/X11)</em></p>
+      <blockquote>
+      <p>Prefer resizing window by discrete steps equal to cell
+      dimensions.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s20"><a href="#s20">option_as_alt</a></strong> = <em>"OnlyLeft"</em> |
+      <em>"OnlyRight"</em> | <em>"Both"</em> | <em>"None"</em> #
+      <em>(macOS only)</em></p>
+      <blockquote>
+      <p>Make <em>Option</em> key behave as <em>Alt</em>.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong id="s21"><a href="#s21">level</a></strong> = <em>"Normal"</em> |
+      <em>"AlwaysOnTop"</em></p>
+      <blockquote>
+      <p>Sets window level.</p>
+      <p><strong>Normal</strong></p>
+      <blockquote>
+      <p>Window adheres to system's default z-order.</p>
+      </blockquote>
+      <p><strong>AlwaysOnTop</strong></p>
+      <blockquote>
+      <p>Window is a toplevel window.</p>
+      </blockquote>
+      <p>Default: <em>"Normal"</em></p>
+      </blockquote>
+      <p>Example:</p>
+      <blockquote>
+      <p><strong>[window]</strong><br>
+      padding = { x = <em>3</em>, y = <em>3</em> }<br>
+      dynamic_padding = <em>true</em><br>
+      opacity = <em>0.9</em></p>
+      </blockquote>
+      <h1 id="scrolling"><a href="#scrolling">SCROLLING</a></h1>
+      <p>This section documents the <strong id="s22"><a href="#s22">[scrolling]</a></strong> table
+      of the configuration file.</p>
+      <p><strong id="s23"><a href="#s23">history</a></strong> = <em>&lt;integer&gt;</em></p>
+      <blockquote>
+      <p>Maximum number of lines in the scrollback buffer.<br>
+      Specifying <em>0</em> will disable scrolling.<br>
+      Limited to <em>100000</em>.</p>
+      <p>Default: <em>10000</em></p>
+      </blockquote>
+      <p><strong id="s24"><a href="#s24">multiplier</a></strong> = <em>&lt;integer&gt;</em></p>
+      <blockquote>
+      <p>Number of line scrolled for every input scroll increment.</p>
+      <p>Default: <em>3</em></p>
+      </blockquote>
+      <h1 id="font"><a href="#font">FONT</a></h1>
+      <p>This section documents the <strong id="s25"><a href="#s25">[font]</a></strong> table of the
+      configuration file.</p>
+      <p><strong id="s26"><a href="#s26">normal</a></strong> = { family = <em>"&lt;string&gt;"</em>,
+      style = <em>"&lt;string&gt;"</em> }</p>
+      <blockquote>
+      <p>Default:</p>
+      <blockquote>
+      <p>Linux/BSD: { family = <em>"monospace"</em>, style =
+      <em>"Regular"</em> }<br>
+      Windows: { family = <em>"Consolas"</em>, style =
+      <em>"Regular"</em> }<br>
+      macOS: { family = <em>"Menlo"</em>, style = <em>"Regular"</em>
+      }</p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s27"><a href="#s27">bold</a></strong> = { family = <em>"&lt;string&gt;"</em>,
+      style = <em>"&lt;string&gt;"</em> }</p>
+      <blockquote>
+      <p>If the family is not specified, it will fall back to the value
+      specified for the normal font.</p>
+      <p>Default: { style = <em>"Bold"</em> }</p>
+      </blockquote>
+      <p><strong id="s28"><a href="#s28">italic</a></strong> = { family = <em>"&lt;string&gt;"</em>,
+      style = <em>"&lt;string&gt;"</em> }</p>
+      <blockquote>
+      <p>If the family is not specified, it will fall back to the value
+      specified for the normal font.</p>
+      <p>Default: { style = <em>"Italic"</em> }</p>
+      </blockquote>
+      <p><strong id="s29"><a href="#s29">bold_italic</a></strong> = { family =
+      <em>"&lt;string&gt;"</em>, style = <em>"&lt;string&gt;"</em> }</p>
+      <blockquote>
+      <p>If the family is not specified, it will fall back to the value
+      specified for the normal font.</p>
+      <p>Default: { style = <em>"Bold Italic"</em> }</p>
+      </blockquote>
+      <p><strong id="s30"><a href="#s30">size</a></strong> = <em>&lt;float&gt;</em></p>
+      <blockquote>
+      <p>Font size in points.</p>
+      <p>Default: <em>11.25</em></p>
+      </blockquote>
+      <p><strong id="s31"><a href="#s31">offset</a></strong> = { x = <em>&lt;integer&gt;</em>, y =
+      <em>&lt;integer&gt;</em> }</p>
+      <blockquote>
+      <p>Offset is the extra space around each character. <em>y</em> can
+      be thought of as modifying the line spacing, and <em>x</em> as
+      modifying the letter spacing.</p>
+      <p>Default: { x = <em>0</em>, y = <em>0</em> }</p>
+      </blockquote>
+      <p><strong id="s32"><a href="#s32">glyph_offset</a></strong> = { x = <em>&lt;integer&gt;</em>,
+      y = <em>&lt;integer&gt;</em> }</p>
+      <blockquote>
+      <p>Glyph offset determines the locations of the glyphs within
+      their cells with the default being at the bottom. Increasing
+      <em>x</em> moves the glyph to the right, increasing <em>y</em>
+      moves the glyph upward.</p>
+      </blockquote>
+      <p><strong id="s33"><a href="#s33">builtin_box_drawing</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>When <em>true</em>, Alacritty will use a custom built-in font
+      for box drawing characters (Unicode points <em>U+2500</em> -
+      <em>U+259F</em>), legacy computing symbols (<em>U+1FB00</em> -
+      <em>U+1FB3B</em>), and powerline symbols (<em>U+E0B0</em> -
+      <em>U+E0B3</em>).</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <h1 id="colors"><a href="#colors">COLORS</a></h1>
+      <p>This section documents the <strong id="s34"><a href="#s34">[colors]</a></strong> table of
+      the configuration file.</p>
+      <p>Colors are specified using their hexadecimal values with a
+      <em>#</em> prefix: <em>#RRGGBB</em>.</p>
+      <p><strong id="s35"><a href="#s35">primary</a></strong></p>
+      <blockquote>
+      <p>This section documents the <strong>[colors.primary]</strong>
+      table of the configuration file.</p>
+      <p><strong>foreground</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#d8d8d8"</em></p>
+      </blockquote>
+      <p><strong>background</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#181818"</em></p>
+      </blockquote>
+      <p><strong>dim_foreground</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>If this is not set, the color is automatically calculated based
+      on the foreground color.</p>
+      <p>Default: <em>"#828482"</em></p>
+      </blockquote>
+      <p><strong>bright_foreground</strong> =
+      <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>This color is only used when
+      <em>draw_bold_text_with_bright_colors</em> is <em>true</em>.</p>
+      <p>If this is not set, the normal foreground will be used.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s36"><a href="#s36">cursor</a></strong> = { text = <em>"&lt;string&gt;"</em>,
+      cursor = <em>"&lt;string&gt;"</em> }</p>
+      <blockquote>
+      <p>Colors which should be used to draw the terminal cursor.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: { text = <em>"CellBackground"</em>, cursor =
+      <em>"CellForeground"</em> }</p>
+      </blockquote>
+      <p><strong id="s37"><a href="#s37">vi_mode_cursor</a></strong> = { text =
+      <em>"&lt;string&gt;"</em>, cursor = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>Colors for the cursor when the vi mode is active.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: { text = <em>"CellBackground"</em>, cursor =
+      <em>"CellForeground"</em> }</p>
+      </blockquote>
+      <p><strong id="s38"><a href="#s38">search</a></strong></p>
+      <blockquote>
+      <p>This section documents the <strong>[colors.search]</strong>
+      table of the configuration.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p><strong>matches</strong> = { foreground =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>Default: { foreground = <em>"#181818"</em>, background =
+      <em>"#ac4242"</em> }</p>
+      </blockquote>
+      <p><strong>focused_match</strong> = { foreground =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>Default: { foreground = <em>"#181818"</em>, background =
+      <em>"#f4bf75"</em> }</p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s39"><a href="#s39">hints</a></strong></p>
+      <blockquote>
+      <p>This section documents the <strong>[colors.hints]</strong>
+      table of the configuration.</p>
+      <p><strong>start</strong> = { foreground =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>First character in the hint label.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: { foreground = <em>"#181818"</em>, background =
+      <em>"#f4bf75"</em> }</p>
+      </blockquote>
+      <p><strong>end</strong> = { foreground =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>All characters after the first one in the hint label.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: { foreground = <em>"#181818"</em>, background =
+      <em>"#ac4242"</em> }</p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s40"><a href="#s40">line_indicator</a></strong> = { foreground =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>Color used for the indicator displaying the position in history
+      during search and vi mode.</p>
+      <p>Setting this to <em>"None"</em> will use the opposing primary
+      color.</p>
+      <p>Default: { foreground = <em>"None"</em>, background =
+      <em>"None"</em> }</p>
+      </blockquote>
+      <p><strong id="s41"><a href="#s41">footer_bar</a></strong> = { foreground =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>Color used for the footer bar on the bottom, used by search
+      regex input, hyperlink URI preview, etc.</p>
+      <p>Default: { foreground = <em>"#181818"</em>, background =
+      <em>"#d8d8d8"</em> }</p>
+      </blockquote>
+      <p><strong id="s42"><a href="#s42">selection</a></strong> = { text =
+      <em>"&lt;string&gt;"</em>, background = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>Colors used for drawing selections.</p>
+      <p>Allowed values are hexadecimal colors like <em>#ff00ff</em>, or
+      <em>CellForeground</em>/<em>CellBackground</em>, which references
+      the affected cell.</p>
+      <p>Default: { text = <em>"CellBackground"</em>, background =
+      <em>"CellForeground"</em> }</p>
+      </blockquote>
+      <p><strong id="s43"><a href="#s43">normal</a></strong></p>
+      <blockquote>
+      <p>This section documents the <strong>[colors.normal]</strong>
+      table of the configuration.</p>
+      <p><strong>black</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#181818"</em></p>
+      </blockquote>
+      <p><strong>red</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#ac4242"</em></p>
+      </blockquote>
+      <p><strong>green</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#90a959"</em></p>
+      </blockquote>
+      <p><strong>yellow</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#f4bf75"</em></p>
+      </blockquote>
+      <p><strong>blue</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#6a9fb5"</em></p>
+      </blockquote>
+      <p><strong>magenta</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#aa759f"</em></p>
+      </blockquote>
+      <p><strong>cyan</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#75b5aa"</em></p>
+      </blockquote>
+      <p><strong>white</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#d8d8d8"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s44"><a href="#s44">bright</a></strong></p>
+      <blockquote>
+      <p>This section documents the <strong>[colors.bright]</strong>
+      table of the configuration.</p>
+      <p><strong>black</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#6b6b6b"</em></p>
+      </blockquote>
+      <p><strong>red</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#c55555"</em></p>
+      </blockquote>
+      <p><strong>green</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#aac474"</em></p>
+      </blockquote>
+      <p><strong>yellow</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#feca88"</em></p>
+      </blockquote>
+      <p><strong>blue</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#82b8c8"</em></p>
+      </blockquote>
+      <p><strong>magenta</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#c28cb8"</em></p>
+      </blockquote>
+      <p><strong>cyan</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#93d3c3"</em></p>
+      </blockquote>
+      <p><strong>white</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#f8f8f8"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s45"><a href="#s45">dim</a></strong></p>
+      <blockquote>
+      <p>This section documents the <strong>[colors.dim]</strong> table
+      of the configuration.</p>
+      <p>If the dim colors are not set, they will be calculated
+      automatically based on the <em>normal</em> colors.</p>
+      <p><strong>black</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#0f0f0f"</em></p>
+      </blockquote>
+      <p><strong>red</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#712b2b"</em></p>
+      </blockquote>
+      <p><strong>green</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#5f6f3a"</em></p>
+      </blockquote>
+      <p><strong>yellow</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#a17e4d"</em></p>
+      </blockquote>
+      <p><strong>blue</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#456877"</em></p>
+      </blockquote>
+      <p><strong>magenta</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#704d68"</em></p>
+      </blockquote>
+      <p><strong>cyan</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#4d7770"</em></p>
+      </blockquote>
+      <p><strong>white</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Default: <em>"#8e8e8e"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s46"><a href="#s46">indexed_colors</a></strong> = [{ index =
+      <em>&lt;integer&gt;</em>, color = <em>"&lt;string&gt;"</em>
+      },]</p>
+      <blockquote>
+      <p>The indexed colors include all colors from 16 to 256. When
+      these are not set, they're filled with sensible defaults.</p>
+      <p>Default: <em>[]</em></p>
+      </blockquote>
+      <p><strong id="s47"><a href="#s47">transparent_background_colors</a></strong> = <em>true</em>
+      | <em>false</em></p>
+      <blockquote>
+      <p>Whether or not <em>window.opacity</em> applies to all cell
+      backgrounds, or only to the default background. When set to
+      <em>true</em> all cells will be transparent regardless of their
+      background color.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s48"><a href="#s48">draw_bold_text_with_bright_colors</a></strong> =
+      <em>true</em> | <em>false</em></p>
+      <blockquote>
+      <p>When <em>true</em>, bold text is drawn using the bright color
+      variants.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1 id="bell"><a href="#bell">BELL</a></h1>
+      <p>This section documents the <strong id="s49"><a href="#s49">[bell]</a></strong> table of the
+      configuration file.</p>
+      <p><strong id="s50"><a href="#s50">animation</a></strong> = <em>"Ease"</em> |
+      <em>"EaseOut"</em> | <em>"EaseOutSine"</em> |
+      <em>"EaseOutQuad"</em> | <em>"EaseOutCubic"</em> |
+      <em>"EaseOutQuart"</em> | <em>"EaseOutQuint"</em> |
+      <em>"EaseOutExpo"</em> | <em>"EaseOutCirc"</em> |
+      <em>"Linear"</em></p>
+      <blockquote>
+      <p>Visual bell animation effect for flashing the screen when the
+      visual bell is rung.</p>
+      <p>Default: <em>"Linear"</em></p>
+      </blockquote>
+      <p><strong id="s51"><a href="#s51">duration</a></strong> = <em>&lt;integer&gt;</em></p>
+      <blockquote>
+      <p>Duration of the visual bell flash in milliseconds. A `duration`
+      of `0` will disable the visual bell animation.</p>
+      <p>Default: <em>0</em></p>
+      </blockquote>
+      <p><strong id="s52"><a href="#s52">color</a></strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Visual bell animation color.</p>
+      <p>Default: <em>"#ffffff"</em></p>
+      </blockquote>
+      <p><strong id="s53"><a href="#s53">command</a></strong> = <em>"&lt;string&gt;"</em> | {
+      program = <em>"&lt;string&gt;"</em>, args =
+      [<em>"&lt;string&gt;"</em>,] }</p>
+      <blockquote>
+      <p>This program is executed whenever the bell is rung.</p>
+      <p>When set to <em>"None"</em>, no command will be executed.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <h1 id="selection"><a href="#selection">SELECTION</a></h1>
+      <p>This section documents the <strong id="s54"><a href="#s54">[selection]</a></strong> table
+      of the configuration file.</p>
+      <p><strong id="s55"><a href="#s55">semantic_escape_chars</a></strong> =
+      <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>This string contains all characters that are used as separators
+      for "semantic words" in Alacritty.</p>
+      <p>Default: <em>",│`|:\"' ()[]{}&lt;&gt;\t"</em></p>
+      </blockquote>
+      <p><strong id="s56"><a href="#s56">save_to_clipboard</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>When set to <em>true</em>, selected text will be copied to the
+      primary clipboard.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1 id="cursor"><a href="#cursor">CURSOR</a></h1>
+      <p>This section documents the <strong id="s57"><a href="#s57">[cursor]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s58"><a href="#s58">style</a></strong> = { <strong id="s59"><a href="#s59">&lt;shape&gt;</a></strong>,
+      <strong id="s60"><a href="#s60">&lt;blinking&gt;</a></strong> }</p>
+      <blockquote>
+      <p><strong>shape</strong> = <em>"Block"</em> |
+      <em>"Underline"</em> | <em>"Beam"</em></p>
+      <blockquote>
+      <p>Default: <em>"Block"</em></p>
+      </blockquote>
+      <p><strong>blinking</strong> = <em>"Never"</em> | <em>"Off"</em> |
+      <em>"On"</em> | <em>"Always"</em></p>
+      <blockquote>
+      <p><strong>Never</strong></p>
+      <blockquote>
+      <p>Prevent the cursor from ever blinking</p>
+      </blockquote>
+      <p><strong>Off</strong></p>
+      <blockquote>
+      <p>Disable blinking by default</p>
+      </blockquote>
+      <p><strong>On</strong></p>
+      <blockquote>
+      <p>Enable blinking by default</p>
+      </blockquote>
+      <p><strong>Always</strong></p>
+      <blockquote>
+      <p>Force the cursor to always blink</p>
+      </blockquote>
+      <p>Default: <em>"Off"</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s61"><a href="#s61">vi_mode_style</a></strong> = {
+      <strong id="s62"><a href="#s62">&lt;shape&gt;</a></strong>, <strong id="s63"><a href="#s63">&lt;blinking&gt;</a></strong>
+      } | <em>"None"</em></p>
+      <blockquote>
+      <p>If the vi mode cursor style is <em>"None"</em> or not
+      specified, it will fall back to the active value of the normal
+      cursor.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong id="s64"><a href="#s64">blink_interval</a></strong> = <em>&lt;integer&gt;</em></p>
+      <blockquote>
+      <p>Cursor blinking interval in milliseconds.</p>
+      <p>Default: <em>750</em></p>
+      </blockquote>
+      <p><strong id="s65"><a href="#s65">blink_timeout</a></strong> = <em>&lt;integer&gt;</em></p>
+      <blockquote>
+      <p>Time after which cursor stops blinking, in seconds.</p>
+      <p>Specifying <em>0</em> will disable timeout for blinking.</p>
+      <p>Default: <em>5</em></p>
+      </blockquote>
+      <p><strong id="s66"><a href="#s66">unfocused_hollow</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>When this is <em>true</em>, the cursor will be rendered as a
+      hollow box when the window is not focused.</p>
+      <p>Default: <em>true</em></p>
+      </blockquote>
+      <p><strong id="s67"><a href="#s67">thickness</a></strong> = <em>&lt;float&gt;</em></p>
+      <blockquote>
+      <p>Thickness of the cursor relative to the cell width as floating
+      point number from <em>0.0</em> to <em>1.0</em>.</p>
+      <p>Default: <em>0.15</em></p>
+      </blockquote>
+      <h1 id="terminal"><a href="#terminal">TERMINAL</a></h1>
+      <p>This section documents the <strong id="s68"><a href="#s68">[terminal]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s69"><a href="#s69">shell</a></strong> = <em>"&lt;string&gt;"</em> | { program
+      = <em>"&lt;string&gt;"</em>, args = [<em>"&lt;string&gt;"</em>,]
+      }</p>
+      <blockquote>
+      <p>You can set <em>shell.program</em> to the path of your favorite
+      shell, e.g. <em>/bin/zsh</em>. Entries in <em>shell.args</em> are
+      passed as arguments to the shell.</p>
+      <p>Default:</p>
+      <blockquote>
+      <p>Linux/BSD/macOS: <em>$SHELL</em> or the user's login shell, if
+      <em>$SHELL</em> is unset<br>
+      Windows: <em>"powershell"</em></p>
+      </blockquote>
+      <p>Example:</p>
+      <blockquote>
+      <p><strong>shell</strong> = { program = <em>"/bin/zsh"</em>, args
+      = [<em>"-l"</em>] }</p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s70"><a href="#s70">osc52</a></strong> = <em>"Disabled"</em> |
+      <em>"OnlyCopy"</em> | <em>"OnlyPaste"</em> |
+      <em>"CopyPaste"</em></p>
+      <blockquote>
+      <p>Controls the ability to write to the system clipboard with the
+      <em>OSC 52</em> escape sequence. While this escape sequence is
+      useful to copy contents from the remote server, allowing any
+      application to read from the clipboard can be easily abused while
+      not providing significant benefits over explicitly pasting
+      text.</p>
+      <p>Default: <em>"OnlyCopy"</em></p>
+      </blockquote>
+      <h1 id="mouse"><a href="#mouse">MOUSE</a></h1>
+      <p>This section documents the <strong id="s71"><a href="#s71">[mouse]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s72"><a href="#s72">hide_when_typing</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>When this is <em>true</em>, the cursor is temporarily hidden
+      when typing.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s73"><a href="#s73">bindings</a></strong> = [{ <strong id="s74"><a href="#s74">&lt;mouse&gt;</a></strong>,
+      <strong id="s75"><a href="#s75">&lt;mods&gt;</a></strong>, <strong id="s76"><a href="#s76">&lt;mode&gt;</a></strong>,
+      <strong id="s77"><a href="#s77">&lt;command&gt;</a></strong> | <strong id="s78"><a href="#s78">&lt;chars&gt;</a></strong>
+      | <strong id="s79"><a href="#s79">&lt;action&gt;</a></strong> },]</p>
+      <blockquote>
+      <p>See <em>keyboard.bindings</em> for full documentation on
+      <em>mods</em>, <em>mode</em>, <em>command</em>, <em>chars</em>,
+      and <em>action</em>.</p>
+      <p>When an application running within Alacritty captures the
+      mouse, the `Shift` modifier can be used to suppress mouse
+      reporting. If no action is found for the event, actions for the
+      event without the `Shift` modifier are triggered instead.</p>
+      <p><strong>mouse</strong> = <em>"Middle"</em> | <em>"Left"</em> |
+      <em>"Right"</em> | <em>"Back"</em> | <em>"Forward"</em> |
+      <em>&lt;integer&gt;</em></p>
+      <blockquote>
+      <p>Mouse button which needs to be pressed to trigger this
+      binding.</p>
+      </blockquote>
+      <p><strong>action</strong> =
+      <strong>&lt;keyboard.bindings.action&gt;</strong> |
+      <em>"ExpandSelection"</em></p>
+      <blockquote>
+      <p><strong>ExpandSelection</strong></p>
+      <blockquote>
+      <p>Expand the selection to the current mouse cursor location.</p>
+      </blockquote>
+      </blockquote>
+      <p>Example:</p>
+      <blockquote>
+      <p><strong>[mouse]</strong><br>
+      bindings = [<br>
+      { mouse = <em>"Right"</em>, mods = <em>"Control"</em>, action =
+      <em>"Paste"</em> },<br>
+      ]</p>
+      </blockquote>
+      </blockquote>
+      <h1 id="hints"><a href="#hints">HINTS</a></h1>
+      <p>This section documents the <strong id="s80"><a href="#s80">[hints]</a></strong> table of
+      the configuration file.</p>
+      <p>Terminal hints can be used to find text or hyperlinks in the
+      visible part of the terminal and pipe it to other
+      applications.</p>
+      <p><strong id="s81"><a href="#s81">alphabet</a></strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Keys used for the hint labels.</p>
+      <p>Default: <em>"jfkdls;ahgurieowpq"</em></p>
+      </blockquote>
+      <p><strong id="s82"><a href="#s82">enabled</a></strong> = [{ <strong id="s83"><a href="#s83">&lt;regex&gt;</a></strong>,
+      <strong id="s84"><a href="#s84">&lt;hyperlinks&gt;</a></strong>,
+      <strong id="s85"><a href="#s85">&lt;post_processing&gt;</a></strong>,
+      <strong id="s86"><a href="#s86">&lt;persist&gt;</a></strong>, <strong id="s87"><a href="#s87">&lt;action&gt;</a></strong>,
+      <strong id="s88"><a href="#s88">&lt;command&gt;</a></strong>,
+      <strong id="s89"><a href="#s89">&lt;binding&gt;</a></strong>, <strong id="s90"><a href="#s90">&lt;mouse&gt;</a></strong>
+      },]</p>
+      <p>Array with all available hints.</p>
+      <p>Each hint must have at least one of <em>regex</em> or
+      <em>hyperlinks</em> and either an <em>action</em> or a
+      <em>command</em>.</p>
+      <blockquote>
+      <p><strong>regex</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Regex each line will be compared against.</p>
+      </blockquote>
+      <p><strong>hyperlinks</strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>When this is <em>true</em>, all OSC 8 escape sequence
+      hyperlinks will be included in the hints.</p>
+      </blockquote>
+      <p><strong>post_processing</strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>When this is <em>true</em>, heuristics will be used to shorten
+      the match if there are characters likely not to be part of the
+      hint (e.g. a trailing <em>.</em>). This is most useful for URIs
+      and applies only to <em>regex</em> matches.</p>
+      </blockquote>
+      <p><strong>persist</strong> = <em>true</em> | <em>false</em></p>
+      <blockquote>
+      <p>When this is <em>true</em>, hints remain persistent after
+      selection.</p>
+      </blockquote>
+      <p><strong>action</strong> = <em>"Copy"</em> | <em>"Paste"</em> |
+      <em>"Select"</em> | <em>"MoveViModeCursor"</em></p>
+      <blockquote>
+      <p><strong>Copy</strong></p>
+      <blockquote>
+      <p>Copy the hint's text to the clipboard.</p>
+      </blockquote>
+      <p><strong>Paste</strong></p>
+      <blockquote>
+      <p>Paste the hint's text to the terminal or search.</p>
+      </blockquote>
+      <p><strong>Select</strong></p>
+      <blockquote>
+      <p>Select the hint's text.</p>
+      </blockquote>
+      <p><strong>MoveViModeCursor</strong></p>
+      <blockquote>
+      <p>Move the vi mode cursor to the beginning of the hint.</p>
+      </blockquote>
+      </blockquote>
+      <p><strong>command</strong> = <em>"&lt;string&gt;"</em> | {
+      program = <em>"&lt;string&gt;"</em>, args =
+      [<em>"&lt;string&gt;"</em>,] }</p>
+      <blockquote>
+      <p>Command which will be executed when the hint is clicked or
+      selected with the <em>binding</em>.</p>
+      <p>The hint's text is always attached as the last argument.</p>
+      </blockquote>
+      <p><strong>binding</strong> = { key = <em>"&lt;string&gt;"</em>,
+      mods = <em>"&lt;string&gt;"</em>, mode = <em>"&lt;string&gt;"</em>
+      }</p>
+      <blockquote>
+      <p>See <em>keyboard.bindings</em> for documentation on available
+      values.</p>
+      <p>This controls which key binding is used to start the keyboard
+      hint selection process.</p>
+      </blockquote>
+      <p><strong>mouse</strong> = { mods = <em>"&lt;string&gt;"</em>,
+      enabled = <em>true</em> | <em>false</em> }</p>
+      <blockquote>
+      <p>See <em>keyboard.bindings</em> for documentation on available
+      <em>mods</em>.</p>
+      <p>The <em>enabled</em> field controls if the hint should be
+      underlined when hovering over the hint text with all <em>mods</em>
+      pressed.</p>
+      </blockquote>
+      <p>Default:</p>
+      <blockquote>
+      <p><strong>[[hints.enabled]]</strong><br>
+      command = <em>"xdg-open"</em> # On Linux/BSD<br>
+      # command = <em>"open"</em> # On macOS<br>
+      # command = { program = <em>"cmd"</em>, args = [ <em>"/c"</em>,
+      <em>"start"</em>, <em>""</em> ] } # On Windows<br>
+      hyperlinks = <em>true</em><br>
+      post_processing = <em>true</em><br>
+      persist = <em>false</em><br>
+      mouse.enabled = <em>true</em><br>
+      binding = { key = <em>"O"</em>, mods = <em>"Control|Shift"</em>
+      }<br>
+      regex =</p>
+      </blockquote>
+      </blockquote>
+      <p><em>"(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F&lt;&gt;\"\\s{-}\\^⟨⟩`\\\\]+"</em></p>
+      <h1 id="keyboard"><a href="#keyboard">KEYBOARD</a></h1>
+      <p>This section documents the <strong id="s91"><a href="#s91">[keyboard]</a></strong> table of
+      the configuration file.</p>
+      <p><strong id="s92"><a href="#s92">bindings</a></strong> = [{ <strong id="s93"><a href="#s93">&lt;key&gt;</a></strong>,
+      <strong id="s94"><a href="#s94">&lt;mods&gt;</a></strong>, <strong id="s95"><a href="#s95">&lt;mode&gt;</a></strong>,
+      <strong id="s96"><a href="#s96">&lt;command&gt;</a></strong> | <strong id="s97"><a href="#s97">&lt;chars&gt;</a></strong>
+      | <strong id="s98"><a href="#s98">&lt;action&gt;</a></strong> },]</p>
+      <blockquote>
+      <p>To unset a default binding, you can use the action
+      <em>"ReceiveChar"</em> to remove it or <em>"None"</em> to inhibit
+      any action.</p>
+      <p>Multiple keybindings can be triggered by a single key press and
+      will be executed in the order they are defined in.</p>
+      <p><strong>key</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>The regular keys like <em>"A"</em>, <em>"0"</em>, and
+      <em>"Я"</em> can be mapped directly without any special syntax.
+      Full list of named keys like <em>"F1"</em> and the syntax for dead
+      keys can be found here:</p>
+      <p><em>https://docs.rs/winit/latest/winit/keyboard/enum.NamedKey.html</em><br>
+      <em>https://docs.rs/winit/latest/winit/keyboard/enum.Key.html#variant.Dead</em></p>
+      <p>Numpad keys are prefixed by <em>Numpad</em>:
+      <em>"NumpadEnter"</em> | <em>"NumpadAdd"</em> |
+      <em>"NumpadComma"</em> | <em>"NumpadDecimal"</em> |
+      <em>"NumpadDivide"</em> | <em>"NumpadEquals"</em> |
+      <em>"NumpadSubtract"</em> | <em>"NumpadMultiply"</em> |
+      <em>"Numpad[0-9]"</em>.</p>
+      <p>The <em>key</em> field also supports using scancodes, which are
+      specified as a decimal number.</p>
+      </blockquote>
+      <p><strong>mods</strong> = <em>"Command"</em> | <em>"Control"</em>
+      | <em>"Option"</em> | <em>"Super"</em> | <em>"Shift"</em> |
+      <em>"Alt"</em></p>
+      <blockquote>
+      <p>Multiple modifiers can be combined using <em>|</em>, like this:
+      <em>"Control |</em> Shift".</p>
+      </blockquote>
+      <p><strong>mode</strong> = <em>"AppCursor"</em> |
+      <em>"AppKeypad"</em> | <em>"Search"</em> | <em>"Alt"</em> |
+      <em>"Vi"</em></p>
+      <blockquote>
+      <p>This defines a terminal mode which must be active for this
+      binding to have an effect.</p>
+      <p>Prepending <em>~</em> to a mode will require the mode to
+      <strong>not</strong> = be active for the binding to take
+      effect.</p>
+      <p>Multiple modes can be combined using <em>|</em>, like this:
+      <em>"~Vi|Search"</em>.</p>
+      </blockquote>
+      <p><strong>command</strong> = <em>"&lt;string&gt;"</em> | {
+      program = <em>"&lt;string&gt;"</em>, args =
+      [<em>"&lt;string&gt;"</em>,] }</p>
+      <blockquote>
+      <p>Fork and execute the specified command.</p>
+      </blockquote>
+      <p><strong>chars</strong> = <em>"&lt;string&gt;"</em></p>
+      <blockquote>
+      <p>Writes the specified string to the terminal.</p>
+      </blockquote>
+      <p><strong>action</strong></p>
+      <blockquote>
+      <p><strong>ReceiveChar</strong></p>
+      <blockquote>
+      <p>Allow receiving char input.</p>
+      </blockquote>
+      <p><strong>None</strong></p>
+      <blockquote>
+      <p>No action.</p>
+      </blockquote>
+      <p><strong>Paste</strong></p>
+      <blockquote>
+      <p>Paste contents of system clipboard.</p>
+      </blockquote>
+      <p><strong>Copy</strong></p>
+      <blockquote>
+      <p>Store current selection into clipboard.</p>
+      </blockquote>
+      <p><strong>IncreaseFontSize</strong></p>
+      <blockquote>
+      <p>Increase font size.</p>
+      </blockquote>
+      <p><strong>DecreaseFontSize</strong></p>
+      <blockquote>
+      <p>Decrease font size.</p>
+      </blockquote>
+      <p><strong>ResetFontSize</strong></p>
+      <blockquote>
+      <p>Reset font size to the config value.</p>
+      </blockquote>
+      <p><strong>ScrollPageUp</strong></p>
+      <blockquote>
+      <p>Scroll exactly one page up.</p>
+      </blockquote>
+      <p><strong>ScrollPageDown</strong></p>
+      <blockquote>
+      <p>Scroll exactly one page down.</p>
+      </blockquote>
+      <p><strong>ScrollHalfPageUp</strong></p>
+      <blockquote>
+      <p>Scroll half a page up.</p>
+      </blockquote>
+      <p><strong>ScrollHalfPageDown</strong></p>
+      <blockquote>
+      <p>Scroll half a page down.</p>
+      </blockquote>
+      <p><strong>ScrollLineUp</strong></p>
+      <blockquote>
+      <p>Scroll one line up.</p>
+      </blockquote>
+      <p><strong>ScrollLineDown</strong></p>
+      <blockquote>
+      <p>Scroll one line down.</p>
+      </blockquote>
+      <p><strong>ScrollToTop</strong></p>
+      <blockquote>
+      <p>Scroll all the way to the top.</p>
+      </blockquote>
+      <p><strong>ScrollToBottom</strong></p>
+      <blockquote>
+      <p>Scroll all the way to the bottom.</p>
+      </blockquote>
+      <p><strong>ClearHistory</strong></p>
+      <blockquote>
+      <p>Clear the display buffer(s) to remove history.</p>
+      </blockquote>
+      <p><strong>Hide</strong></p>
+      <blockquote>
+      <p>Hide the Alacritty window.</p>
+      </blockquote>
+      <p><strong>Minimize</strong></p>
+      <blockquote>
+      <p>Minimize the Alacritty window.</p>
+      </blockquote>
+      <p><strong>Quit</strong></p>
+      <blockquote>
+      <p>Quit Alacritty.</p>
+      </blockquote>
+      <p><strong>ClearLogNotice</strong></p>
+      <blockquote>
+      <p>Clear warning and error notices.</p>
+      </blockquote>
+      <p><strong>SpawnNewInstance</strong></p>
+      <blockquote>
+      <p>Spawn a new instance of Alacritty.</p>
+      </blockquote>
+      <p><strong>CreateNewWindow</strong></p>
+      <blockquote>
+      <p>Create a new Alacritty window.</p>
+      </blockquote>
+      <p><strong>ToggleFullscreen</strong></p>
+      <blockquote>
+      <p>Toggle fullscreen.</p>
+      </blockquote>
+      <p><strong>ToggleMaximized</strong></p>
+      <blockquote>
+      <p>Toggle maximized.</p>
+      </blockquote>
+      <p><strong>ClearSelection</strong></p>
+      <blockquote>
+      <p>Clear active selection.</p>
+      </blockquote>
+      <p><strong>ToggleViMode</strong></p>
+      <blockquote>
+      <p>Toggle vi mode.</p>
+      </blockquote>
+      <p><strong>SearchForward</strong></p>
+      <blockquote>
+      <p>Start a forward buffer search.</p>
+      </blockquote>
+      <p><strong>SearchBackward</strong></p>
+      <blockquote>
+      <p>Start a backward buffer search.</p>
+      </blockquote>
+      <p><em>Vi mode actions:</em></p>
+      <p><strong>Up</strong></p>
+      <blockquote>
+      <p>Move up.</p>
+      </blockquote>
+      <p><strong>Down</strong></p>
+      <blockquote>
+      <p>Move down.</p>
+      </blockquote>
+      <p><strong>Left</strong></p>
+      <blockquote>
+      <p>Move left.</p>
+      </blockquote>
+      <p><strong>Right</strong></p>
+      <blockquote>
+      <p>Move right.</p>
+      </blockquote>
+      <p><strong>First</strong></p>
+      <blockquote>
+      <p>First column, or beginning of the line when already at the
+      first column.</p>
+      </blockquote>
+      <p><strong>Last</strong></p>
+      <blockquote>
+      <p>Last column, or beginning of the line when already at the last
+      column.</p>
+      </blockquote>
+      <p><strong>FirstOccupied</strong></p>
+      <blockquote>
+      <p>First non-empty cell in this terminal row, or first non-empty
+      cell of the line when already at the first cell of the row.</p>
+      </blockquote>
+      <p><strong>High</strong></p>
+      <blockquote>
+      <p>Move to top of screen.</p>
+      </blockquote>
+      <p><strong>Middle</strong></p>
+      <blockquote>
+      <p>Move to center of screen.</p>
+      </blockquote>
+      <p><strong>Low</strong></p>
+      <blockquote>
+      <p>Move to bottom of screen.</p>
+      </blockquote>
+      <p><strong>SemanticLeft</strong></p>
+      <blockquote>
+      <p>Move to start of semantically separated word.</p>
+      </blockquote>
+      <p><strong>SemanticRight</strong></p>
+      <blockquote>
+      <p>Move to start of next semantically separated word.</p>
+      </blockquote>
+      <p><strong>SemanticLeftEnd</strong></p>
+      <blockquote>
+      <p>Move to end of previous semantically separated word.</p>
+      </blockquote>
+      <p><strong>SemanticRightEnd</strong></p>
+      <blockquote>
+      <p>Move to end of semantically separated word.</p>
+      </blockquote>
+      <p><strong>WordLeft</strong></p>
+      <blockquote>
+      <p>Move to start of whitespace separated word.</p>
+      </blockquote>
+      <p><strong>WordRight</strong></p>
+      <blockquote>
+      <p>Move to start of next whitespace separated word.</p>
+      </blockquote>
+      <p><strong>WordLeftEnd</strong></p>
+      <blockquote>
+      <p>Move to end of previous whitespace separated word.</p>
+      </blockquote>
+      <p><strong>WordRightEnd</strong></p>
+      <blockquote>
+      <p>Move to end of whitespace separated word.</p>
+      </blockquote>
+      <p><strong>Bracket</strong></p>
+      <blockquote>
+      <p>Move to opposing bracket.</p>
+      </blockquote>
+      <p><strong>ParagraphUp</strong></p>
+      <blockquote>
+      <p>Move above the current paragraph.</p>
+      </blockquote>
+      <p><strong>ParagraphDown</strong></p>
+      <blockquote>
+      <p>Move below the current paragraph.</p>
+      </blockquote>
+      <p><strong>ToggleNormalSelection</strong></p>
+      <blockquote>
+      <p>Toggle normal vi selection.</p>
+      </blockquote>
+      <p><strong>ToggleLineSelection</strong></p>
+      <blockquote>
+      <p>Toggle line vi selection.</p>
+      </blockquote>
+      <p><strong>ToggleBlockSelection</strong></p>
+      <blockquote>
+      <p>Toggle block vi selection.</p>
+      </blockquote>
+      <p><strong>ToggleSemanticSelection</strong></p>
+      <blockquote>
+      <p>Toggle semantic vi selection.</p>
+      </blockquote>
+      <p><strong>SearchNext</strong></p>
+      <blockquote>
+      <p>Jump to the beginning of the next match.</p>
+      </blockquote>
+      <p><strong>SearchPrevious</strong></p>
+      <blockquote>
+      <p>Jump to the beginning of the previous match.</p>
+      </blockquote>
+      <p><strong>SearchStart</strong></p>
+      <blockquote>
+      <p>Jump to the next start of a match to the left of the
+      origin.</p>
+      </blockquote>
+      <p><strong>SearchEnd</strong></p>
+      <blockquote>
+      <p>Jump to the next end of a match to the right of the origin.</p>
+      </blockquote>
+      <p><strong>Open</strong></p>
+      <blockquote>
+      <p>Launch the URL below the vi mode cursor.</p>
+      </blockquote>
+      <p><strong>CenterAroundViCursor</strong></p>
+      <blockquote>
+      <p>Centers the screen around the vi mode cursor.</p>
+      </blockquote>
+      <p><strong>InlineSearchForward</strong></p>
+      <blockquote>
+      <p>Search forward within the current line.</p>
+      </blockquote>
+      <p><strong>InlineSearchBackward</strong></p>
+      <blockquote>
+      <p>Search backward within the current line.</p>
+      </blockquote>
+      <p><strong>InlineSearchForwardShort</strong></p>
+      <blockquote>
+      <p>Search forward within the current line, stopping just short of
+      the character.</p>
+      </blockquote>
+      <p><strong>InlineSearchBackwardShort</strong></p>
+      <blockquote>
+      <p>Search backward within the current line, stopping just short of
+      the character.</p>
+      </blockquote>
+      <p><strong>InlineSearchNext</strong></p>
+      <blockquote>
+      <p>Jump to the next inline search match.</p>
+      </blockquote>
+      <p><strong>InlineSearchPrevious</strong></p>
+      <blockquote>
+      <p>Jump to the previous inline search match.</p>
+      </blockquote>
+      <p><strong>SemanticSearchForward</strong></p>
+      <blockquote>
+      <p>Search forward for selection or word under the cursor.</p>
+      </blockquote>
+      <p><strong>SemanticSearchBackward</strong></p>
+      <blockquote>
+      <p>Search backward for selection or word under the cursor.</p>
+      </blockquote>
+      <p><em>Search actions:</em></p>
+      <p><strong>SearchFocusNext</strong></p>
+      <blockquote>
+      <p>Move the focus to the next search match.</p>
+      </blockquote>
+      <p><strong>SearchFocusPrevious</strong></p>
+      <blockquote>
+      <p>Move the focus to the previous search match.</p>
+      </blockquote>
+      <p><strong>SearchConfirm</strong></p>
+      <blockquote>
+      <p>Confirm the active search.</p>
+      </blockquote>
+      <p><strong>SearchCancel</strong></p>
+      <blockquote>
+      <p>Cancel the active search.</p>
+      </blockquote>
+      <p><strong>SearchClear</strong></p>
+      <blockquote>
+      <p>Reset the search regex.</p>
+      </blockquote>
+      <p><strong>SearchDeleteWord</strong></p>
+      <blockquote>
+      <p>Delete the last word in the search regex.</p>
+      </blockquote>
+      <p><strong>SearchHistoryPrevious</strong></p>
+      <blockquote>
+      <p>Go to the previous regex in the search history.</p>
+      </blockquote>
+      <p><strong>SearchHistoryNext</strong></p>
+      <blockquote>
+      <p>Go to the next regex in the search history.</p>
+      </blockquote>
+      <p><em>macOS exclusive:</em></p>
+      <p><strong>ToggleSimpleFullscreen</strong></p>
+      <blockquote>
+      <p>Enter fullscreen without occupying another space.</p>
+      </blockquote>
+      <p><strong>HideOtherApplications</strong></p>
+      <blockquote>
+      <p>Hide all windows other than Alacritty.</p>
+      </blockquote>
+      <p><strong>CreateNewTab</strong></p>
+      <blockquote>
+      <p>Create new window in a tab.</p>
+      </blockquote>
+      <p><strong>SelectNextTab</strong></p>
+      <blockquote>
+      <p>Select next tab.</p>
+      </blockquote>
+      <p><strong>SelectPreviousTab</strong></p>
+      <blockquote>
+      <p>Select previous tab.</p>
+      </blockquote>
+      <p><strong>SelectTab1</strong></p>
+      <blockquote>
+      <p>Select the first tab.</p>
+      </blockquote>
+      <p><strong>SelectTab2</strong></p>
+      <blockquote>
+      <p>Select the second tab.</p>
+      </blockquote>
+      <p><strong>SelectTab3</strong></p>
+      <blockquote>
+      <p>Select the third tab.</p>
+      </blockquote>
+      <p><strong>SelectTab4</strong></p>
+      <blockquote>
+      <p>Select the fourth tab.</p>
+      </blockquote>
+      <p><strong>SelectTab5</strong></p>
+      <blockquote>
+      <p>Select the fifth tab.</p>
+      </blockquote>
+      <p><strong>SelectTab6</strong></p>
+      <blockquote>
+      <p>Select the sixth tab.</p>
+      </blockquote>
+      <p><strong>SelectTab7</strong></p>
+      <blockquote>
+      <p>Select the seventh tab.</p>
+      </blockquote>
+      <p><strong>SelectTab8</strong></p>
+      <blockquote>
+      <p>Select the eighth tab.</p>
+      </blockquote>
+      <p><strong>SelectTab9</strong></p>
+      <blockquote>
+      <p>Select the ninth tab.</p>
+      </blockquote>
+      <p><strong>SelectLastTab</strong></p>
+      <blockquote>
+      <p>Select the last tab.</p>
+      </blockquote>
+      <p><em>Linux/BSD exclusive:</em></p>
+      <p><strong>CopySelection</strong></p>
+      <blockquote>
+      <p>Copy from the selection buffer.</p>
+      </blockquote>
+      <p><strong>PasteSelection</strong></p>
+      <blockquote>
+      <p>Paste from the selection buffer.</p>
+      </blockquote>
+      </blockquote>
+      </blockquote>
+      <p>Default: See <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
+      <p>Example:</p>
+      <blockquote>
+      <p><strong>[keyboard]</strong><br>
+      bindings = [<br>
+      { key = <em>"N"</em>, mods = <em>"Control|Shift"</em>, action =
+      <em>"CreateNewWindow"</em> },<br>
+      { key = <em>"L"</em>, mods = <em>"Control|Shift"</em>, chars =
+      <em>"l"</em> },<br>
+      ]</p>
+      </blockquote>
+      <h1 id="debug"><a href="#debug">DEBUG</a></h1>
+      <p>This section documents the <strong id="s99"><a href="#s99">[debug]</a></strong> table of
+      the configuration file.</p>
+      <p>Debug options are meant to help troubleshoot issues with
+      Alacritty. These can change or be removed entirely without
+      warning, so their stability shouldn't be relied upon.</p>
+      <p><strong id="s100"><a href="#s100">render_timer</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Display the time it takes to draw each frame.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s101"><a href="#s101">persistent_logging</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Keep the log file after quitting Alacritty.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s102"><a href="#s102">log_level</a></strong> = <em>"Off"</em> | <em>"Error"</em>
+      | <em>"Warn"</em> | <em>"Info"</em> | <em>"Debug"</em> |
+      <em>"Trace"</em></p>
+      <blockquote>
+      <p>Default: <em>"Warn"</em></p>
+      <p>To add extra libraries to logging
+      <em>ALACRITTY_EXTRA_LOG_TARGETS</em> variable can be used.</p>
+      <p>Example:</p>
+      <blockquote>
+      <p><em>ALACRITTY_EXTRA_LOG_TARGETS="winit;vte" alacritty
+      -vvv</em></p>
+      </blockquote>
+      </blockquote>
+      <p><strong id="s103"><a href="#s103">renderer</a></strong> = <em>"glsl3"</em> | <em>"gles2"</em>
+      | <em>"gles2pure"</em> | <em>"None"</em></p>
+      <blockquote>
+      <p>Force use of a specific renderer, <em>"None"</em> will use the
+      highest available one.</p>
+      <p>Default: <em>"None"</em></p>
+      </blockquote>
+      <p><strong id="s104"><a href="#s104">print_events</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Log all received window events.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s105"><a href="#s105">highlight_damage</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Highlight window damage information.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <p><strong id="s106"><a href="#s106">prefer_egl</a></strong> = <em>true</em> |
+      <em>false</em></p>
+      <blockquote>
+      <p>Use EGL as display API if the current platform allows it. Note
+      that transparency may not work with EGL on Linux/BSD.</p>
+      <p>Default: <em>false</em></p>
+      </blockquote>
+      <h1 id="see-also"><a href="#see-also">SEE ALSO</a></h1>
+      <p><strong><a href="./cmd-alacritty.html">alacritty(1)</a></strong>,
+      <strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>,
+      <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
+      <h1 id="bugs"><a href="#bugs">BUGS</a></h1>
+      <p>Found a bug? Please report it at
+      <em>https://github.com/alacritty/alacritty/issues</em>.</p>
+      <h1 id="maintainers"><a href="#maintainers">MAINTAINERS</a></h1>
+      <ul>
+      <li><p>Christian Duerr &lt;contact@christianduerr.com&gt;</p></li>
+      <li><p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p></li>
+      </ul>
+    </main>
+  </body>
+</html>

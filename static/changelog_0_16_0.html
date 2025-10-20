@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width" />
+      <title>Alacritty</title>
+      <link rel="stylesheet" href="base.css" type="text/css" media="all">
+      <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="icon" href="alacritty-simple.svg">
+  </head>
+
+  <body>
+      <header>
+          <div id="header-content" class="content-width">
+              <a id="logo" href="index.html">
+                  <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+              </a>
+              <nav>
+                  <a href="config-alacritty.html">Configuration</a>
+                  <a href="changelog.html">Changelog</a>
+                  <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+              </nav>
+          </div>
+      </header>
+
+      <main class="content-width">
+          <div class="title">
+              <h1>Alacritty Version 0.16.0 Release</h1>
+              <h4>Oct 18, 2025</h4>
+          </div>
+
+          <div id="github-release">
+              Prebuilt binaries can be found in the
+              <a href="https://github.com/alacritty/alacritty/releases/tag/v0.16.0">
+            GitHub release.
+          </a>
+          </div>
+
+          <div class="changelog-content">
+              <h2><a name="Packaging" href="#Packaging">Packaging</a></h2>
+              <ul>
+                  <li>Minimum Rust version has been bumped to 1.85.0</li>
+              </ul>
+              <h2><a name="Added" href="#Added">Added</a></h2>
+              <ul>
+                  <li>Vi motions <code>*</code>, <code>#</code>, <code>{</code>, and <code>}</code></li>
+                  <li>IPC config retrieval using <code>alacritty msg get-config</code></li>
+                  <li>Multi-sequence touch zoom sequences</li>
+                  <li>Vi action <kbd>Y</kbd> keybind, yank to the end of line</li>
+                  <li>Add <code>/etc/alacritty/alacritty.toml</code> fallback for system wide configuration</li>
+                  <li>Unicode 17 support</li>
+              </ul>
+              <h2><a name="Changed" href="#Changed">Changed</a></h2>
+              <ul>
+                  <li>Hide login message if <code>~/.hushlogin</code> is present</li>
+                  <li>Improve rendering of rounded corners with builtin box drawing</li>
+              </ul>
+              <h2><a name="Fixed" href="#Fixed">Fixed</a></h2>
+              <ul>
+                  <li>Crash when OpenGL context resets</li>
+                  <li>Modifier keys clearing selection with kitty keyboard protocol enabled</li>
+                  <li><code>glyph_offset.y</code> not applied to strikeout</li>
+                  <li><kbd>Enter</kbd>,<kbd>Tab</kbd>, <kbd>Backspace</kbd> not disambiguated with <kbd>shift</kbd> in kitty keyboard's disambiguate mode</li>
+                  <li>Hint bindings not respecting IPC overrides</li>
+                  <li>Search matching a wrapping fullwidth character in the last column</li>
+                  <li>Crash when <code>AppleFontSmoothing</code> option is not present on macOS</li>
+                  <li>Origin mode (DECOM) not moving cursor to the origin point</li>
+                  <li>Unresponsiveness when spamming the bell character with a bell command enabled</li>
+                  <li><code>window.startup_mode</code> applied to existing window when opening a new tab on macOS</li>
+                  <li>Slowdowns over time on macOS 26</li>
+              </ul>
+          </div>
+      </main>
+  </body>
+</html>

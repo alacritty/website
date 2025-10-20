@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="../../base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../man.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../alacritty-simple.svg">
+    <script src="../../select_release.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="header-content" class="content-width">
+        <a id="logo" href="../../index.html">
+          <img id="logo-img" src="../../alacritty-simple.svg" alt="Alacritty Logo"/>
+          lacritty
+        </a>
+        <nav>
+          <a href="config-alacritty.html">Configuration</a>
+          <a href="../../changelog.html">Changelog</a>
+          <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-width">
+      <h1 id="name"><a href="#name">NAME</a></h1>
+      <p>alacritty-bindings - Default configuration file bindings.</p>
+      <h1 id="synopsis"><a href="#synopsis">SYNOPSIS</a></h1>
+      <p>This page documents all key and mouse bindings for the default
+      Alacritty configuration. See <strong><a href="./config-alacritty.html">alacritty(5)</a></strong> for
+      full configuration format documentation.</p>
+      <h1 id="mouse-bindings"><a href="#mouse-bindings">MOUSE BINDINGS</a></h1>
+      <table>
+      <colgroup>
+      <col style="width: 33%">
+      <col style="width: 33%">
+      <col style="width: 33%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>mouse</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>action</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Right"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"ExpandSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Right"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"ExpandSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Middle"</em></td>
+      <td style="text-align: left;"><em>"~Vi"</em></td>
+      <td style="text-align: left;"><em>"PasteSelection"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h1 id="key-bindings"><a href="#key-bindings">KEY BINDINGS</a></h1>
+      <table>
+      <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>key</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>mode</strong></td>
+      <td style="text-align: left;"><strong>action</strong> /
+      <strong>chars</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"L"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"ClearLogNotice"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|Search"</em></td>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"L"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"~Vi|~Search"</em></td>
+      <td style="text-align: left;"><strong>chars</strong>:
+      <em>"\u000c"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"PageUp"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"~Alt"</em></td>
+      <td style="text-align: left;"><em>"ScrollPageUp"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"PageDown"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"~Alt"</em></td>
+      <td style="text-align: left;"><em>"ScrollPageDown"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Home"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"~Alt"</em></td>
+      <td style="text-align: left;"><em>"ScrollToTop"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"End"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"~Alt"</em></td>
+      <td style="text-align: left;"><em>"ScrollToBottom"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Vi Mode</h2>
+      <table>
+      <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>key</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>mode</strong></td>
+      <td style="text-align: left;"><strong>action</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Space"</em></td>
+      <td style="text-align: left;"><em>"Shift|Control"</em></td>
+      <td style="text-align: left;"><em>"~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleViMode"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Space"</em></td>
+      <td style="text-align: left;"><em>"Shift|Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollToBottom"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Escape"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"I"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleViMode"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"I"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollToBottom"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"C"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleViMode"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollLineUp"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"E"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollLineDown"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"G"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollToTop"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"G"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollToBottom"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"B"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollPageUp"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"F"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollPageDown"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"U"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollHalfPageUp"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"D"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ScrollHalfPageDown"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleNormalSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Last"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Y"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleNormalSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleLineSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleBlockSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Alt"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ToggleSemanticSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Enter"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Open"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Z"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"CenterAroundViCursor"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"F"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"InlineSearchForward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"F"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"InlineSearchBackward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"T"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"InlineSearchForwardShort"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"T"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"InlineSearchBackwardShort"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>";"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"InlineSearchNext"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>","</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"InlineSearchPrevious"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"*"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SemanticSearchForward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"#"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SemanticSearchBackward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"K"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Up"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"J"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Down"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"H"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Left"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"L"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Right"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"ArrowUp"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Up"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"ArrowDown"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Down"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"ArrowLeft"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Left"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"ArrowRight"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Right"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"0"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"First"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"$"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Last"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Home"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"First"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"End"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Last"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"^"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"FirstOccupied"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"H"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"High"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"M"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Middle"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"L"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Low"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"B"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SemanticLeft"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"W"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SemanticRight"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"E"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SemanticRightEnd"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"B"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"WordLeft"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"W"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"WordRight"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"E"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"WordRightEnd"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"%"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"Bracket"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"{"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ParagraphUp"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"}"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ParagraphDown"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"/"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchForward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"?"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchBackward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"N"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchNext"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"N"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchPrevious"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Search Mode</h2>
+      <table>
+      <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>key</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>mode</strong></td>
+      <td style="text-align: left;"><strong>action</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Enter"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Search|Vi"</em></td>
+      <td style="text-align: left;"><em>"SearchConfirm"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Escape"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchCancel"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"C"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchCancel"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"U"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchClear"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"W"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchDeleteWord"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"P"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchHistoryPrevious"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"N"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchHistoryNext"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"ArrowUp"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchHistoryPrevious"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"ArrowDown"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Search"</em></td>
+      <td style="text-align: left;"><em>"SearchHistoryNext"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Enter"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Search|~Vi"</em></td>
+      <td style="text-align: left;"><em>"SearchFocusNext"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Windows, Linux, and BSD only</h2>
+      <table>
+      <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>key</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>mode</strong></td>
+      <td style="text-align: left;"><strong>action</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Control|Shift"</em></td>
+      <td style="text-align: left;"><em>"~Vi"</em></td>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Control|Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|Search"</em></td>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"C"</em></td>
+      <td style="text-align: left;"><em>"Control|Shift"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"F"</em></td>
+      <td style="text-align: left;"><em>"Control|Shift"</em></td>
+      <td style="text-align: left;"><em>"~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchForward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"B"</em></td>
+      <td style="text-align: left;"><em>"Control|Shift"</em></td>
+      <td style="text-align: left;"><em>"~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchBackward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"C"</em></td>
+      <td style="text-align: left;"><em>"Control|Shift"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Insert"</em></td>
+      <td style="text-align: left;"><em>"Shift"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"PasteSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"0"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"ResetFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"="</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"IncreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"+"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"IncreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"NumpadAdd"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"IncreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"-"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"DecreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"NumpadSubtract"</em></td>
+      <td style="text-align: left;"><em>"Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"DecreaseFontSize"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>Windows only</h2>
+      <table>
+      <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>key</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>mode</strong></td>
+      <td style="text-align: left;"><strong>action</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Enter"</em></td>
+      <td style="text-align: left;"><em>"Alt"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"ToggleFullscreen"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h2>macOS only</h2>
+      <table>
+      <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      </colgroup>
+      <tbody>
+      <tr>
+      <td style="text-align: left;"><strong>key</strong></td>
+      <td style="text-align: left;"><strong>mods</strong></td>
+      <td style="text-align: left;"><strong>mode</strong></td>
+      <td style="text-align: left;"><strong>action</strong> /
+      <strong>chars</strong></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"K"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"~Vi|~Search"</em></td>
+      <td style="text-align: left;"><strong>chars</strong>:
+      <em>"\u000c"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"K"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"~Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearHistory"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"0"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"ResetFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"="</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"IncreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"+"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"IncreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"NumpadAdd"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"IncreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"-"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"DecreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"NumpadSubtract"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"DecreaseFontSize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"~Vi"</em></td>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"V"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"Vi|Search"</em></td>
+      <td style="text-align: left;"><em>"Paste"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"C"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Copy"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"C"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"Vi|~Search"</em></td>
+      <td style="text-align: left;"><em>"ClearSelection"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"H"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Hide"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"H"</em></td>
+      <td style="text-align: left;"><em>"Command|Alt"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"HideOtherApplications"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"M"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Minimize"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Q"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Quit"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"W"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"Quit"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"N"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"CreateNewWindow"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"T"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"CreateNewTab"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"F"</em></td>
+      <td style="text-align: left;"><em>"Command|Control"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"ToggleFullscreen"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"F"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchForward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"B"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"><em>"~Search"</em></td>
+      <td style="text-align: left;"><em>"SearchBackward"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"]"</em></td>
+      <td style="text-align: left;"><em>"Command|Shift"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectNextTab"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"["</em></td>
+      <td style="text-align: left;"><em>"Command|Shift"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectPreviousTab"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Tab"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectNextTab"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"Tab"</em></td>
+      <td style="text-align: left;"><em>"Command|Shift"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectPreviousTab"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"1"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab1"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"2"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab2"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"3"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab3"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"4"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab4"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"5"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab5"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"6"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab6"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"7"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab7"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"8"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectTab8"</em></td>
+      </tr>
+      <tr>
+      <td style="text-align: left;"><em>"9"</em></td>
+      <td style="text-align: left;"><em>"Command"</em></td>
+      <td style="text-align: left;"></td>
+      <td style="text-align: left;"><em>"SelectLastTab"</em></td>
+      </tr>
+      </tbody>
+      </table>
+      <h1 id="see-also"><a href="#see-also">SEE ALSO</a></h1>
+      <p><strong><a href="./cmd-alacritty.html">alacritty(1)</a></strong>,
+      <strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>,
+      <strong><a href="./config-alacritty.html">alacritty(5)</a></strong></p>
+      <h1 id="bugs"><a href="#bugs">BUGS</a></h1>
+      <p>Found a bug? Please report it at
+      <em>https://github.com/alacritty/alacritty/issues</em>.</p>
+      <h1 id="maintainers"><a href="#maintainers">MAINTAINERS</a></h1>
+      <ul>
+      <li><p>Christian Duerr &lt;contact@christianduerr.com&gt;</p></li>
+      <li><p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p></li>
+      </ul>
+    </main>
+  </body>
+</html>
