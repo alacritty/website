@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="alacritty-simple.svg">
+</head>
+
+<body>
+    <header>
+        <div id="header-content" class="content-width">
+            <a id="logo" href="index.html">
+                <img id="logo-img" src="alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+            </a>
+            <nav>
+                <a href="config-alacritty.html">Configuration</a>
+                <a href="changelog.html">Changelog</a>
+                <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-width">
+        <div class="title">
+            <h1>Alacritty Version 0.17.0 Release</h1>
+            <h4>Apr 06, 2026</h4>
+        </div>
+
+        <div id="github-release">
+            Prebuilt binaries can be found in the
+            <a href="https://github.com/alacritty/alacritty/releases/tag/v0.17.0">
+          GitHub release.
+        </a>
+        </div>
+
+        <div class="changelog-content">
+            <h2><a name="Packaging" href="#Packaging">Packaging</a></h2>
+            <ul>
+                <li>Fixed invalid logo SVG attributes</li>
+                <li>New <code>alacritty-escapes(7)</code> manpage</li>
+                <li>Removed broken flash capability from terminfo</li>
+            </ul>
+            <h2><a name="Added" href="#Added">Added</a></h2>
+            <ul>
+                <li>Ability to bind <kbd>WheelUp</kbd> and <kbd>WheelDown</kbd> in <code>mouse.bindings</code></li>
+                <li>Support TOML 1.1 syntax</li>
+                <li><code>window.resize_increments</code> support on Wayland</li>
+            </ul>
+            <h2><a name="Changed" href="#Changed">Changed</a></h2>
+            <ul>
+                <li>Don't highlight hints on hover when the mouse cursor is hidden</li>
+                <li>IME is disabled in Vi mode on X11</li>
+                <li>Require explicit tap to enable IME with touch input</li>
+                <li>Use built-in font for block elements symbols from <code>U+1FB82</code> to <code>U+1FB8B</code></li>
+            </ul>
+            <h2><a name="Fixed" href="#Fixed">Fixed</a></h2>
+            <ul>
+                <li>Brief error popup when saving the config file with some editors</li>
+                <li>Subprocesses on OpenBSD now run with their CWD set to that of the shell's foreground process.</li>
+                <li>Crash when OpenGL context resets</li>
+                <li>Crash when committing text with some IMEs on macOS</li>
+                <li>Signal termination skipping resource cleanup</li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>
