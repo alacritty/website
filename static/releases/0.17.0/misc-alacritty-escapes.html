@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Alacritty</title>
+    <link rel="stylesheet" href="../../base.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../changelog.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../man.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../alacritty-simple.svg">
+    <script src="../../select_release.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="header-content" class="content-width">
+            <a id="logo" href="../../index.html">
+                <img id="logo-img" src="../../alacritty-simple.svg" alt="Alacritty Logo" /> lacritty
+            </a>
+            <nav>
+                <a href="config-alacritty.html">Configuration</a>
+                <a href="../../changelog.html">Changelog</a>
+                <a href="https://github.com/alacritty/alacritty" target="_blank"><i class="fa fa-github"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-width">
+        <h1 id="alacritty-escape sequence support"><a href="#alacritty-escape sequence support">Alacritty Escape Sequence Support</a></h1>
+        <p>This list includes all escape sequences Alacritty currently supports.
+        </p>
+        <h1 id="legend"><a href="#legend">Legend</a></h1>
+        <p>The available statuses are <strong id="s0"><a href="#s0">PARTIAL</a></strong>,
+            <strong id="s1"><a href="#s1">IMPLEMENTED</a></strong> and <strong id="s2"><a href="#s2">REJECTED</a></strong>. While a status of <strong id="s3"><a href="#s3">PARTIAL</a></strong> means there is still work left to be done, a status of <strong id="s4"><a href="#s4">IMPLEMENTED</a></strong> for something partially implemented means all other features were rejected.
+        </p>
+        <p>All whitespace in escape sequences is solely for formatting purposes and all relevant spaces are denoted as
+            <strong id="s5"><a href="#s5">SP</a></strong>. The escape parameters are omitted for brevity.
+        </p>
+        <h1 id="esc-codes - esc"><a href="#esc-codes - esc">ESC codes - ESC</a></h1>
+        <table>
+            <colgroup>
+                <col style="width: 33%">
+                <col style="width: 33%">
+                <col style="width: 33%">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td style="text-align: left;"><strong>ESCAPE</strong></td>
+                    <td style="text-align: left;"><strong>STATUS</strong></td>
+                    <td style="text-align: left;"><strong>NOTE</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC (</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Only charsets <strong>B</strong> and
+                        <strong>0</strong> are supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC )</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Only charsets <strong>B</strong> and
+                        <strong>0</strong> are supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC *</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Only charsets <strong>B</strong> and
+                        <strong>0</strong> are supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC +</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Only charsets <strong>B</strong> and
+                        <strong>0</strong> are supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC =</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC &gt;</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC 7</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC 8</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC # 8</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC D</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC E</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC H</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC M</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>ESC Z</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="csi-(control sequence introducer) - esc ["><a href="#csi-(control sequence introducer) - esc [">CSI (Control Sequence Introducer) - ESC [</a></h1>
+        <table>
+            <colgroup>
+                <col style="width: 33%">
+                <col style="width: 33%">
+                <col style="width: 33%">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td style="text-align: left;"><strong>ESCAPE</strong></td>
+                    <td style="text-align: left;"><strong>STATUS</strong></td>
+                    <td style="text-align: left;"><strong>NOTE</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI `</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI @</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI A</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI a</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI B</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI b</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI C</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI c</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI D</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI d</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI E</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI e</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI F</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI f</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI G</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI g</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI H</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI h</em></td>
+                    <td style="text-align: left;">Partial</td>
+                    <td style="text-align: left;">Modes: <strong>4</strong>,
+                        <strong>20</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI ? h</em></td>
+                    <td style="text-align: left;">Partial</td>
+                    <td style="text-align: left;">Modes: <strong>1</strong>,
+                        <strong>3</strong>, <strong>6</strong>, <strong>7</strong>,
+                        <strong>12</strong>, <strong>25</strong>, <strong>1000</strong>,
+                        <strong>1002</strong>, <strong>1004</strong>,
+                        <strong>1005</strong>, <strong>1006</strong>,
+                        <strong>1007</strong>, <strong>1042</strong>,
+                        <strong>1049</strong>, <strong>2004</strong>,
+                        <strong>2026</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI I</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI J</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI K</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI L</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI l</em></td>
+                    <td style="text-align: left;">Partial</td>
+                    <td style="text-align: left;">See <em>CSI h</em> for supported modes
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI ? l</em></td>
+                    <td style="text-align: left;">Partial</td>
+                    <td style="text-align: left;">See <em>CSI ? h</em> for supported modes
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI M</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI m</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Parameters:
+                        <strong>0</strong>-<strong>9</strong>,
+                        <strong>21</strong>-<strong>25</strong>,
+                        <strong>27</strong>-<strong>49</strong>, <strong>58</strong>,
+                        <strong>59</strong>, <strong>90</strong>-<strong>97</strong>,
+                        <strong>100</strong>-<strong>107</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI m</em></td>
+                    <td style="text-align: left;">Rejected</td>
+                    <td style="text-align: left;">Parameters:
+                        <strong>11</strong>-<strong>19</strong>,
+                        <strong>51</strong>-<strong>55</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI n</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI P</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI $ p</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI ? $ p</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI SP q</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI r</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI S</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI s</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI T</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI t</em></td>
+                    <td style="text-align: left;">Partial</td>
+                    <td style="text-align: left;">Parameters: <strong>22</strong>,
+                        <strong>23</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI t</em></td>
+                    <td style="text-align: left;">Rejected</td>
+                    <td style="text-align: left;">Parameters:
+                        <strong>1</strong>-<strong>13</strong>, <strong>15</strong>,
+                        <strong>19</strong>-<strong>21</strong>, <strong>24</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI u</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI ? u</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI = u</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI &lt; u</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI &gt; u</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI X</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>CSI Z</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="osc-(operating system command) - esc ]"><a href="#osc-(operating system command) - esc ]">OSC (Operating System Command) - ESC ]</a></h1>
+        <table>
+            <colgroup>
+                <col style="width: 33%">
+                <col style="width: 33%">
+                <col style="width: 33%">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td style="text-align: left;"><strong>ESCAPE</strong></td>
+                    <td style="text-align: left;"><strong>STATUS</strong></td>
+                    <td style="text-align: left;"><strong>NOTE</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 0</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Icon names are not supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 1</em></td>
+                    <td style="text-align: left;">Rejected</td>
+                    <td style="text-align: left;">Icon names are not supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 2</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 4</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 8</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 10</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 11</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 12</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 50</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Only <strong>CursorShape</strong> is supported
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 52</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;">Only <strong>clipboard</strong> and
+                        <strong>primary selection</strong> supported</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 104</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 110</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 111</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>OSC 112</em></td>
+                    <td style="text-align: left;">Implemented</td>
+                    <td style="text-align: left;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="dcs-(device control string) - esc p"><a href="#dcs-(device control string) - esc p">DCS (Device Control String) - ESC P</a></h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td style="text-align: left;"><strong>ESCAPE</strong></td>
+                    <td style="text-align: left;"><strong>STATUS</strong></td>
+                    <td style="text-align: left;"><strong>NOTE</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><em>DCS = s</em></td>
+                    <td style="text-align: left;">Rejected</td>
+                    <td style="text-align: left;"><em>CSI ? 2026 h/l</em> is used instead
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="see-also"><a href="#see-also">SEE ALSO</a></h1>
+        <p><strong><a href="./cmd-alacritty.html">alacritty(1)</a></strong>,
+            <strong><a href="./cmd-alacritty-msg.html">alacritty-msg(1)</a></strong>, <strong><a href="./config-alacritty.html">alacritty(5)</a></strong>,
+            <strong><a href="./config-alacritty-bindings.html">alacritty-bindings(5)</a></strong></p>
+        <h1 id="bugs"><a href="#bugs">BUGS</a></h1>
+        <p>Found a bug? Please report it at
+            <em>https://github.com/alacritty/alacritty/issues</em>.</p>
+        <h1 id="maintainers"><a href="#maintainers">MAINTAINERS</a></h1>
+        <ul>
+            <li>
+                <p>Christian Duerr &lt;contact@christianduerr.com&gt;</p>
+            </li>
+            <li>
+                <p>Kirill Chibisov &lt;contact@kchibisov.com&gt;</p>
+            </li>
+        </ul>
+    </main>
+</body>
+
+</html>
