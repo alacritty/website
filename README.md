@@ -58,6 +58,7 @@ to update the symlinks in the `static` directory:
 cd static
 ln -sf $(ls -t releases/*/cmd-alacritty.html | head -n 1) ./
 ln -sf $(ls -t releases/*/cmd-alacritty-msg.html | head -n 1) ./
-ln -sf $(ls -t releases/*/config-alacritty.html | head -n 1) ./
 ln -sf $(ls -t releases/*/config-alacritty-bindings.html | head -n 1) ./
+ln -sf $(ls -t releases/*/config-alacritty.html | head -n 1) ./
+ln -sf $(ls -t releases/*/misc-alacritty-escapes.html | head -n 1) ./
 ```
